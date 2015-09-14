@@ -1,4 +1,7 @@
 'use strict';
+
+
+
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
@@ -33,7 +36,7 @@ var generateSalt = function () {
 };
 
 var encryptPassword = function (plainText, salt) {
-    var hash = crypto.createHash('sha1');
+    var hash = crypto.createHash('sha256');
     hash.update(plainText);
     hash.update(salt);
     return hash.digest('hex');
