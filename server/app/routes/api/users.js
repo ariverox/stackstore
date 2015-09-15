@@ -1,4 +1,5 @@
 var router =require('express').Router()
+
 var User = require('../../../db/models/user.model')
 var path = require('path')
 var indexHTMLPath = path.join(__dirname, '..','views','index.html')

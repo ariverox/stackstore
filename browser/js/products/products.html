@@ -1,0 +1,7 @@
+<section id="products">
+	<div ng-repeat="product in products">
+		<p>{{ product.title }}</p>
+		<p>{{ product.price | currency }}</p>
+		<p>{{ product.stock }} in stock </p>
+	</div>
+</section>
