@@ -2,9 +2,10 @@
 var mongoose = require('mongoose');
 
 var Product = new mongoose.Schema({
-	name: {
+	title: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	categories: {
 		type: [String]
@@ -19,8 +20,9 @@ var Product = new mongoose.Schema({
 	reviews: {
 		type: [Object]
 	},
-	image: {
-		type: String
+	photo: {
+		type: String,
+		default: '/images/default-photo.jpg'
 	}
 })
 
