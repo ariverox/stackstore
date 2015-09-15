@@ -11,6 +11,8 @@ app.config(function($stateProvider) {
 
 app.controller('ProductsCtrl', function($scope, ProductFactory) {
 
+	$scope.flagAbbrs = ProductFactory.flagAbbrs;
+
 	ProductFactory.getAll().then(function(stuff) {
 		$scope.products = stuff;
 	})
@@ -20,8 +22,21 @@ app.controller('ProductsCtrl', function($scope, ProductFactory) {
 	
 
 app.factory('ProductFactory', function($http) {
+	var flagAbbrs = {
+		germany: 'de',
+		japan: 'jp',
+		netherlands: 'nl',
+		nigeria: 'ng',
+		peru: 'pe',
+		south_korea: 'kr',
+		turkey: 'tr',
+		uk: 'gb',
+		usa: 'us',
+
+	}
 
 	return {
+		flagAbbrs: flagAbbrs,
 		getAll: function(categories) {
 			var config = {params: {}};
 			if (categories && categories.length) {
