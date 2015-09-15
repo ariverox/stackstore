@@ -65,19 +65,40 @@ function generateAll() {
   }));
   var products = [];
 
-  products.push(new Product({
-    name: 'Tasty Crunch',
-    categories: ['chocolate'],
-    price: 3,
-    stock: 99
-  }))
+  // products.push(new Product({
+  //   title: 'Tasty Crunch',
+  //   categories: ['chocolate'],
+  //   price: 3,
+  //   stock: 99
+  // }))
 
-  products.push(new Product({
-      name: 'Spicy Crunch',
-      categories: ['chocolate'],
-      price: 4,
-      stock: 20
-    }))
+  // products.push(new Product({
+  //     title: 'Spicy Crunch',
+  //     categories: ['chocolate'],
+  //     price: 4,
+  //     stock: 20
+  //   }))
+
+  var products = [
+    new Product({ title: 'Tasty Crunch', categories: ['chocolate', 'candy'], price: 3, stock: 99 }),
+    new Product({ title: 'Spicy Crunch', categories: ['chocolate', 'candy'], price: 4, stock: 20 }),
+    new Product({ title: 'Shrimp Crackers', categories: ['crackers', 'korean'], price: 3, stock: 41 }),
+    new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie', 'japanese'], price: 3, stock: 80 }),
+    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy', 'japanese'], price: 30, stock: 15 }),
+    new Product({ title: 'Everlasting Gobstoppers', categories: ['candy', 'wonka', 'uk'], price: 6, stock: 37 }),
+    new Product({ title: 'blah', categories: ['strawberry', 'german'], price: 10, stock: 15 }),
+    new Product({ title: 'bleh', categories: ['coconut', 'nigerian'], price: 11, stock: 8 }),
+    new Product({ title: 'asdf', categories: ['cheese', 'peruvian'], price: 12, stock: 24 }),
+    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 }),
+
+
+
+
+
+
+
+
+  ]
 
     return users.concat(products);
 }

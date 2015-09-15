@@ -7,7 +7,7 @@ var Transaction = new mongoose.Schema({
 		required: true
 	},
 	user: {
-		type: Schema.Types.ObjectId, ref: 'User'
+		type: mongoose.Schema.Types.ObjectId, ref: 'User'
 	},
 	details: {
 		type: [Object],
