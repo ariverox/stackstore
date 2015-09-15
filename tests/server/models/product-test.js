@@ -21,38 +21,79 @@ describe('Product model', function () {
     afterEach('Clear test database', function (done) {
         clearDB(done);
     });
-
-    it('should exist', function () {
-        expect(Product).to.be.a('function');
-    });
-
     describe('on creation', function() {
-    	var createProduct = function () {
-    	    return Product.create({ 
-    	    	title: 'bob',
-    	    	categories: ['bob'],
-    	    	price: 808,
-    	    	stock: 808,
-				photo: 'bob.png' 
-    	    });
-    	};
+        var createProduct = function () {
+            return Product.create({ 
+                title: 'bob',
+                categories: ['bob'],
+                price: 808,
+                stock: 808,
+                photo: 'bob.png' 
+            });
+        };
 
-    	beforeEach(function() {
+        beforeEach(function() {
 
-    	});
-    	afterEach(function() {
+        });
+        afterEach(function() {
 
-    	});
+        });
 
-    	it('should add to the total inventory', function(done) {
-    		createProduct().then(function(product) {
-    			return Product.find().exec()
-    		}).then(function(products) {
-    			expect(products.length).to.be.equal(1);
-    			done();
-    		});
-    	});
+        it('should add to the total inventory', function(done) {
+            createProduct().then(function(product) {
+                return Product.find().exec()
+            }).then(function(products) {
+                expect(products.length).to.be.equal
+                done();
+            });
+        });
     });
+
+    describe('Product Schema', function () {
+
+        it('should require title', function (done) {
+            var product = new Product({
+                stock: 54
+            });
+            product.save().then(function() {
+                console.log('sdgfsdhf');
+            }, function (err) {
+                expect( err.message ).to.equal( 'Validation Failed' );
+            });
+                done();
+        });
+        it('should require qty (stock)', function (done) {
+            var product = new Product({
+                title: "Delicious whatsit"
+            });
+            product.save().then(null, function (err, savedProduct) {
+                expect( err.message ).to.equal( 'Validation failed');
+            });
+                done();
+        });
+    });
+//     // describe('Products Schema', function () {
+
+//     //     it('should require name', function (done) {
+//     //         var product = new Product({
+//     //             stock: 54
+//     //         });
+//     //         product.save(function (err, savedProduct) {
+//     //             expect( err.message ).to.equal( 'Validation Failed' );
+//     //             done();
+//     //         });
+//     //     });
+//     //     it('should require qty (stock)', function (done) {
+//     //         var product = new Product({
+//     //             name: "Delicious whatsit"
+//     //         });
+//     //         product.save(function (err, savedProduct) {
+//     //             expect( err.message ).to.equal( 'Validation failed');
+//     //             done();
+//     //         });
+//     //     });
+//     // });
+
 
 
 

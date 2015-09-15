@@ -24,6 +24,6 @@ var Product = new mongoose.Schema({
 		type: String,
 		default: '/images/default-photo.jpg'
 	}
-})
+});
 
 module.exports = mongoose.model('Product', Product);
