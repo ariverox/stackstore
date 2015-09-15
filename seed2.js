@@ -82,9 +82,9 @@ function generateAll() {
   var products = [
     new Product({ title: 'Tasty Crunch', categories: ['chocolate', 'candy'], price: 3, stock: 99 }),
     new Product({ title: 'Spicy Crunch', categories: ['chocolate', 'candy'], price: 4, stock: 20 }),
-    new Product({ title: 'Shrimp Crackers', categories: ['crackers', 'korean'], price: 3, stock: 41 }),
+    new Product({ title: 'Nongshim Shrimp Crackers', categories: ['crackers', 'korean'], price: 3, stock: 41, photo: 'http://static.caloriecount.about.com/images/medium/nong-shim-shrimp-crackers-33551.jpg' }),
     new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie', 'japanese'], price: 3, stock: 80 }),
-    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy', 'japanese'], price: 30, stock: 15 }),
+    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy', 'japanese'], price: 30, stock: 15, photo: 'http://thumbnail.image.rakuten.co.jp/@0_mall/bassano/cabinet/img55686633.jpg' }),
     new Product({ title: 'Everlasting Gobstoppers', categories: ['candy', 'wonka', 'uk'], price: 6, stock: 37 }),
     new Product({ title: 'blah', categories: ['strawberry', 'german'], price: 10, stock: 15 }),
     new Product({ title: 'bleh', categories: ['coconut', 'nigerian'], price: 11, stock: 8 }),

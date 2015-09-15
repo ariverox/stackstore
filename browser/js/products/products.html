@@ -1,7 +1,22 @@
 <section id="products">
-	<div ng-repeat="product in products">
-		<p>{{ product.title }}</p>
-		<p>{{ product.price | currency }}</p>
-		<p>{{ product.stock }} in stock </p>
-	</div>
+	<h2>All Products</h2>
+	<table>
+		<tbody>
+			<tr>
+				<td class="row" ng-repeat="product in products">
+
+					<div class="col-xs-6 col-md-3">
+						<ul>
+							<a href="#" class="thumbnail product-image list-group-item">
+								<img src="{{ product.photo }}" alt="{{ product.title }}">
+							</a>
+							<span><a href="#" class="product-title">{{ product.title }}</a></span>
+							<span><strong>{{ product.price | currency }}</strong></span>
+							<p>{{ product.stock }} in stock </p>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>

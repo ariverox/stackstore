@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 // Require in all models.
 require('../../../server/db/models');
 
-var Products = mongoose.model('Products');
+var Product = mongoose.model('Product');
 
 describe('Products Model', function () {
 
@@ -22,7 +22,7 @@ describe('Products Model', function () {
     });
 
     it('should exist', function () {
-        expect(Products).to.be.a('function');
+        expect(Product).to.be.a('function');
     });
 
     describe('Products Schema', function () {

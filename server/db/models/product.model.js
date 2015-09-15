@@ -22,7 +22,7 @@ var Product = new mongoose.Schema({
 	},
 	photo: {
 		type: String,
-		default: '/images/default-photo.jpg'
+		default: '/images/bacon.jpg'
 	}
 })
 
