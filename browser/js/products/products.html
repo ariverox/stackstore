@@ -1,7 +1,38 @@
 <section id="products">
-	<div ng-repeat="product in products">
-		<p>{{ product.title }}</p>
-		<p>{{ product.price | currency }}</p>
-		<p>{{ product.stock }} in stock </p>
-	</div>
+	<h2>All Products</h2>
+	<form name="filterForm" ng-submit="" novalidate>
+		<p>Filter by Category: <input name="categoryFilter" type="text" /></p>
+		<p>Filter by Country of Origin: <input name="countryFilter" type="text" /></p>
+		<p>Order by: 
+			<select name="orderField" required>
+				<option value="title">Product Title</option>
+				<option value="price">Price, by lowest</option>
+
+			</select>
+		</p>
+		<button type="submit">Submit</button>
+	</form>
+
+	<table>
+		<tbody>
+			<tr>
+				<td class="row" ng-repeat="product in products | orderBy: 'title' ">
+
+					<div class="col-xs-6 col-md-3">
+						<a href="#" class="thumbnail product-image list-group-item">
+							<img src="{{ product.photo }}" alt="{{ product.title }}">
+						</a>
+						<ul>
+							<li>
+								<span><a href="/products/{{ product._id }}" class="product-title">{{ product.title }}</a><span>
+								<span ng-show="!!product.country" class="flag-icon flag-icon-{{ flagAbbrs[product.country] }}"></span>
+							</li>
+							<li><strong>{{ product.price | currency }}</strong></li>
+							<li>{{ product.stock }} in stock </li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </section>

@@ -46,13 +46,39 @@ describe('Product model', function () {
 
     	it('should add to the total inventory', function(done) {
     		createProduct().then(function(product) {
-    			return Product.find().exec()
-    		}).then(function(products) {
-    			expect(products.length).to.be.equal(1);
-    			done();
-    		});
-    	});
+                return Product.find().exec()
+            }).then(function(products) {
+                expect(products.length).to.be.equal(1);
+                done();
+            });
+        });
     });
+
+    describe('Product Schema', function () {
+
+        it('should require title', function (done) {
+            var product = new Product({
+                stock: 54
+            });
+            product.save().then(function() {
+                console.log('sdgfsdhf');
+            }, function (err) {
+                expect( err.message ).to.equal( 'Validation Failed' );
+                done();
+            });
+        });
+        it('should require qty (stock)', function (done) {
+            var product = new Product({
+                title: "Delicious whatsit"
+            });
+            product.save().then(null, function (err, savedProduct) {
+                expect( err.message ).to.equal( 'Validation failed');
+                done();
+            });
+        });
+    });
+
+
 
 
 
