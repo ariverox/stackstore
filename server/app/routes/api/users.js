@@ -1,12 +1,14 @@
 var router =require('express').Router()
-var User = require('./db/models/user.model')
-
-
+var User = require('../../../db/models/user.model')
+var path = require('path')
+var indexHTMLPath = path.join(__dirname, '..','views','index.html')
 //admin only - list of users
-router.get('/api/users', function(req,res){
-  User.find().then(function(users){
-    res.send(users)
-  })
+router.get('/', function(req,res){
+  console.log("dada")
+  res.sendFile(indexHTMLPath)
+  // User.find().then(function(users){
+  //   res.send(users)
+  // })
 })
 
 //user page, specifc user, differnt for the user, other users and admin
