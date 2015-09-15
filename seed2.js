@@ -1,9 +1,23 @@
 var chance = require('chance')(123),
-	_ = require('lodash'),
-	Promise = require('bluebird');
+  _ = require('lodash'),
+  Promise = require('bluebird');
 
-var db = require('./server/db/index');
+var mongoose = require('mongoose')
+var db = mongoose.connect("mongodb://localhost:27017/stackstore").connection;
+db.on('open', function() {
+  console.log('Database connection successfully opened');
+});
+
+db.on('error', function(err) {
+  console.error('Database connection error', err);
+});
+
+
+
+
+
 var User = require('./server/db/models/user.model');
+var Product = require('./server/db/models/product.model');
 var connectToDb = require('./server/db');
 
 
@@ -12,65 +26,93 @@ var numStories = 500;
 
 var emails = chance.unique(chance.email, numUsers);
 
-function randPhoto () {
-	var g = chance.pick(['men', 'women']);
-	var n = chance.natural({
-		min: 0,
-		max: 96
-	});
-	return 'http://api.randomuser.me/portraits/thumb/' + g + '/' + n + '.jpg'
-}
-function randUser () {
-	return new User({
-		name: [chance.first(), chance.last()].join(' '),
-		photo: randPhoto(),
-		phone: chance.phone(),
-		email: emails.pop(),
-		password: chance.word(),
-		isAdmin: chance.weighted([true, false], [5, 95])
-	});
+function randPhoto() {
+  var g = chance.pick(['men', 'women']);
+  var n = chance.natural({
+    min: 0,
+    max: 96
+  });
+  return 'http://api.randomuser.me/portraits/thumb/' + g + '/' + n + '.jpg'
 }
 
-function generateAll () {
-	var users = _.times(numUsers, randUser);
-	users.push(new User({
-		name: 'Zeke Nierenberg',
-		photo: 'http://media.licdn.com/media/p/5/005/0ac/184/16505c6.jpg',
-		phone: '(510) 295-5523',
-		email: 'zeke@zeke.zeke',
-		password: '123',
-		isAdmin: true
-	}));
-	users.push(new User({
-		name: 'Omri Bernstein',
-		photo: 'http://i.zemanta.com/278070129_80_80.jpg',
-		phone: '(781) 854-8854',
-		email: 'omri@zeke.zeke',
-		password: '123'
-	}));
-	return users;
+function randUser() {
+  return new User({
+    name: [chance.first(), chance.last()].join(' '),
+    photo: randPhoto(),
+    phone: chance.phone(),
+    email: emails.pop(),
+    password: chance.word(),
+    isAdmin: chance.weighted([true, false], [5, 95])
+  });
 }
 
-function seed () {
-	var docs = generateAll();
-	return Promise.map(docs, function (doc) {
-		return doc.save();
-	});
+function generateAll() {
+  var users = _.times(numUsers, randUser);
+  users.push(new User({
+    name: 'Zeke Nierenberg',
+    photo: 'http://media.licdn.com/media/p/5/005/0ac/184/16505c6.jpg',
+    phone: '(510) 295-5523',
+    email: 'zeke@zeke.zeke',
+    password: '123',
+    isAdmin: true
+  }));
+  users.push(new User({
+    name: 'Omri Bernstein',
+    photo: 'http://i.zemanta.com/278070129_80_80.jpg',
+    phone: '(781) 854-8854',
+    email: 'omri@zeke.zeke',
+    password: '123'
+  }));
+  var products = [];
+
+  products.push(new Product({
+    name: 'Tasty Crunch',
+    categories: ['chocolate'],
+    price: 3,
+    stock: 99
+  }))
+
+  products.push(new Product({
+      name: 'Spicy Crunch',
+      categories: ['chocolate'],
+      price: 4,
+      stock: 20
+    }))
+
+    return users.concat(products);
 }
 
-connectToDb.then(function () {
-    User.findAsync({}).then(function (users) {
-        if (users.length === 0) {
-            return seedUsers();
-        } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
-            process.kill(0);
-        }
-    }).then(function () {
-        console.log(chalk.green('Seed successful!'));
-        process.kill(0);
-    }).catch(function (err) {
-        console.error(err);
-        process.kill(1);
+
+
+
+function seed() {
+  var docs = generateAll();
+  return Promise.map(docs, function(doc) {
+    return doc.save();
+  });
+}
+
+
+
+
+
+
+
+
+db.drop = Promise.promisify(db.db.dropDatabase.bind(db.db));
+
+db.on('open', function() {
+  db.drop()
+    .then(function() {
+      return seed();
+    })
+    .then(function() {
+      console.log('Seeding successful');
+    }, function(err) {
+      console.error('Error while seeding');
+      console.error(err.stack);
+    })
+    .then(function() {
+      process.exit();
     });
 });

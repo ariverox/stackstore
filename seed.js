@@ -22,6 +22,9 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Product = Promise.promisifyAll(mongoose.model('Product'));
+var Transaction = Promise.promisifyAll(mongoose.model('Transaction'));
+
 
 var seedUsers = function () {
 
@@ -39,6 +42,8 @@ var seedUsers = function () {
     return User.createAsync(users);
 
 };
+
+
 
 connectToDb.then(function () {
     User.findAsync({}).then(function (users) {
