@@ -1,4 +1,4 @@
-'use strict';
+	'use strict';
 var mongoose = require('mongoose');
 
 var Transaction = new mongoose.Schema({
@@ -16,6 +16,9 @@ var Transaction = new mongoose.Schema({
 	due: {
 		type: Number,
 		required: true
+	},
+	subtotal: {
+		type: Number 
 	}
 })
 

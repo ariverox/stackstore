@@ -1,0 +1,30 @@
+<div class="row">
+       <img style="width: 100%" class="img-responsive" ng-src="{{ user.photo }}">
+                 <div>
+                        <h1>Hello {{user.name.first}} {{user.name.last}}!</h1>
+                            
+                    </div>
+                    <div>
+                            <label>
+                                <h2>Email</h2>
+                            </label>
+                            <input placeholder="{{user.email}}">{{user.email}}</input>
+                    </div>
+                            <label>
+                                <h2>Password</h2></label>
+                            <h1>{{user.password}} </h1>
+                    </div>
+                        <a>Update Profile</a>
+                <h1>Reviews</h1>
+            </div>
+            <!-- product directive with ng-repeat going through every review and displaying it in a list form-->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+
+                <h1> Orders</h1>
+            <div class="row">
+                <ng-repeat transaction in transactions> 
+                 <user-order-line="transaction"> </user-order-line>
+            </div>
+    </div>
+ 
