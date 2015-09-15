@@ -17,7 +17,7 @@ var Transaction = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
-	subtotal {
+	subtotal: {
 		type: Number 
 	}
 })

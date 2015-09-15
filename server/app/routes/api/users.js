@@ -1,13 +1,21 @@
 var router =require('express').Router()
-<<<<<<< HEAD:server/api/users.js
-var User = require('./db/models/user.model')
 
 
-=======
 var User = require('../../../db/models/user.model')
 var path = require('path')
 var indexHTMLPath = path.join(__dirname, '..','views','index.html')
 //admin only - list of users
+
+router.param('userID', function(req, res, next, userID){
+	User.findById(userID).then(function(user){
+		if(!user) throw new Error('no user found');
+		else {
+			req.user = user;
+			next()
+		}
+	}).then(null, next)
+})
+
 router.get('/', function(req,res){
   console.log("dada")
   res.sendFile(indexHTMLPath)
@@ -15,5 +23,5 @@ router.get('/', function(req,res){
   //   res.send(users)
   // })
 })
->>>>>>> 615eacc45e4d71889587ef0a734212b04886fba2:server/app/routes/api/users.js
 
+module.exports = router
