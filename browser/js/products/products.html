@@ -6,13 +6,16 @@
 				<td class="row" ng-repeat="product in products">
 
 					<div class="col-xs-6 col-md-3">
+						<a href="#" class="thumbnail product-image list-group-item">
+							<img src="{{ product.photo }}" alt="{{ product.title }}">
+						</a>
 						<ul>
-							<a href="#" class="thumbnail product-image list-group-item">
-								<img src="{{ product.photo }}" alt="{{ product.title }}">
-							</a>
-							<span><a href="#" class="product-title">{{ product.title }}</a></span>
-							<span><strong>{{ product.price | currency }}</strong></span>
-							<p>{{ product.stock }} in stock </p>
+							<li>
+								<span><a href="/products/{{ product._id }}" class="product-title">{{ product.title }}</a><span>
+								<span ng-show="!!product.country" class="flag-icon flag-icon-{{ flagAbbrs[product.country] }}"></span>
+							</li>
+							<li><strong>{{ product.price | currency }}</strong></li>
+							<li>{{ product.stock }} in stock </li>
 						</ul>
 					</div>
 				</td>
