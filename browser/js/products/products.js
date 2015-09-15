@@ -11,18 +11,18 @@ app.config(function($stateProvider) {
 
 app.controller('ProductsCtrl', function($scope, ProductFactory) {
 
-	ProductFactory.getAllProducts().then(function(products) {
-		$scope.products = products;
+	ProductFactory.getAll().then(function(stuff) {
+		$scope.products = stuff;
 	})
 
 })
 
-
+	
 
 app.factory('ProductFactory', function($http) {
 
 	return {
-		getAllProducts: function(categories) {
+		getAll: function(categories) {
 			var config = {params: {}};
 			if (categories && categories.length) {
 				config = {params: {categories: categories}};
@@ -31,6 +31,26 @@ app.factory('ProductFactory', function($http) {
 				return res.data;
 			})
 		},
+		getOne: function getOne (id) {
+		  return $http.get('/api/products/' + id).then(function (response) {
+		    return response.data;
+		  });
+		},
+		remove: function remove (id) {
+		  return $http.delete('/api/products/').then(function (response) {
+
+		  });
+		},
+		add: function add (product) {
+		  return $http.post('/api/products/').then(function (product) {
+		    return product;
+		  });
+		},
+		update: function update (id, product) {
+		  return $http.put('/api/products/').then(function (response) {
+		    return response.data;
+		  });
+		}
 	}
 
 });
