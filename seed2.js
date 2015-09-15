@@ -89,15 +89,7 @@ function generateAll() {
     new Product({ title: 'blah', categories: ['strawberry', 'german'], price: 10, stock: 15 }),
     new Product({ title: 'bleh', categories: ['coconut', 'nigerian'], price: 11, stock: 8 }),
     new Product({ title: 'asdf', categories: ['cheese', 'peruvian'], price: 12, stock: 24 }),
-    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 }),
-
-
-
-
-
-
-
-
+    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 })
   ]
 
     return users.concat(products);

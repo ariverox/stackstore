@@ -1,8 +1,8 @@
 <div class="row">
        <img style="width: 100%" class="img-responsive" ng-src="{{ user.photo }}">
                  <div>
-                        <h1>Hello {{user.name.first}} {{user.name.last}}!</h1>
-                            
+                        <h1>Hello !</h1>
+
                     </div>
                     <div>
                             <label>
@@ -23,8 +23,7 @@
 
                 <h1> Orders</h1>
             <div class="row">
-                <ng-repeat transaction in transactions> 
+                <ng-repeat transaction in transactions>
                  <user-order-line="transaction"> </user-order-line>
             </div>
     </div>
- 
