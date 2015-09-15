@@ -2,8 +2,7 @@
 	var mongoose = require('mongoose');
 
 
-
-	var Transaction= new mongoose.Schema({
+	var Order= new mongoose.Schema({
 	  timestamp: {
 	    type: Number,
 	    required: true
@@ -38,14 +37,14 @@
 	  }
 	});
 
-	Transaction.statics.products = function(){
+	Order.statics.products = function(){
 		this.items.products.forEach(function(product){
 			product.populate().exec().then(function(product){
 				return product.title;
-			})
-		})
-	}
+			});
+		});
+	};
 
 
 
-	module.exports = mongoose.model('Transaction', Transaction);
+module.exports = mongoose.model('Order', Order);

@@ -23,7 +23,7 @@ var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Product = Promise.promisifyAll(mongoose.model('Product'));
-var Transaction = Promise.promisifyAll(mongoose.model('Transaction'));
+var Order = Promise.promisifyAll(mongoose.model('Order'));
 
 
 var seedUsers = function () {
@@ -35,7 +35,7 @@ var seedUsers = function () {
         },
         {
             email: 'obama@gmail.com',
-            password: 'potus' 
+            password: 'potus'
         }
     ];
 

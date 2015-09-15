@@ -10,10 +10,10 @@ var ReviewSchema = new mongoose.Schema({
     min: 120,
     max: 500
   },
-  transaction: {
+  order: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Transaction'
+    ref: 'Order'
   }
 })
 
-module.exports = mongoose.model('Reviews', ReviewSchema) ;
+module.exports = mongoose.model('Reviews', ReviewSchema);
