@@ -1,8 +1,5 @@
 var router =require('express').Router()
+var User = require('./db/models/user.model')
 
 
-// router.get('/', function( req))
-
-
-module.exports = router; 
 
