@@ -80,16 +80,17 @@ function generateAll() {
   //   }))
 
   var products = [
+    new Product({ title: 'topkek', categories: ['kek', 'turkish'], price: 6, stock: 1337, photo: 'https://img.4plebs.org/boards/s4s/image/1390/37/1390378588723.jpg' }),
     new Product({ title: 'Tasty Crunch', categories: ['chocolate', 'candy'], price: 3, stock: 99 }),
     new Product({ title: 'Spicy Crunch', categories: ['chocolate', 'candy'], price: 4, stock: 20 }),
     new Product({ title: 'Nongshim Shrimp Crackers', categories: ['crackers', 'korean'], price: 3, stock: 41, photo: 'http://static.caloriecount.about.com/images/medium/nong-shim-shrimp-crackers-33551.jpg' }),
-    new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie', 'japanese'], price: 3, stock: 80 }),
+    new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie', 'japanese'], price: 3, stock: 80, photo: 'http://www.koamart.com/images/2873_enlarged[1].gif' }),
     new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy', 'japanese'], price: 30, stock: 15, photo: 'http://thumbnail.image.rakuten.co.jp/@0_mall/bassano/cabinet/img55686633.jpg' }),
     new Product({ title: 'Everlasting Gobstoppers', categories: ['candy', 'wonka', 'uk'], price: 6, stock: 37 }),
     new Product({ title: 'blah', categories: ['strawberry', 'german'], price: 10, stock: 15 }),
     new Product({ title: 'bleh', categories: ['coconut', 'nigerian'], price: 11, stock: 8 }),
     new Product({ title: 'asdf', categories: ['cheese', 'peruvian'], price: 12, stock: 24 }),
-    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 }),
+    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 4.20, stock: 0, photo: 'http://releaf.co/wp-content/uploads/2012/01/brwn.jpg' }),
 
 
 
