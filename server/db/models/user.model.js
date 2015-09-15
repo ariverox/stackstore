@@ -37,7 +37,8 @@ var schema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  phone: String
+  phone: String,
+
 
 });
 
