@@ -13,7 +13,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'Users', state: 'userList'},
                 { label: 'Members Only', state: 'membersOnly', auth: true },
 
-                { label: 'Products', state: 'products' }
+                { label: 'Products', state: 'products' },
+                { label: 'Cart', state: 'cart' }
                 // { label: 'Members Only', state: 'users', auth: true }
 
 
