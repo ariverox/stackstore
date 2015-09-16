@@ -21,9 +21,9 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, $filter) {
 		$scope.products = stuff;
 	})
 
-	$scope.setFiltersAndOrder = function(categories, country, order) {
-		$scope.predicate = p;
-	}
+	// $scope.setFiltersAndOrder = function(categories, country, order) {
+	// 	$scope.predicate = p;
+	// }
 
 	$scope.filterByCategories = function(categories) {
 		//if (!categories) return $scope.products;
