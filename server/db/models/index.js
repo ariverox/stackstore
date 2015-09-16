@@ -3,4 +3,5 @@
 // anywhere the User model needs to be used.
 require('./user.model.js');
 require('./product.model.js');
-require('./transaction.model.js');
+require('./order.model.js');
+require('./review.model.js');

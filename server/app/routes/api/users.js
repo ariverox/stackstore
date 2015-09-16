@@ -3,6 +3,7 @@ var router =require('express').Router()
 var User = require('../../../db/models/user.model')
 var path = require('path')
 var indexHTMLPath = path.join(__dirname, '..','views','index.html')
+
 //admin only - list of users
 
 router.param('userID', function(req, res, next, userID){
@@ -10,7 +11,7 @@ router.param('userID', function(req, res, next, userID){
 		if(!user) throw new Error('no user found');
 		else {
 			req.user = user;
-			next()
+			next();
 		}
 	}).then(null, next)
 })
@@ -18,12 +19,9 @@ router.param('userID', function(req, res, next, userID){
 router.get('/', function(req,res, next){
   console.log("dada", req.user)
   User.find().then(function(users){
-		res.send(users)
-		next()
-	})
-
-
-
+		res.send(users);
+		next();
+	});
 })
 
 
@@ -34,10 +32,10 @@ router.get('/:id', function(req,res, next){
 		res.send(user)
 		next()
 	})
-
-
-
 })
+
+
+
 
 
 
