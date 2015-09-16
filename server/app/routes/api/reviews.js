@@ -1,41 +1,43 @@
 var router =require('express').Router()
-
-var User = require('../../../db/models/user.model')
+var Review = require('../../../db/models/review.model')
 var path = require('path')
 var indexHTMLPath = path.join(__dirname, '..','views','index.html')
 
 //admin only - list of users
 
-router.param('userID', function(req, res, next, userID){
-	User.findById(userID).then(function(user){
-		if(!user) throw new Error('no user found');
-		else {
-			req.user = user;
-			next();
-		}
-	}).then(null, next)
-})
+// router.param('reviewId', function(req, res, next, reviewId){
+// 	Review.findById(reviewId).populate({
+// 		path: product
+// 	})
+
+// 	{
+
+// 		if(!review) throw new Error('no review found');
+// 		else {
+// 			req.review = user;
+// 			next();
+// 		}
+// 	}).then(null, next)
+// }
 
 router.get('/', function(req,res, next){
-  console.log("dada", req.user)
-  User.find().then(function(users){
-		res.send(users);
+  User.find().then(function(reviews){
+		res.send(reviews);
 		next();
 	});
 })
 
 
 router.get('/:id', function(req,res, next){
-  console.log("dada", req.user)
 	var id = req.params.id
-  User.findById(id).then(function(user){
-		res.send(user)
+  User.findById(id).then(function(review){
+		res.send(review)
 		next()
 	})
 })
 
-router.post('/create', function (req, res, next) {
-    User.create(req.body)
+router.post('/', function (req, res, next) {
+    Review.create(req.body)
     .then(function (user) {
      	res.status(201).json(user)
     })

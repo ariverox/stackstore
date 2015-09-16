@@ -19,10 +19,10 @@ body {
   width: 100%;
   height: 900px;
   margin: 0;
-  background-color:lightblue;
   
 }
 
+@import 'userprofile/main';
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

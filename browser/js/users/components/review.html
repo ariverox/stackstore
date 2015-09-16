@@ -1,0 +1,15 @@
+<div class="col-sm-12 col-md-12 col-lg-12"> 
+    <form name="reviewForm" ng-submit="reviewForm.$valid"> 
+        <label>Your Rating</label>
+            <select name="stars" ng-model="review.rating" ng-selected="selected">
+                <option ng-selected="selected" value="1">1 star</option>
+                <option value="2">2 star</option>
+                <option value="3">3 star</option>
+                <option value="4">4 star</option>
+                <option value="5">5 star</option>
+            </select>
+        <textarea name="review-text" ng-model="review.text" placeholder="Enter your review here" rows="5" required ng-minlength="10"></textarea>
+        <button class="btn btn-primary btn-lg btn-standard"> Add a Review</button>
+    </form>
+</div>
+
