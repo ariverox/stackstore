@@ -34,10 +34,23 @@ router.get('/:id', function(req,res, next){
 	})
 })
 
+router.post('/', function (req, res, next) {
+    User.create(req.body)
+    .then(function (user) {
+         res.status(201).json(user)
+    })
+    .then(null, next);
+});
 
-
-
-
+router.put("/:id", function (req, res, next) {
+    for (var key in req.body) {
+        req.user[key] = req.body[key];
+    }
+    req.user.save()
+    .then(function (edit) {
+        res.status(203).json(edit)
+    }).then(null, next);
+});
 
 
 router.use(function(err,req,res,next){
@@ -47,3 +60,6 @@ router.use(function(err,req,res,next){
 
 
 module.exports = router
+
+
+

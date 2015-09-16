@@ -1,8 +1,8 @@
 app.config(function($stateProvider){
 
-  $stateProvider.state('products.detail', {
-    url: '/:id',
-    templateUrl: '/app/products/detail/todo.detail.html',
+  $stateProvider.state('detail', {
+    url: '/products/:id',
+    templateUrl: 'js/products/detail/products.detail.html',
     controller: 'ProductsDetailController',
     resolve: {
       product: function (ProductFactory, $stateParams) {
@@ -10,6 +10,6 @@ app.config(function($stateProvider){
         return ProductFactory.getOne($stateParams.id);
       }
     }
-  });
-
+    });
+  
 });
