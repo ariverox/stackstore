@@ -1,22 +1,22 @@
 <section id="products">
 	<h2>All Products</h2>
-	<form name="filterForm" ng-submit="" novalidate>
-		<p>Filter by Category: <input name="categoryFilter" type="text" /></p>
-		<p>Filter by Country of Origin: <input name="countryFilter" type="text" /></p>
-		<p>Order by: 
-			<select name="orderField" required>
-				<option value="title">Product Title</option>
-				<option value="price">Price, by lowest</option>
+	<p>Filter by Category: <input name="categoryFilter" type="text" ng-model="categories" /></p>
 
-			</select>
-		</p>
-		<button type="submit">Submit</button>
-	</form>
-
+	<p>Filter by Country:
+		<select name="countryFilter" ng-options="country.name as country.name for country in countryData" ng-model="country" >
+		</select>
+	</p>
+	<p>Order by: 
+		<select name="orderField" ng-model="field" required>
+			<option value="title">Product Title</option>
+			<option value="price">Price, by lowest</option>
+		</select>
+	</p>
 	<table>
 		<tbody>
 			<tr>
-				<td class="row" ng-repeat="product in products | orderBy: 'title' ">
+				<td class="row" ng-repeat="product in products | orderBy: field " 
+					ng-show="(country === 'All' || country === product.country)">
 
 					<div class="col-xs-6 col-md-3">
 						<a href="#" class="thumbnail product-image list-group-item">
@@ -25,7 +25,7 @@
 						<ul>
 							<li>
 								<span><a href="/products/{{ product._id }}" class="product-title">{{ product.title }}</a><span>
-								<span ng-show="!!product.country" class="flag-icon flag-icon-{{ flagAbbrs[product.country] }}"></span>
+								<span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
 							</li>
 							<li><strong>{{ product.price | currency }}</strong></li>
 							<li>{{ product.stock }} in stock </li>
