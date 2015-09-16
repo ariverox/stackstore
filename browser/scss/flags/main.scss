@@ -9,8 +9,9 @@
   background-repeat: no-repeat;
   position: relative;
   display: inline-block;
-  width: 1.33333333em;
-  line-height: 1em;
+  width: 1.3em;
+  line-height: 0.9em;
+  border: solid 1px black;
 }
 .flag-icon:before {
   content: "\00a0";
