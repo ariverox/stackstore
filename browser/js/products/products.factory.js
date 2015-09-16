@@ -24,23 +24,23 @@ app.factory('ProductFactory', function($http) {
 				return res.data;
 			})
 		},
-		getOne: function getOne (id) {
+		getOne: function (id) {
 		  return $http.get('/api/products/' + id).then(function (response) {
 		    return response.data;
 		  });
 		},
-		remove: function remove (id) {
-		  return $http.delete('/api/products/').then(function (response) {
+		remove: function (id) {
+		  return $http.delete('/api/products').then(function (response) {
 
 		  });
 		},
-		add: function add (product) {
-		  return $http.post('/api/products/').then(function (product) {
+		add: function (product) {
+		  return $http.post('/api/products').then(function (product) {
 		    return product;
 		  });
 		},
-		update: function update (id, product) {
-		  return $http.put('/api/products/').then(function (response) {
+		update: function (id, product) {
+		  return $http.put('/api/products').then(function (response) {
 		    return response.data;
 		  });
 		}
