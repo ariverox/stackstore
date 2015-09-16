@@ -9,7 +9,13 @@ app.config(function($stateProvider) {
 });
 
 
-app.controller('ProductsCtrl', function($scope, ProductFactory, $filter) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, $filter, CartFactory) {
+	$scope.addToCart = function(thisProduct){
+		console.log(thisProduct)
+		CartFactory.items.push(thisProduct)
+	}
+
+
 
 
 	$scope.countryData = ProductFactory.countryData;
@@ -36,7 +42,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, $filter) {
 
 })
 
-	
+
 
 app.factory('ProductFactory', function($http) {
 	var countryData = {

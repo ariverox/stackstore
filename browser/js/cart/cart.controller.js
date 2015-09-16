@@ -1,5 +1,6 @@
 app.controller('CartController', function($scope, CartFactory){
-  $scope.items;
+  $scope.items=  CartFactory.items
+
 
 
 
