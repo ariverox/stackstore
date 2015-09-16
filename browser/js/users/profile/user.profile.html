@@ -1,0 +1,43 @@
+<div class="container" ng-controller="UserProfileController">
+  <div class="row">
+    <div class="col-lg-6">
+      <img style="height:250px; width:250px;"  ng-src="{{ user.photo }}">
+    </div>
+
+    <div class="col-lg-6">
+      <h1>Hello {{user.name}} !</h1>
+      <a>Update Profile</a>
+
+
+      <h2>
+        Email:{{user.email}}
+      </h2>
+      <h2>
+        {{user.name}}
+
+      </h2>
+      <h2>
+        {{user.username}}
+
+      </h2>
+
+    </div>
+
+  </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+
+        <h1>Your Reviews</h1>
+
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6">
+
+        <h1>Your Orders</h1>
+        <user-order the-order="order"></user-order>
+
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- product directive with ng-repeat going through every review and displaying it in a list form-->

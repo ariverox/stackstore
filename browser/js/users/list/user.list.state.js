@@ -1,6 +1,6 @@
-app.config(function($stateProvider) {
-  $stateProvider.state('UserList', {
-    url: '/api/users',
-    templateUrl: '/browser/js/users/list/user.list.html'
-  })
-});
+// app.config(function($stateProvider) {
+//   $stateProvider.state('UserList', {
+//     url: '/users',
+//     templateUrl: '/browser/js/users/list/user.list.html'
+//   })
+// });
