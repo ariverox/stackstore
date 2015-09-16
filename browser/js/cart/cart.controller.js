@@ -1,5 +1,6 @@
-app.controller('CartController', function($scope, CartFactory){
-  $scope.items=  CartFactory.items
+app.controller('CartController', function($scope, $state, CartFactory){
+  $scope.cart = CartFactory;
+
 
 
 

@@ -18,26 +18,34 @@
 		</p>
 		<div class="container">
 				<div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="product in products | orderBy: field " ng-show="(country === 'All' || country === product.country)">
+				<!-- <pre>{{ product | json }}</pre> -->
 
-					<!-- <div ng-class="{'row': Number($index%4)===0}" >
-						{{$index}} -->
 
 					<a href="#" class="thumbnail product-image list-group-item">
-						<img src="{{ product.photo }}" alt="{{ product.title }}">
+						<img ng-src="{{ product.photo }}" alt="{{ product.title }}">
 					</a>
-					<div  class="caption" style="line-hight:20px;">
-						<h4 > {{ product.title }}</h3>
+					<div class="caption product-image">
+						<h4 > {{ product.title }} </h3>
+
 						<span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
 						<strong>{{ product.price | currency }}</strong>
 						<span>{{ product.stock }} in stock </span>
 						<p>
-							<a href="#" ng-show="product.stock > 0"class="btn btn-primary" role="button" ng-click="addToCart(product)">Add to Cart</a>
-							<a href="#" ng-show="product.stock <= 0"class="btn btn-default strike" role="button" >Sold Out</a>
+							<div ng-show="product.stock > 0">
+								<span><a href="#" class="btn btn-primary" role="button" ng-click="addToCart(product)">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+								</a></span>
+								<span><input name="quantity" type="text" ng-model="product.quantity" placeholder="Qty:" size="4"></input></span>
+							</div>
+							<span><a href="#" ng-show="product.stock <= 0"class="btn btn-default strike" role="button" >
+								<span class="glyphicon glyphicon-ban-circle"></span> Sold Out
+							</a></span>
+
 						 </p>
 
 
 					</div>
-			<!-- </div> -->
+
 		</div>
 
 

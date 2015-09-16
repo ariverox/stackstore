@@ -4,7 +4,29 @@
       <div class="col-lg-2">
       </div>
       <div class="col-lg-8" style="background-color: yellow; height:700px;">
-          {{items}}
+          <!-- {{cart.items | json}} -->
+          <div ng-repeat="item in cart.items">
+          <a href="#" class="thumbnail product-image list-group-item">
+            <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
+          </a>
+          <p>{{ item.title }}</p>
+          <span>Quantity: {{ item.quantity || 1 }}, </span>
+          <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
+          </div>
+
+          <p>
+            <div ng-show="cart.totalPrice > 0">
+              <strong>Total Price: {{ cart.totalPrice | currency }}</strong>
+              <p><a href="#" class="btn btn-danger" role="button" ng-click="cart.emptyCart()">
+                <span class="glyphicon glyphicon-trash"></span> Empty Cart
+              </a></p>
+            </div>
+            <div ng-show="cart.totalPrice <= 0">
+              <p>You do not currently have any items in your cart. =(</p>
+            </div>
+            <p><a href='#' ui-sref="products">Back to Products</a></p>
+          </p>
+
 
 
       </div>
