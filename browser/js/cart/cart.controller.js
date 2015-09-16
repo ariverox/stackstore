@@ -1,3 +1,7 @@
-app.controller('CartController', function($scope){
+app.controller('CartController', function($scope, CartFactory){
+  $scope.items;
+
+
+
 
 })
