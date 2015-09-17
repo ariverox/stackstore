@@ -91,22 +91,8 @@ function generateAll() {
     new Product({ title: 'bleh', categories: ['coconut'], country: 'Nigeria', price: 11, stock: 8 }),
     new Product({ title: 'asdf', categories: ['cheese'], country: 'Peru', price: 12, stock: 24 }),
     new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked'], price: 4.20, stock: 0, country: 'Netherlands', photo: 'http://releaf.co/wp-content/uploads/2012/01/brwn.jpg' }),
-    new Product({ title: 'Nongshim Shrimp Crackers', categories: ['crackers'], price: 3, stock: 41, country: 'south_korea', photo: 'http://static.caloriecount.about.com/images/medium/nong-shim-shrimp-crackers-33551.jpg' }),
-    new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie'], price: 3, stock: 80, country: 'japan', photo: 'http://www.koamart.com/images/2873_enlarged[1].gif' }),
-    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy'], price: 30, stock: 15, country: 'japan', photo: 'http://thumbnail.image.rakuten.co.jp/@0_mall/bassano/cabinet/img55686633.jpg' }),
-    new Product({ title: 'Everlasting Gobstoppers', categories: ['candy', 'wonka'], country: 'uk', price: 6, stock: 37 }),
-    new Product({ title: 'blah', categories: ['strawberry'], country: 'germany', price: 10, stock: 15 }),
-    new Product({ title: 'blaah', categories: ['coconut'], country: 'nigeria', price: 11, stock: 8 }),
-    new Product({ title: 'asdf', categories: ['cheese'], country: 'peru', price: 12, stock: 24 }),
-    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked'], price: 4.20, stock: 0, country: 'netherlands', photo: 'http://releaf.co/wp-content/uploads/2012/01/brwn.jpg' }),
-    new Product({ title: 'Shrimp Crackers', categories: ['crackers', 'korean'], price: 3, stock: 41 }),
-    new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie', 'japanese'], price: 3, stock: 80 }),
-    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy', 'japanese'], price: 30, stock: 15 }),
-    new Product({ title: 'Everlasting Gobstoppers', categories: ['candy', 'wonka', 'uk'], price: 6, stock: 37 }),
-    new Product({ title: 'blah', categories: ['strawberry', 'german'], price: 10, stock: 15 }),
-    new Product({ title: 'bleh', categories: ['coconut', 'nigerian'], price: 11, stock: 8 }),
-    new Product({ title: 'asdf', categories: ['cheese', 'peruvian'], price: 12, stock: 24 }),
-    new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 })
+    new Product({ title: 'Haribo Sugar Free Gummy Bears', categories: ['gummy', 'assorted flavors'], price: 2.50, stock: 142, country: 'Germany', photo: 'https://15kamali.files.wordpress.com/2013/06/haribo.jpg' }),
+
   ]
 
     return users.concat(products);
