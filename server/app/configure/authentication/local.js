@@ -53,8 +53,14 @@ module.exports = function (app) {
 
         };
 
-        passport.authenticate('local', authCb)(req, res, next);
-
+});
+    app.post('/signup', function (req, res, next) {
+        delete req.body.isAdmin;
+        User.create(req.body)
+        .then(function (user) {
+            res.json(user);
+        })
+    .then(null, next);
     });
 
 };

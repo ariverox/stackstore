@@ -3,24 +3,24 @@ app.config(function ($stateProvider) {
     $stateProvider.state('signup', {
         url: '/signup',
         templateUrl: 'js/signup/signup.html',
-        controller: 'LoginCtrl'
+        controller: 'signupCtrl'
     });
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state) {
+app.controller('signupCtrl', function ($scope, AuthService, $state) {
 
-    $scope.login = {};
+    $scope.signup = {};
     $scope.error = null;
 
-    $scope.sendLogin = function (loginInfo) {
+    $scope.sendSignup = function (signupInfo) {
 
         $scope.error = null;
-
-        AuthService.login(loginInfo).then(function () {
+        AuthService.signup(signupInfo).then(function () {
+        console.log("ran auth!!");
             $state.go('home');
         }).catch(function () {
-            $scope.error = 'Invalid login credentials.';
+            $scope.error = 'Invalid signup credentials.';
         });
 
     };  
