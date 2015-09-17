@@ -6,7 +6,7 @@
       <div class="col-lg-8" style="background-color: yellow; height:700px;">
           <!-- {{cart.items | json}} -->
           <div ng-repeat="item in cart.items">
-          <a href="#" class="thumbnail product-image list-group-item">
+          <a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
             <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
           </a>
           <p>{{ item.title }}</p>
@@ -26,8 +26,6 @@
             </div>
             <p><a href='#' ui-sref="products">Back to Products</a></p>
           </p>
-
-
 
       </div>
       <div class="col-lg-2">
