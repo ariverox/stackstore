@@ -66,19 +66,6 @@ function generateAll() {
   }));
   var products = [];
 
-  // products.push(new Product({
-  //   title: 'Tasty Crunch',
-  //   categories: ['chocolate'],
-  //   price: 3,
-  //   stock: 99
-  // }))
-
-  // products.push(new Product({
-  //     title: 'Spicy Crunch',
-  //     categories: ['chocolate'],
-  //     price: 4,
-  //     stock: 20
-  //   }))
 
   var products = [
     new Product({ title: 'topkek', categories: ['kek'], price: 6, stock: 1337, country: 'Turkey', photo: 'https://img.4plebs.org/boards/s4s/image/1390/37/1390378588723.jpg' }),
