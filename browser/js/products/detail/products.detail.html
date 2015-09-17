@@ -7,18 +7,19 @@
 
                 <div class="thumbnail">
                     <img class="img-responsive single-product-image" src="{{product.photo}}" alt="">
-                    <div class="caption-full">
+                    <span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
+                </div>
+                        <span class="stock">Hurry, There are only {{ product.stock }} left in stock! </span>
+                    <div class="caption-full product-stats">
                         <h4 class="pull-right">{{product.price | currency}}</h4>
-                        <h4><a href="#">{{product.title}}</a>
+                        <h4>
+                        <a href="#" class='product-title'>{{product.title}}</a>
                         </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        <h3>Description:</h3>
+                        <p>This is a test description, there are many like it, but this one belongs to this product. why? because i needed something to be here for all the testings. </p>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
+                        <p class="pull-right">3 reviews **this is a ph**</p>
                         <p>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
@@ -28,7 +29,6 @@
                             4.0 stars
                         </p>
                     </div>
-                </div>
 
                 <div class="well">
 
@@ -37,7 +37,7 @@
                     </div>
 
                     <hr>
-
+                    <p> the following are also placeholders</p>
                     <div class="row">
                         <div class="col-md-12">
                             <span class="glyphicon glyphicon-star"></span>
@@ -82,6 +82,22 @@
                     </div>
 
                 </div>
+
+            </div>
+         <!--    add to cart -->
+            <div class="col-md-3">
+            <p>
+							<div ng-show="product.stock > 0">
+								<span><a href="#" class="btn btn-primary" role="button" ng-click="addToCart(product)">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+								</a></span>
+								<span><input name="quantity" type="text" ng-model="product.quantity" placeholder="Qty:" size="4"></input></span>
+							</div>
+							<span><a href="#" ng-show="product.stock <= 0"class="btn btn-default strike" role="button" >
+								<span class="glyphicon glyphicon-ban-circle"></span> Sold Out
+							</a></span>
+
+			</p>
 
             </div>
 
