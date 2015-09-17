@@ -109,6 +109,43 @@ function generateAll() {
     new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 })
   ]
 
+  var reviews = {
+      {
+    text: "this ruined my day"
+    rating: 1
+    // upVotes: ,
+    // downVotes:
+  },
+
+  {
+    text: "Totally worth the money" 
+    rating: 5
+    // upVotes: ,
+    // downVotes:
+  },
+
+  {
+    text: "this is great!",
+    rating: 4
+    // upVotes: ,
+    // downVotes:
+  },
+
+  {
+    text: "This snack is all that I live for",
+    rating: 4
+    // upVotes: ,
+    // downVotes:
+  },
+
+  {
+    text: ".,",
+    rating: 3
+    // upVotes: ,
+    // downVotes:
+  }
+  }
+
     return users.concat(products);
 }
 
