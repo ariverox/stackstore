@@ -1,3 +1,5 @@
+
+
 <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
 
     <alert type="danger" ng-show="error">
@@ -13,4 +15,16 @@
         <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
+    <div>
+    <h5 style="display: inline"> Not a user yet? </h5> <a style="display: inline" ui-sref='signup'> Sign up here! </a>
+    </div>
 </form>
+<h4 id="logor"> or... </h4>
+<div class="col-md-12" >
+<div class="oauth-button">
+<a  href="#"><img src="http://techulus.com/buttons/fb.png" /></a><br/>
+<a  href="#"><img src="http://techulus.com/buttons/tw.png" /></a><br/>
+<a  href="#"><img src="http://techulus.com/buttons/gplus.png" /></a>
+</div>
+</div>
+
