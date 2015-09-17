@@ -7,6 +7,7 @@
 
                 <div class="thumbnail">
                     <img class="img-responsive single-product-image" src="{{product.photo}}" alt="">
+                    <span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
                 </div>
                         <span class="stock">Hurry, There are only {{ product.stock }} left in stock! </span>
                     <div class="caption-full product-stats">
@@ -15,7 +16,7 @@
                         <a href="#" class='product-title'>{{product.title}}</a>
                         </h4>
                         <h3>Description:</h3>
-                        <p>This is a test description, there are many like it, but this one belongs to this product. why? because i needed something to be here to test stuff and things. </p>
+                        <p>This is a test description, there are many like it, but this one belongs to this product. why? because i needed something to be here for all the testings. </p>
                     </div>
                     <div class="ratings">
                         <p class="pull-right">3 reviews **this is a ph**</p>
