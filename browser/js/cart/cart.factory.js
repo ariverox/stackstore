@@ -27,10 +27,8 @@ app.factory('CartFactory', function($http, localStorageService){
     },
 
     deleteItem: function(idx) {
-    	this.setItems(this.getItems().splice(idx, 1));
-    	//var temp = localStorageService.get('items').splice(idx, 1);
-    	//localStorageService.set('items', temp);
-    	//this.items.splice(idx, 1);
+    	this.items.splice(idx, 1);
+    	localStorageService.set('items', this.items);
     	this.updateCart();
     },
 
