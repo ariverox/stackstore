@@ -6,9 +6,10 @@
       <div class="col-lg-8" style="background-color: yellow; height:700px;">
           <!-- {{cart.items | json}} -->
           <div ng-repeat="item in cart.items">
-          <a href="#" class="thumbnail product-image list-group-item">
+          <a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
             <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
           </a>
+          <p ui-sref='detail({id: item._id})'>{{ item.title }}</p>
           <p><strong>{{ item.title }}</strong></p>
           <span>Quantity: {{ item.quantity || 1 }}, </span>
           <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
@@ -28,7 +29,6 @@
             </div>
             <p><a href='#' ui-sref="products">Back to Products</a></p>
           </p>
-
 
       </div>
       <div class="col-lg-2">
