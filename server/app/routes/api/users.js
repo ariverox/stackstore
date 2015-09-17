@@ -7,14 +7,17 @@ var indexHTMLPath = path.join(__dirname, '..','views','index.html')
 //admin only - list of users
 
 router.param('userID', function(req, res, next, userID){
-	User.findById(userID).then(function(user){
+	User.findById(userID).exec().then(function(user){
 		if(!user) throw new Error('no user found');
 		else {
 			req.userID = user;
+			console.log("user", userID)
 			next();
 		}
 	}).then(null, next)
 })
+
+
 
 router.get('/', function(req,res, next){
   console.log("dada", req.user)
@@ -25,11 +28,8 @@ router.get('/', function(req,res, next){
 })
 
 
-router.get('/:userID', function(req,res, next){
-	var id = req.params.userID
-  User.findById(id).then(function(user){
-		res.send(user)
-	})
+router.get('/:userID', function(req,res,next){
+  		res.send(req.userID)
 })
 
 router.post('/', function (req, res, next) {
