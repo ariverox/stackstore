@@ -15,3 +15,13 @@ app.config(function ($stateProvider) {
 		controller: 'UserProfileController'
 	})
 })
+
+
+
+/*
+	app.controller('LoginCtrl', function(Auth){
+		
+	})
+	
+
+*/
