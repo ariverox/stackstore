@@ -18,6 +18,7 @@ db.on('error', function(err) {
 
 var User = require('./server/db/models/user.model');
 var Product = require('./server/db/models/product.model');
+var Review = require('./server/db/models/review.model');
 var connectToDb = require('./server/db');
 
 
@@ -109,44 +110,38 @@ function generateAll() {
     new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked', 'dutch'], price: 30, stock: 0 })
   ]
 
-  var reviews = {
-      {
-    text: "this ruined my day"
-    rating: 1
-    // upVotes: ,
-    // downVotes:
-  },
+  var reviews;
 
-  {
-    text: "Totally worth the money" 
-    rating: 5
-    // upVotes: ,
-    // downVotes:
-  },
+  var reviews = [
+      new Review ({
+        text: "this ruined my day",
+        rating: 1
+      }),
+      new Review ({
+        text: "Totally worth the money",
+        rating: 5
+        
+      }),
 
-  {
-    text: "this is great!",
-    rating: 4
-    // upVotes: ,
-    // downVotes:
-  },
+      new Review ({
+        text: "this is great!",
+        rating: 4
+      }),
 
-  {
-    text: "This snack is all that I live for",
-    rating: 4
-    // upVotes: ,
-    // downVotes:
-  },
+      new Review ({
+        text: "This snack is all that I live for",
+        rating: 4
 
-  {
-    text: ".,",
-    rating: 3
-    // upVotes: ,
-    // downVotes:
-  }
-  }
+      }),
 
-    return users.concat(products);
+      new Review ({
+        text: ".,",
+        rating: 3
+        
+      })
+  ]
+
+    return users.concat(products).concat(reviews)
 }
 
 
