@@ -9,7 +9,7 @@
           <a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
             <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
           </a>
-          <p>{{ item.title }}</p>
+          <p ui-sref='detail({id: item._id})'>{{ item.title }}</p>
           <span>Quantity: {{ item.quantity || 1 }}, </span>
           <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
           </div>

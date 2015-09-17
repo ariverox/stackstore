@@ -25,7 +25,7 @@
 						<img ng-src="{{ product.photo }}" alt="{{ product.title }}">
 					</a>
 					<div class="caption product-image">
-						<h4 > {{ product.title }} </h3>
+						<h4 ui-sref='detail({id: product._id})'> {{ product.title }} </h4>
 
 						<span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
 						<strong>{{ product.price | currency }}</strong>
