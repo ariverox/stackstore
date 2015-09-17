@@ -5,20 +5,11 @@ var path = require('path')
 
 //admin only - list of users
 
-<<<<<<< HEAD
-router.param('userID', function(req, res, next, userID){
-	User.findById(userID).exec().then(function(user){
-		if(!user) throw new Error('no user found');
-		else {
-			req.userID = user;
-			console.log("user", userID)
-=======
 router.param('id', function(req, res, next, id){
 	User.findById(id).exec().then(function(user){
 		if(!user) throw new Error('no user found');
 		else {
 			req.thisUser = user;
->>>>>>> master
 			next();
 		}
 	}).then(null, next)
@@ -34,13 +25,9 @@ router.get('/', function(req,res, next){
 })
 
 
-<<<<<<< HEAD
-router.get('/:userID', function(req,res,next){
-  		res.send(req.userID)
-=======
+
 router.get('/:id', function(req,res, next){
 	res.json(req.thisUser)
->>>>>>> master
 })
 
 
