@@ -1,7 +1,8 @@
 var router =require('express').Router()
 var Review = require('../../../db/models/review.model')
 var path = require('path')
-var indexHTMLPath = path.join(__dirname, '..','views','index.html')
+var User = mongoose.model('User')
+
 
 //admin only - list of users
 
