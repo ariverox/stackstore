@@ -9,13 +9,15 @@
           <a href="#" class="thumbnail product-image list-group-item">
             <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
           </a>
-          <p>{{ item.title }}</p>
+          <p><strong>{{ item.title }}</strong></p>
           <span>Quantity: {{ item.quantity || 1 }}, </span>
           <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
+          <a href="#" class="btn btn-danger" role="button" ng-click="cart.deleteItem($index)">
+                          <span class="glyphicon glyphicon-trash"></span></a>
           </div>
-
           <p>
             <div ng-show="cart.totalPrice > 0">
+              <hr style="border-color: black;">
               <strong>Total Price: {{ cart.totalPrice | currency }}</strong>
               <p><a href="#" class="btn btn-danger" role="button" ng-click="cart.emptyCart()">
                 <span class="glyphicon glyphicon-trash"></span> Empty Cart
@@ -26,7 +28,6 @@
             </div>
             <p><a href='#' ui-sref="products">Back to Products</a></p>
           </p>
-
 
 
       </div>
