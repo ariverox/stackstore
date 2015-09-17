@@ -10,7 +10,7 @@ router.param('userID', function(req, res, next, userID){
 	User.findById(userID).then(function(user){
 		if(!user) throw new Error('no user found');
 		else {
-			req.user = user;
+			req.userID = user;
 			next();
 		}
 	}).then(null, next)
@@ -25,12 +25,10 @@ router.get('/', function(req,res, next){
 })
 
 
-router.get('/:id', function(req,res, next){
-  console.log("dada", req.user)
-	var id = req.params.id
+router.get('/:userID', function(req,res, next){
+	var id = req.params.userID
   User.findById(id).then(function(user){
 		res.send(user)
-		next()
 	})
 })
 
@@ -42,9 +40,9 @@ router.post('/', function (req, res, next) {
 });
 
 
-router.put("/:id", function (req, res, next) {
+router.put("/:userID", function (req, res, next) {
     for (var key in req.body) {
-        req.user[key] = req.body[key];
+        req.userID[key] = req.body[key];
     }
     req.user.save()
     .then(function (edit) {

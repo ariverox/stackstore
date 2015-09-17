@@ -1,0 +1,44 @@
+<div class="container" ng-controller="UserProfileController">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+   <div class="row">
+     <div class="col-lg-6">
+      <img style="height:250px; width:250px;"  ng-src="{{ user.photo }}">
+
+    <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="first_name" type="text">
+              <label for="first_name">Hello {{user.name}}!</label>
+            </div>
+          </div>
+        </form>
+      </div>
+     <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+
+        <h1>Your Reviews</h1>
+
+      <div class="row"class="col-sm-12 col-md-12 col-lg-6">
+        <button ng-click='showForm()'>Update your exisiting profile</button>
+        <update-form ng-hide="updates">Form<update-form>
+      </div>
+    <!--   <div class="col-sm-12 col-md-12 col-lg-6" class ="modular">
+        <button ng-click='showOrders()'>Your Orders</button>
+        <user-order the-order="order" ng-hide="transactions"></user-order>
+       </div> -->
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <h1>Your Orders</h1>
+        <user-order the-order="order"></user-order>
+      </div>
+
+  <!--     <div class="row"class="col-sm-12 col-md-12 col-lg-6">
++        <button ng-click='showReviews()'>Your Reviews</button>
++        <user-review the-review="review" ng-hide="posts">Post<user-review>
+       </div> -->
+    </div>
+   </div>
+ </div>
+</div>
+</div>
