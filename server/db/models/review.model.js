@@ -6,20 +6,17 @@ var ReviewSchema = new mongoose.Schema({
   },
   text: {
     type: String,
-    required: true,
     min: 120,
     max: 500
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
   },
   product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
-    required: true
   }
 })
 
-module.exports = mongoose.model('Reviews', ReviewSchema);
+module.exports = mongoose.model('Review', ReviewSchema);
