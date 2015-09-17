@@ -1,0 +1,41 @@
+<div class="row" ng-controller="UserProfileController ">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" disabled value="" id="disabled" >
+          <label for="last_name"><strong>Your current name is: {{user.name}}</strong></label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Enter your new name" id="first_name" type="text" class="validate">
+        </div>
+      </div>
+      <div class="row">
+         <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" disabled value="" id="disabled">
+          <label for="last_name">Change the password here:</label>
+        </div>
+         <div class="input-field col s6">
+          <input placeholder="Enter new password" id="first_name" type="text" class="validate">
+        </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" disabled value="" id="disabled">
+          <label for="last_name">Your email is: {{user.email}}</label>
+        </div>
+         <div class="input-field col s6">
+          <input placeholder="Enter your new email" id="first_name" type="text" class="validate">
+        </div>
+      </div>
+       <div class="row">
+         <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate" disabled value="" id="disabled">
+          <label for="last_name">Your current phone is set to: {{user.phone}}</label>
+        </div>
+         <div class="input-field col s6">
+          <input placeholder="Enter your new phone" id="first_name" type="text" class="validate">
+        </div>
+      </div>
+      <button ng-submit="updateUser()">Submit</button>
+    </form>
+  </div>
