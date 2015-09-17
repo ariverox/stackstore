@@ -1,9 +1,69 @@
 var router =require('express').Router()
+var mongoose = require('mongoose')
 
+var Order = mongoose.model('Order')
 
-
-router.get('/', function(req,res){
-  res.send('test')
+router.param('id', function(req, res, next, id){
+	Order.findById(id).exec().then(function(order){
+		if(!order) throw new Error('no user found');
+		else {
+			req.order = order;
+			next();
+		}
+	}).then(null, next)
 })
+
+
+
+router.get('/', function(req,res, next){
+  res.send('test')
+      .then(null,next)
+})
+
+router.get('/:id', function(req,res, next){
+    res.send('test')
+        .then(null,next)
+
+})
+
+router.post('/', function(req,res, next){
+    Order.create(req.body)
+        .then(function (order) {
+            res.status(201).json(order);
+        })
+        .then(null, next);
+
+})
+
+router.put('/:id', function(req,res, next){
+
+    for (var k in req.body) {
+        req.book[k] = req.body[k];
+    }
+    return req.order.save()
+        .then(function (savedOrder) {
+            res.json(savedOrder);
+        })
+        .then(null, next);
+
+})
+
+router.delete('/:id', function(req,res, next){
+    req.order.remove()
+        .then(function () {
+            res.status(204).end();
+        })
+        .then(null, next);
+
+})
+
+
+
+
+
+
+
+
+
 
 module.exports =router

@@ -1,4 +1,7 @@
 'use strict';
+
+
+
 var passport = require('passport');
 var _ = require('lodash');
 var LocalStrategy = require('passport-local').Strategy;
@@ -28,7 +31,7 @@ module.exports = function (app) {
 
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
-        console.log("hit login!")
+
         var authCb = function (err, user) {
 
             if (err) return next(err);

@@ -10,21 +10,27 @@ body {
   background: #fdfdfd;
 }
 
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
+// @mixin clearfix {
+//   &:after {
+//     content: "";
+//     display: table;
+//     clear: both;
+//   }
+// }
+
 
 #main {
   padding-top: 60px;
   width: 100%;
   min-height:100vh;
-  height: 100%;
+  height: auto;
   margin: 0;
   background-color:lightblue;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 }
 
 @import 'userprofile/main';
