@@ -1,5 +1,6 @@
 var router =require('express').Router()
-var Review = require('../../../db/models/review.model')
+var mongoose = require('mongoose')
+var Review = mongoose.model('Review')
 var path = require('path')
 var User = mongoose.model('User')
 
@@ -21,26 +22,37 @@ var User = mongoose.model('User')
 // 	}).then(null, next)
 // }
 
-router.get('/', function(req,res, next){
-  User.find().then(function(reviews){
-		res.send(reviews);
-		next();
-	});
+router.param('id', function(req, res, next, id){
+    Review.findById(id).exec().then(function(review){
+        if(!review) throw new Error('no user found');
+        else {
+            req.review= review;
+            next();
+        }
+    }).then(null, next)
 })
+
+
+
+
+
+
+router.get('/', function(req,res, next){
+  Review.find().then(function(reviews){
+		res.send(reviews);
+	}).then(null,next);
+});
 
 
 router.get('/:id', function(req,res, next){
-	var id = req.params.id
-  User.findById(id).then(function(review){
-		res.send(review)
-		next()
-	}).then(null, next)
+    res.json(req.review)
 })
 
 router.post('/', function (req, res, next) {
+
     Review.create(req.body)
-    .then(function (user) {
-     	res.status(201).json(user)
+    .then(function (review) {
+     	res.status(201).json(review)
     })
     .then(null, next);
 });
@@ -48,21 +60,28 @@ router.post('/', function (req, res, next) {
 
 router.put("/:id", function (req, res, next) {
     for (var key in req.body) {
-        req.user[key] = req.body[key];
+        req.review[key] = req.body[key];
     }
-    req.user.save()
+
+    return req.review.save()
     .then(function (edit) {
         res.status(203).json(edit)
     }).then(null, next);
+
 });
 
+router.delete("/:id", function(req,res,next){
+    req.review.remove()
+        .then(function () {
+            res.status(204).end();
+        })
+        .then(null, next);
 
-
-
-router.use(function(err,req,res,next){
-	err.status = res.status || 500
-	res.status.send()
 })
+
+
+
+
 
 
 module.exports = router
