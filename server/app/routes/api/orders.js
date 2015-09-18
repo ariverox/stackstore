@@ -4,26 +4,26 @@ var mongoose = require('mongoose')
 var Order = mongoose.model('Order')
 
 router.param('id', function(req, res, next, id){
-	Order.findById(id).exec().then(function(order){
-		if(!order) throw new Error('no user found');
-		else {
-			req.order = order;
-			next();
-		}
-	}).then(null, next)
+    Order.findById(id).populate('user items').exec().then(function(order){
+        if(!order) throw new Error('no user found');
+        else {
+            req.order = order;
+            next();
+        }
+    }).then(null, next)
 })
 
 
 
 router.get('/', function(req,res, next){
-  res.send('test')
-      .then(null,next)
+
+    Order.find().populate('user items').exec()
+        .then(books => res.send(books))
+        .then(null,next)
 })
 
 router.get('/:id', function(req,res, next){
-    res.send('test')
-        .then(null,next)
-
+    res.send(req.order)
 })
 
 router.post('/', function(req,res, next){
@@ -58,12 +58,4 @@ router.delete('/:id', function(req,res, next){
 })
 
 
-
-
-
-
-
-
-
-
-module.exports =router
+module.exports = router
