@@ -4,13 +4,12 @@
       <div class="col-lg-2">
       </div>
       <div class="col-lg-8" style="background-color: yellow; height:700px;">
-          <!-- {{cart.items | json}} -->
+          <!-- {{cart.getItems() | json}} -->
           <div ng-repeat="item in cart.items">
           <a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
             <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
           </a>
-          <p ui-sref='detail({id: item._id})'>{{ item.title }}</p>
-          <p><strong>{{ item.title }}</strong></p>
+          <p><a ui-sref='detail({id: item._id})'><strong>{{ item.title }}</strong></a></p>
           <span>Quantity: {{ item.quantity || 1 }}, </span>
           <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
           <a href="#" class="btn btn-danger" role="button" ng-click="cart.deleteItem($index)">
@@ -22,6 +21,9 @@
               <strong>Total Price: {{ cart.totalPrice | currency }}</strong>
               <p><a href="#" class="btn btn-danger" role="button" ng-click="cart.emptyCart()">
                 <span class="glyphicon glyphicon-trash"></span> Empty Cart
+              </a></p>
+              <p><a href="#" class="btn btn-success" role="button" ng-click="cart.checkout()">
+                <span class="glyphicon glyphicon-ok"></span> Checkout!
               </a></p>
             </div>
             <div ng-show="cart.totalPrice <= 0">
