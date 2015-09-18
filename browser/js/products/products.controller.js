@@ -19,8 +19,6 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, loc
 		else existingItem.quantity += thisProduct.quantity;
 
 		CartFactory.totalPrice += thisProduct.quantity * thisProduct.price;
-
-		console.log('$scope.items:',$scope.items);
 	}
 
 
