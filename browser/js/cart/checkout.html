@@ -4,7 +4,7 @@ Specify shipping address and email address
 Receive confirmation email
 Receive notification emails upon order shipping, then order delivery -->
 
-<div class="container" ng-controller="CheckoutCtrl"> 
+<div class="container"> 
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
@@ -12,24 +12,25 @@ Receive notification emails upon order shipping, then order delivery -->
 		<div class="row">
 			<md-content class= "col-lg-6 col-md-6 col-sm-12">
 				<h1>Checkout Form</h1>
+				<pre>{{ toCheckout | json }}</pre>
 				<form name="checkOut">
 					<md-input-container>
 						<label>Name</label>
-						<input type="text" ng-model="billing.name" ng-value="user.name">
+						<input type="text" ng-model="toCheckout.name">
 					</md-input-container>
 				</div>
 				<div class="row">
 			<div class= "col-lg-6 col-md-6 col-sm-12">
 					<md-input-container>
 						<label>Shipping Address</label>
-						<input type="text" ng-model="billing.address" ng-value="order.shippingAddress">
+						<input type="text" ng-model="toCheckout.address">
 					</md-input-container>
 				</div>
 			</div>
 			<div class= "col-lg-6 col-md-6 col-sm-12">
 					<md-input-container>
 						<label>Email</label>
-						<input type="text" ng-model="billing.email" ng-value="user.email">
+						<input type="text" ng-model="toCheckout.email">
 					</md-input-container>
 				</div>
 			</div>
@@ -37,16 +38,15 @@ Receive notification emails upon order shipping, then order delivery -->
 				<md-content class= "col-lg-6 col-md-6 col-sm-12">
 					<h3>Your Current Order</h3>
 				<md-input-containter> 
-					<label> Your Product </label> 
-					<div ng-repeat="item in items">
+					<label> Your Products </label> 
+					<div ng-repeat="item in toCheckout.items">
 							<md-content class= "col-lg-6 col-md-6 col-sm-12">
-							<a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
-	            	<img ng-src="{{ item.photo }}" alt="{{ item.title }}">
+							<a ui-sref='detail({id: item.product._id})' class="thumbnail product-image list-group-item">
+	            	<img ng-src="{{ item.product.photo }}" alt="{{ item.product.title }}">
 	          	</a>
-	          <p ui-sref='detail({id: item._id})'>{{ item.title }}</p>
-	          <p><strong>{{ item.title }}</strong></p>
+	          <p><a ui-sref='detail({id: item.product._id})'><strong>{{ item.product.title }}</strong></a></p>
 	          <span>Quantity: {{ item.quantity || 1 }}, </span>
-	          <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
+	          <span>Price: {{ (item.quantity || 1) * item.product.price | currency }}</span>
          </div>
 		</div>
 <div class="row">

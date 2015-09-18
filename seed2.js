@@ -32,6 +32,7 @@ function randUser() {
     phone: chance.phone(),
     email: emails.pop(),
     password: chance.word(),
+    address: 'bob',
     isAdmin: chance.weighted([true, false], [5, 95])
   });
 }
@@ -42,6 +43,7 @@ function generateAll() {
     photo: 'http://media.licdn.com/media/p/5/005/0ac/184/16505c6.jpg',
     phone: '(510) 295-5523',
     email: 'zeke@zeke.zeke',
+    address: '123 Zeke Street',
     password: '123',
     isAdmin: true
   }));
@@ -50,6 +52,7 @@ function generateAll() {
     photo: 'http://i.zemanta.com/278070129_80_80.jpg',
     phone: '(781) 854-8854',
     email: 'omri@zeke.zeke',
+    address: '123 Zeke Street',
     password: '123'
   }));
   var products = [];

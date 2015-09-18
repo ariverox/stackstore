@@ -36,17 +36,17 @@ app.factory('CartFactory', function($http, localStorageService, $state){
 
     },
 
-    checkout: function() {
-    	var toCheckout = {};
-    	toCheckout.items = this.items.map(function(item) {
-    		return {product: item, quantity: item.quantity};
-    	})
-    	toCheckout.timestamp = new Date();
-    	toCheckout.subtotal = this.totalPrice;
+    // checkout: function() {
+    // 	// var toCheckout = {};
+    // 	// toCheckout.items = this.items.map(function(item) {
+    // 	// 	return {product: item, quantity: item.quantity};
+    // 	// })
+    // 	// toCheckout.timestamp = new Date();
+    // 	// toCheckout.subtotal = this.totalPrice;
 
-    	console.log(toCheckout);
-    	$state.go('checkout', toCheckout);
-    }
+    // 	// console.log(toCheckout);
+    // 	$state.go('checkout');
+    // }
 
 
   }
