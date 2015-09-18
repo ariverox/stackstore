@@ -34,7 +34,7 @@
 	});
 
 	Order.statics.products = function() {
-	  this.items.products.forEach(function(product) {
+	  this.items.product.forEach(function(product) {
 	    product.populate().exec().then(function(product) {
 	      return product.title;
 	    });

@@ -1,6 +1,7 @@
 var chance = require('chance')(123),
   _ = require('lodash'),
   Promise = require('bluebird');
+
 var mongoose = require('mongoose')
 var db = mongoose.connect("mongodb://localhost:27017/stackstore").connection;
 db.on('open', function() {
@@ -52,6 +53,9 @@ function generateAll() {
     password: '123'
   }));
   var products = [];
+
+
+
   var products = [
     new Product({ title: 'topkek', categories: ['kek'], price: 6, stock: 1337, country: 'Turkey', photo: 'https://img.4plebs.org/boards/s4s/image/1390/37/1390378588723.jpg' }),
     new Product({ title: 'Tasty Crunch', categories: ['chocolate', 'candy'], price: 3, stock: 99 }),
@@ -65,8 +69,8 @@ function generateAll() {
     new Product({ title: 'asdf', categories: ['cheese'], country: 'Peru', price: 12, stock: 24 }),
     new Product({ title: 'Hash Brownies', categories: ['chocolate', 'baked'], price: 4.20, stock: 0, country: 'Netherlands', photo: 'http://releaf.co/wp-content/uploads/2012/01/brwn.jpg' }),
     new Product({ title: 'Haribo Sugar Free Gummy Bears', categories: ['gummy', 'assorted flavors'], price: 2.50, stock: 142, country: 'Germany', photo: 'https://15kamali.files.wordpress.com/2013/06/haribo.jpg' }),
+
   ]
-  var reviews;
   var reviews = [
       new Review ({
         text: "this ruined my day",
@@ -75,7 +79,6 @@ function generateAll() {
       new Review ({
         text: "Totally worth the money",
         rating: 5
-        
       }),
       new Review ({
         text: "this is great!",
@@ -88,9 +91,10 @@ function generateAll() {
       new Review ({
         text: ".,",
         rating: 3
-        
       })
-  ]
+  ];
+
+
     return users.concat(products).concat(reviews)
 }
 function seed() {
@@ -114,4 +118,6 @@ db.on('open', function() {
     .then(function() {
       process.exit();
     });
+
 });
+

@@ -1,10 +1,42 @@
-app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, localStorageService) {
+
+	var itemsInCart = localStorageService.get('items');
+
+	$scope.items = itemsInCart || [];
+
+	$scope.$watch('items', function() {
+		localStorageService.set('items', $scope.items);
+	}, true);
+
 	$scope.addToCart = function(thisProduct){
-		thisProduct.quantity = thisProduct.quantity || 1;
-		CartFactory.items.push(thisProduct);
-		CartFactory.totalPrice += (thisProduct.quantity * thisProduct.price);
+		thisProduct.quantity = Number(thisProduct.quantity) || 1;
+
+		var existingItem = findItemInCart(thisProduct);
+
+		if (!existingItem)
+			$scope.items.push(thisProduct);
+			//CartFactory.items.push(thisProduct);
+		else existingItem.quantity += thisProduct.quantity;
+
+		CartFactory.totalPrice += thisProduct.quantity * thisProduct.price;
 	}
 
+
+
+	// $scope.addToCart = function(thisProduct) {
+	// 	CartFactory.addToCart(thisProduct);
+	// }
+
+	function findItemInCart(item) {
+		// for (var i=0; i < CartFactory.items.length; i++) {
+		// 	if (CartFactory.items[i]._id === item._id)
+		// 		return CartFactory.items[i];
+		// }
+		for (var i=0; i < $scope.items.length; i++) {
+			if ($scope.items[i]._id === item._id)
+				return $scope.items[i];
+		}
+	}
 
 
 
