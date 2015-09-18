@@ -49,6 +49,15 @@ navbar {
     outline: none !important;
   }
 
+  .logout-button {
+    float: right;
+    border: 1px solid black;
+    margin-top: 10px;
+    background: none;
+    outline: none !important;
+    color: blue;
+  } 
+
   .welcome {
     float: right;
     margin-top: 12px;

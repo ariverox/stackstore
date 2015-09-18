@@ -34,7 +34,7 @@
         return {
             responseError: function (response) {
                 $rootScope.$broadcast(statusDict[response.status], response);
-                return $q.reject(response)
+                return $q.reject(response);
             }
         };
     });
@@ -98,6 +98,12 @@
             return $http.get('/logout').then(function () {
                 Session.destroy();
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+            });
+        };
+
+        this.signup = function (credentials) {
+            return $http.post('/signup', credentials).then( function (response) {
+                return response.data;
             });
         };
 

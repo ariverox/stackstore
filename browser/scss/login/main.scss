@@ -15,6 +15,20 @@
     text-align: center;
 }
 
-.auth-button {
-	background: url(http://www.famfamfam.com/lab/icons/silk/icons/disk.png);
+.auth-button-google {
+	background: url("http://techulus.com/buttons/gplus.png");
+	height: 53px;
+	width: 250px;
+}
+
+.auth-button-twitter {
+	background: url("http://techulus.com/buttons/tw.png");
+	height: 53px;
+	width: 250px;
+}
+
+.auth-button-facebook {
+	background: url("http://techulus.com/buttons/fb.png");
+	height: 53px;
+	width: 250px;
 }
