@@ -1,6 +1,6 @@
 
 
-<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendSignup(signup)">
 
     <alert type="danger" ng-show="error">
         {{ error }}
@@ -20,7 +20,7 @@
     </div>
      <div class="form-group">
         <label for="signup-password">Re-enter Password</label>
-        <input type="password" ng-model="signup.valid" class="form-control" id="login-password" placeholder="Password">
+        <input type="password" ng-model="signup.emailvalid" class="form-control" id="login-password" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
     <div>

@@ -10,8 +10,7 @@ app.factory('ProductFactory', function($http) {
 		'Turkey': {name: 'Turkey', abbr: 'tr'},
 		'United Kingdom': {name: 'United Kingdom', abbr: 'gb'},
 		'United States': {name: 'United States', abbr: 'us'},
-
-	}
+	};
 
 	return {
 		countryData: countryData,
@@ -22,7 +21,7 @@ app.factory('ProductFactory', function($http) {
 			}
 			return $http.get('/api/products', config).then(function(res) {
 				return res.data;
-			})
+			});
 		},
 		getOne: function (id) {
 		  return $http.get('/api/products/' + id).then(function (response) {
@@ -44,6 +43,6 @@ app.factory('ProductFactory', function($http) {
 		    return response.data;
 		  });
 		}
-	}
+	};
 
 });
