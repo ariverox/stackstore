@@ -13,6 +13,16 @@ var Product = mongoose.model('Product');
 
 describe('Product model', function () {
 
+var createProduct = function () {
+    return Product.create({ 
+        title: 'bob',
+        categories: ['bob'],
+        price: 808,
+        stock: 808,
+        photo: 'bob.png' 
+    });
+};
+
     beforeEach('Establish DB connection', function (done) {
         if (mongoose.connection.db) return done();
         mongoose.connect(dbURI, done);
@@ -22,18 +32,8 @@ describe('Product model', function () {
         clearDB(done);
     });
     describe('on creation', function() {
-        var createProduct = function () {
-            return Product.create({ 
-                title: 'bob',
-                categories: ['bob'],
-                price: 808,
-                stock: 808,
-                photo: 'bob.png' 
-            });
-        };
 
         beforeEach(function() {
-
         });
         afterEach(function() {
 
@@ -50,30 +50,55 @@ describe('Product model', function () {
     });
 
     describe('Product Schema', function () {
-        describe('title', function () { 
-            it('should require title', function (done) {
-                createProduct(
-                    stock: 54
-                });
-                product.save().then(function() {
-                    console.log('sdgfsdhf');
-                }, function (err) {
-                    expect( err.message ).to.equal( 'Validationatorfaildator Failed' );
-                });
-                    done();
-                });
-            });
-        });
 
-        describe('quantity', function () { 
-            it('should require qty (stock)', function (done) {
-                var product = new Product({
-                    title: "Delicious whatsit"
-                });
-                product.save().then(null, function (err, savedProduct) {
-                    expect( err.message ).to.equal( 'Validation failed');
-                });
+            it('should require title', function (done) {
+                Product.create({
+                    stock: 34
+                }).then(function() {
+                    console.log("something went wrong if u see this...")
+                }, function (err) {
+                    console.log('something went right if u see this! yayy!');
+                    expect(err.message).to.equal('Product validation failed');
                     done();
                 });
-            });
-        });
+                });
+
+            it('should require stock', function (done) {
+                Product.create({
+                    title: "Tasty Goodness"
+                }).then(function() {
+                }, function (err) {
+                    expect(err.message).to.equal('Product validation failed');
+                    done();
+                });
+                });
+
+            it('title should be a string, stock should be a number', function (done) {
+                createProduct().then(function (product) {
+                    expect(typeof product.title).to.equal('string');
+                    expect(typeof product.stock).to.equal('number');
+                    done();
+                });
+                });
+             it('should have a reviews field which is an array', function (done) {
+                Product.create({
+                    title: "Joe Pudding",
+                    stock: 33,
+                    reviews: [{review: "this was bad", stars: 1}]
+                }).then(function (product) {
+                    expect(product.reviews).to.equal([{review: "this was bad", stars: 1}]);
+                    done();
+                });
+                });
+              it('should have a default photo', function (done) {
+                Product.create({
+                    title: "Joe Pudding",
+                    stock: 33
+                }).then(function (product) {
+                    expect(!!product.photo).to.equal(true);
+                    done();
+                });
+                });
+
+    });
+});
