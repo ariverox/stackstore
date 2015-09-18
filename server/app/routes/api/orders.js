@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var Order = mongoose.model('Order')
 
 router.param('id', function(req, res, next, id){
-    Order.findById(id).populate('user items')exec().then(function(order){
+    Order.findById(id).populate('user items').exec().then(function(order){
         if(!order) throw new Error('no user found');
         else {
             req.order = order;
@@ -56,3 +56,6 @@ router.delete('/:id', function(req,res, next){
         .then(null, next);
 
 })
+
+
+module.exports = router
