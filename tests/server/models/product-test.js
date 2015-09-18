@@ -41,103 +41,39 @@ describe('Product model', function () {
 
         it('should add to the total inventory', function(done) {
             createProduct().then(function(product) {
-                return Product.find().exec()
+                return Product.find().exec();
             }).then(function(products) {
-                expect(products.length).to.be.equal
-                done();
-            });
-        });
-    });
-
-
-    describe('on creation', function() {
-    	var createProduct = function () {
-    	    return Product.create({ 
-    	    	title: 'bob',
-    	    	categories: ['bob'],
-    	    	price: 808,
-    	    	stock: 808,
-				photo: 'bob.png' 
-    	    });
-    	};
-
-    	beforeEach(function() {
-
-    	});
-    	afterEach(function() {
-
-    	});
-
-    	it('should add to the total inventory', function(done) {
-    		createProduct().then(function(product) {
-                return Product.find().exec()
-            }).then(function(products) {
-                expect(products.length).to.be.equal(1);
+                expect(products.length).to.equal(1);
                 done();
             });
         });
     });
 
     describe('Product Schema', function () {
-
-        it('should require title', function (done) {
-            var product = new Product({
-                stock: 54
-            });
-            product.save().then(function() {
-                console.log('sdgfsdhf');
-            }, function (err) {
-                expect( err.message ).to.equal( 'Validation Failed' );
-            });
-                done();
-                done();
-            });
-        });
-        it('should require qty (stock)', function (done) {
-            var product = new Product({
-                title: "Delicious whatsit"
-            });
-            product.save().then(null, function (err, savedProduct) {
-                expect( err.message ).to.equal( 'Validation failed');
-            });
-                done();
-                done();
+        describe('title', function () { 
+            it('should require title', function (done) {
+                createProduct(
+                    stock: 54
+                });
+                product.save().then(function() {
+                    console.log('sdgfsdhf');
+                }, function (err) {
+                    expect( err.message ).to.equal( 'Validationatorfaildator Failed' );
+                });
+                    done();
+                });
             });
         });
-    });
-//     // describe('Products Schema', function () {
 
-//     //     it('should require name', function (done) {
-//     //         var product = new Product({
-//     //             stock: 54
-//     //         });
-//     //         product.save(function (err, savedProduct) {
-//     //             expect( err.message ).to.equal( 'Validation Failed' );
-//     //             done();
-//     //         });
-//     //     });
-//     //     it('should require qty (stock)', function (done) {
-//     //         var product = new Product({
-//     //             name: "Delicious whatsit"
-//     //         });
-//     //         product.save(function (err, savedProduct) {
-//     //             expect( err.message ).to.equal( 'Validation failed');
-//     //             done();
-//     //         });
-//     //     });
-//     // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
+        describe('quantity', function () { 
+            it('should require qty (stock)', function (done) {
+                var product = new Product({
+                    title: "Delicious whatsit"
+                });
+                product.save().then(null, function (err, savedProduct) {
+                    expect( err.message ).to.equal( 'Validation failed');
+                });
+                    done();
+                });
+            });
+        });
