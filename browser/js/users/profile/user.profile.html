@@ -1,44 +1,36 @@
 <div class="container" ng-controller="UserProfileController">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-
-   <div class="row">
-     <div class="col-lg-6">
-      <img style="height:250px; width:250px;"  ng-src="{{ user.photo }}">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">  
     <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="first_name" type="text">
-              <label for="first_name">Hello {{user.name}}!</label>
-            </div>
+        <div class="col-sm-12 col-lg-6 col-md-6">
+            <img style="width:250%" ng-src="{{ user.photo }}">
+        </div>
+            <div class="col-sm-12 col-lg-6 col-md-6">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h1>Hey {{user.name}}!</h1>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 centerText">
+                        <button="btn btn-primary btn-lg btn-standard" ng-click="showForm()"> Update Profile </button>
+                        <update-form ng-hide="updates"></update-form>
+                    </div>
+                </div>
           </div>
-        </form>
-      </div>
-     <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-6">
-
-        <h1>Your Reviews</h1>
-
-      <div class="row"class="col-sm-12 col-md-12 col-lg-6">
-        <button ng-click='showForm()'>Update your exisiting profile</button>
-        <update-form ng-hide="updates">Form<update-form>
-      </div>
-    <!--   <div class="col-sm-12 col-md-12 col-lg-6" class ="modular">
-        <button ng-click='showOrders()'>Your Orders</button>
-        <user-order the-order="order" ng-hide="transactions"></user-order>
-       </div> -->
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <h1>Your Orders</h1>
-        <user-order the-order="order"></user-order>
-      </div>
-
-  <!--     <div class="row"class="col-sm-12 col-md-12 col-lg-6">
-+        <button ng-click='showReviews()'>Your Reviews</button>
-+        <user-review the-review="review" ng-hide="posts">Post<user-review>
-       </div> -->
-    </div>
-   </div>
- </div>
 </div>
+<div class="row marginAuto">
+    <div class="col-sm-12 col-lg-6 col-md-6">
+    <!--     <div class="thumbnail mdl-card mdl-shadow--3dp" style="padding:10%;">
+            <div class="centerText">
+                <h1><i class="fa fa-weixin fa-2x"></i> Reviews</h1>
+            </div>
+            <product-review ng-repeat="review in reviews" thereview="review" userpage="true"></product-review>
+        </div> -->
+    </div>
+    <div class="col-sm-12 col-lg-6 col-md-6">
+            <div class="centerText">
+                <h1>Orders</h1>
+            </div>
+<!--             <fieldset ng-repeat="order in orders">
+                <user-order-line order="order">
+                </user-order-line>
+            </fieldset>
+ -->    </div>
 </div>
