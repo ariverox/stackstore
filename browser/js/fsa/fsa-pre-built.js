@@ -34,7 +34,7 @@
         return {
             responseError: function (response) {
                 $rootScope.$broadcast(statusDict[response.status], response);
-                return $q.reject(response)
+                return $q.reject(response);
             }
         };
     });
@@ -87,7 +87,6 @@
         };
 
         this.login = function (credentials) {
-            console.log("hit login serivice", credentials)
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
                 .catch(function () {
