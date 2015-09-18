@@ -1,4 +1,4 @@
-app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, ) {
 	$scope.addToCart = function(thisProduct){
 		thisProduct.quantity = thisProduct.quantity || 1;
 		CartFactory.items.push(thisProduct);
