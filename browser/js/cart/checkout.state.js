@@ -8,7 +8,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('CheckoutCtrl', function($scope, $stateParams){
-		$scope.items = $stateParams.items
+		$scope.items = $stateParams.items;
 		$scope.submitOrder = function(){
 			
 		}

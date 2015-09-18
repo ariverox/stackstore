@@ -15,17 +15,19 @@ app.factory('UserFactory', function($http) {
   function remove (id) {
       return $http.delete('/api/users').then(function (response) {
       });
-    }
+  }
+  
   function add (product) {
       return $http.post('/api/users').then(function (user) {
         return user;
       });
-    },
-   function update (id, product) {
+  }
+
+  function update (id, product) {
       return $http.put('/api/users').then(function (response) {
         return response.data;
       });
-    }
+  }
 
   return {
     getOne: getOne,

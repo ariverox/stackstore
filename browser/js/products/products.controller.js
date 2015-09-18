@@ -8,6 +8,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, loc
 		localStorageService.set('items', $scope.items);
 	}, true);
 
+
 	$scope.addToCart = function(thisProduct){
 		thisProduct.quantity = Number(thisProduct.quantity) || 1;
 
@@ -22,16 +23,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, loc
 	}
 
 
-
-	// $scope.addToCart = function(thisProduct) {
-	// 	CartFactory.addToCart(thisProduct);
-	// }
-
 	function findItemInCart(item) {
-		// for (var i=0; i < CartFactory.items.length; i++) {
-		// 	if (CartFactory.items[i]._id === item._id)
-		// 		return CartFactory.items[i];
-		// }
 		for (var i=0; i < $scope.items.length; i++) {
 			if ($scope.items[i]._id === item._id)
 				return $scope.items[i];

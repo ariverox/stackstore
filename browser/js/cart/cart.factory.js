@@ -45,7 +45,7 @@ app.factory('CartFactory', function($http, localStorageService, $state){
     	toCheckout.subtotal = this.totalPrice;
 
     	console.log(toCheckout);
-    	//$state.go('checkout', toCheckout);
+    	$state.go('checkout', toCheckout);
     }
 
 
