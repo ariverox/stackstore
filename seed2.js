@@ -7,26 +7,16 @@ var db = mongoose.connect("mongodb://localhost:27017/stackstore").connection;
 db.on('open', function() {
   console.log('Database connection successfully opened');
 });
-
 db.on('error', function(err) {
   console.error('Database connection error', err);
 });
-
-
-
-
-
 var User = require('./server/db/models/user.model');
 var Product = require('./server/db/models/product.model');
 var Review = require('./server/db/models/review.model');
 var connectToDb = require('./server/db');
-
-
 var numUsers = 100;
 var numStories = 500;
-
 var emails = chance.unique(chance.email, numUsers);
-
 function randPhoto() {
   var g = chance.pick(['men', 'women']);
   var n = chance.natural({
@@ -35,7 +25,6 @@ function randPhoto() {
   });
   return 'http://api.randomuser.me/portraits/thumb/' + g + '/' + n + '.jpg'
 }
-
 function randUser() {
   return new User({
     name: [chance.first(), chance.last()].join(' '),
@@ -46,7 +35,6 @@ function randUser() {
     isAdmin: chance.weighted([true, false], [5, 95])
   });
 }
-
 function generateAll() {
   var users = _.times(numUsers, randUser);
   users.push(new User({
@@ -67,6 +55,7 @@ function generateAll() {
   var products = [];
 
 
+
   var products = [
     new Product({ title: 'topkek', categories: ['kek'], price: 6, stock: 1337, country: 'Turkey', photo: 'https://img.4plebs.org/boards/s4s/image/1390/37/1390378588723.jpg' }),
     new Product({ title: 'Tasty Crunch', categories: ['chocolate', 'candy'], price: 3, stock: 99 }),
@@ -82,9 +71,6 @@ function generateAll() {
     new Product({ title: 'Haribo Sugar Free Gummy Bears', categories: ['gummy', 'assorted flavors'], price: 2.50, stock: 142, country: 'Germany', photo: 'https://15kamali.files.wordpress.com/2013/06/haribo.jpg' }),
 
   ]
-
-  var reviews;
-
   var reviews = [
       new Review ({
         text: "this ruined my day",
@@ -93,44 +79,31 @@ function generateAll() {
       new Review ({
         text: "Totally worth the money",
         rating: 5
-        
       }),
-
       new Review ({
         text: "this is great!",
         rating: 4
       }),
-
       new Review ({
         text: "This snack is all that I live for",
         rating: 4
-
       }),
-
       new Review ({
         text: ".,",
         rating: 3
-        
       })
-  ]
+  ];
 
 
     return users.concat(products).concat(reviews)
 }
-
-
-
-
 function seed() {
   var docs = generateAll();
   return Promise.map(docs, function(doc) {
     return doc.save();
   });
 }
-
-
 db.drop = Promise.promisify(db.db.dropDatabase.bind(db.db));
-
 db.on('open', function() {
   db.drop()
     .then(function() {
@@ -145,4 +118,6 @@ db.on('open', function() {
     .then(function() {
       process.exit();
     });
+
 });
+

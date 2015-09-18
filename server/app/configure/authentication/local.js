@@ -1,7 +1,4 @@
 'use strict';
-
-
-
 var passport = require('passport');
 var _ = require('lodash');
 var LocalStrategy = require('passport-local').Strategy;
@@ -55,6 +52,16 @@ module.exports = function (app) {
 
         passport.authenticate('local', authCb)(req, res, next);
 
+    });
+    app.post('/signup', function (req, res, next) {
+        console.log("new user signup!")
+        delete req.body.isAdmin;
+        delete req.body.emailvalid;
+        User.create(req.body)
+        .then(function (user) {
+            res.json(user);
+        })
+    .then(null, next);
     });
 
 };
