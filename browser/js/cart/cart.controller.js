@@ -5,4 +5,15 @@ app.controller('CartController', function($scope, $state, CartFactory, localStor
   $scope.cart.items = itemsInCart || [];
 
   $scope.cart.updateCart();
+
+  $scope.editing = false;
+
+  $scope.toggleEditing = function() {
+  	$scope.editing = !$scope.editing;
+  }
+
+  $scope.editQuantity = function(idx, quantity) {
+  	CartFactory.editQuantity(idx, quantity);
+  	$scope.editing = false;
+  }
 })

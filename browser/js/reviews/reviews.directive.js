@@ -6,6 +6,7 @@ app.directive('reviews', function(){
         	productId: '@'
         },
         controller: function($scope, ReviewFactory) {
+        	$scope.reviews = [];
 
  			function calcAverage() {
  				$scope.averageRating = 0;

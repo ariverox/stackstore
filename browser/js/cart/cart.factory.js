@@ -16,6 +16,7 @@ app.factory('CartFactory', function($http, localStorageService){
     },
 
     updateCart: function() {
+        localStorageService.set('items', this.items);
     	this.totalPrice = this.getItems().reduce(function(a,b) {
     		return a + (b.price * b.quantity);
     	}, 0);
@@ -28,12 +29,12 @@ app.factory('CartFactory', function($http, localStorageService){
 
     deleteItem: function(idx) {
     	this.items.splice(idx, 1);
-    	localStorageService.set('items', this.items);
     	this.updateCart();
     },
 
-    editItem: function(item) {
-        item;
+    editQuantity: function(idx, quantity) {
+        this.items[idx].quantity = quantity;
+        this.updateCart();
     },
 
   }

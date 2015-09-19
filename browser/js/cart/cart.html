@@ -10,7 +10,16 @@
             <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
           </a>
           <p><a ui-sref='detail({id: item._id})'><strong>{{ item.title }}</strong></a></p>
-          <span>Quantity: {{ item.quantity || 1 }}, </span>
+          <span>Quantity: 
+            <span ng-show="!editing">{{ item.quantity || 1 }}</span>
+            <span ng-show="editing" ng-model="item.quantity">
+              <input type="number" ng-value="item.quantity" ng-model="item.quantity" size="4"></input>
+            </span>
+          </span>
+          <span>(
+            <a href='#' ng-show="!editing" ng-click="toggleEditing()">edit</a>
+            <a href='#' ng-show="editing" ng-click="editQuantity($index, item.quantity)">OK</a>
+            ), </span>
           <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
           <a href="#" class="btn btn-danger" role="button" ng-click="cart.deleteItem($index)">
                           <span class="glyphicon glyphicon-trash"></span></a>
