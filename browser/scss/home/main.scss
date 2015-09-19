@@ -16,7 +16,12 @@ max-width: 400px;
 max-height: 300px
 }
 
-ui-view {
-  background-color: lightblue
+body { 
+  color: white;
+  background: url('/images/snacks.JPG') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
