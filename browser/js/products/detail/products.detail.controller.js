@@ -6,5 +6,11 @@ app.controller('ProductsDetailController', function($scope, product, CartFactory
     thisProduct.quantity = thisProduct.quantity || 1;
     CartFactory.items.push(thisProduct);
     CartFactory.totalPrice += (thisProduct.quantity * thisProduct.price);
+
+
+    $scope.addReview = function() {
+    	console.log('adding review?');
+    }
+
   };
 });

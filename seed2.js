@@ -55,9 +55,6 @@ function generateAll() {
     address: '123 Zeke Street',
     password: '123'
   }));
-  var products = [];
-
-
 
   var products = [
     new Product({ title: 'topkek', categories: ['kek'], price: 6, stock: 1337, country: 'Turkey', photo: 'https://img.4plebs.org/boards/s4s/image/1390/37/1390378588723.jpg' }),
@@ -65,7 +62,7 @@ function generateAll() {
     new Product({ title: 'Spicy Crunch', categories: ['chocolate', 'candy'], price: 4, stock: 20 }),
     new Product({ title: 'Nongshim Shrimp Crackers', categories: ['crackers'], price: 3, stock: 41, country: 'South Korea', photo: 'http://static.caloriecount.about.com/images/medium/nong-shim-shrimp-crackers-33551.jpg' }),
     new Product({ title: 'Kinoko no Yama', categories: ['chocolate', 'cookie'], price: 3, stock: 80, country: 'Japan', photo: 'http://www.koamart.com/images/2873_enlarged[1].gif' }),
-    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy'], price: 30, stock: 15, country: 'Japan', photo: 'http://thumbnail.image.rakuten.co.jp/@0_mall/bassano/cabinet/img55686633.jpg' }),
+    new Product({ title: 'Giga Pudding', categories: ['pudding', 'toy'], price: 30, stock: 15, country: 'Japan', photo: 'http://thumbnail.image.rakuten.co.jp/@0_mall/bassano/cabinet/img55686633.jpg', description: 'PUDDI PUDDI GIGA PUDDING~!' }),
     new Product({ title: 'Everlasting Gobstoppers', categories: ['candy', 'wonka'], country: 'United Kingdom', price: 6, stock: 37 }),
     new Product({ title: 'blah', categories: ['strawberry'], country: 'Germany', price: 10, stock: 15 }),
     new Product({ title: 'bleh', categories: ['coconut'], country: 'Nigeria', price: 11, stock: 8 }),
@@ -74,28 +71,7 @@ function generateAll() {
     new Product({ title: 'Haribo Sugar Free Gummy Bears', categories: ['gummy', 'assorted flavors'], price: 2.50, stock: 142, country: 'Germany', photo: 'https://15kamali.files.wordpress.com/2013/06/haribo.jpg' }),
 
   ]
-  var reviews = [
-      new Review ({
-        text: "this ruined my day",
-        rating: 1
-      }),
-      new Review ({
-        text: "Totally worth the money",
-        rating: 5
-      }),
-      new Review ({
-        text: "this is great!",
-        rating: 4
-      }),
-      new Review ({
-        text: "This snack is all that I live for",
-        rating: 4
-      }),
-      new Review ({
-        text: ".,",
-        rating: 3
-      })
-  ];
+  var reviews = [];
 
 
     return users.concat(products).concat(reviews)

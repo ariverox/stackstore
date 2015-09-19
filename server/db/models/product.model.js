@@ -17,14 +17,18 @@ var Product = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
-	reviews: {
-		type: [Object]
-	},
+	reviews: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Review'
+	}],
 	photo: {
 		type: String,
 		default: '/images/bacon.jpg'
 	},
 	country: {
+		type: String
+	},
+	description: {
 		type: String
 	}
 });

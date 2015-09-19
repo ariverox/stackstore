@@ -1,36 +1,34 @@
-app.controller('CheckoutCtrl', function($scope, localStorageService, AuthService){
+app.controller('CheckoutCtrl', function($scope, localStorageService, AuthService) {
 
-	$scope.user;
-	$scope.toCheckout = {};
+    $scope.user;
+    $scope.toCheckout = {};
 
-	function getUser() {
-		AuthService.getLoggedInUser().then(function (user) {
-		    $scope.user = user;
-		});
-	}
 
-	function setupCart() {
-		AuthService.getLoggedInUser().then(function (user) {
-			$scope.user = user;
+    function setupCart() {
+        AuthService.getLoggedInUser().then(function(user) {
+            $scope.user = user;
 
-			var itemsInCart = localStorageService.get('items');
+            var itemsInCart = localStorageService.get('items');
 
-			$scope.toCheckout.items = itemsInCart.map(item => ({product: item, quantity: item.quantity}));
-			$scope.toCheckout.timestamp = new Date();
-			$scope.toCheckout.subtotal = itemsInCart.reduce(((a,b) => a + (b.price * b.quantity)), 0);
+            $scope.toCheckout.items = itemsInCart.map(item => ({
+                product: item,
+                quantity: item.quantity
+            }));
+            $scope.toCheckout.timestamp = new Date();
+            $scope.toCheckout.subtotal = itemsInCart.reduce(((a, b) => a + (b.price * b.quantity)), 0);
 
-			$scope.toCheckout.name = $scope.user.name;
-			$scope.toCheckout.email = $scope.user.email;
-			$scope.toCheckout.address = $scope.user.address;
+            $scope.toCheckout.name = $scope.user.name;
+            $scope.toCheckout.email = $scope.user.email;
+            $scope.toCheckout.address = $scope.user.address;
 
-			console.log('SCOPE USER:', $scope.user);
-		});
-	}
+            console.log('SCOPE USER:', $scope.user);
+        });
+    }
 
-	$scope.submitOrder = function(){
-		
-	}
+    $scope.submitOrder = function() {
 
-	setupCart();
+    }
+
+    setupCart();
 
 });

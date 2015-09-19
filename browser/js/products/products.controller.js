@@ -1,13 +1,20 @@
-app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, localStorageService) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, localStorageService, product) {
 
 	var itemsInCart = localStorageService.get('items');
 
 	$scope.items = itemsInCart || [];
 
+
 	$scope.$watch('items', function() {
 		localStorageService.set('items', $scope.items);
 	}, true);
 
+	function findItemInCart(item) {
+		for (var i=0; i < $scope.items.length; i++) {
+			if ($scope.items[i]._id === item._id)
+				return $scope.items[i];
+		}
+	}
 
 	$scope.addToCart = function(thisProduct){
 		thisProduct.quantity = Number(thisProduct.quantity) || 1;
@@ -23,12 +30,6 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, loc
 	}
 
 
-	function findItemInCart(item) {
-		for (var i=0; i < $scope.items.length; i++) {
-			if ($scope.items[i]._id === item._id)
-				return $scope.items[i];
-		}
-	}
 
 
 
@@ -40,6 +41,14 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, loc
 	ProductFactory.getAll().then(function(stuff) {
 		$scope.products = stuff;
 	})
+
+
+
+	// For product detail page
+	if (product) $scope.product = product;
+
+
+
 
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
 	// 	$scope.predicate = p;
