@@ -12,7 +12,6 @@ app.config(function ($stateProvider) {
 	.state('userProfile', {
 		url: '/user/:id',
 		templateUrl: 'js/users/profile/user.profile.html',
-		controller: 'UserProfileController'
 	})
 })
 

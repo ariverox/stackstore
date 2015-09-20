@@ -20,7 +20,7 @@ app.factory('UserFactory', function($http) {
       return $http.post('/api/users').then(function (user) {
         return user;
       });
-    },
+    }
    function update (id, product) {
       return $http.put('/api/users').then(function (response) {
         return response.data;
