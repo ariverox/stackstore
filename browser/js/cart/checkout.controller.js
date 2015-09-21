@@ -53,10 +53,11 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
     return stripe.card.createToken($scope.payment.card)
       .then(function (token) {
         stripeID = token
-        $scope.loading = true;
         var payment = angular.copy($scope.payment);
         payment.card = void 0;
-        return $http.post('api/striped', payment);
+        payment.stripeToken = token.id;
+        payment.total = $scope.total;
+        OrderFactory.submitStripe(payment);
       })
       .then(function (payment) {
         console.log('successfully submitted payment');
@@ -69,12 +70,10 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
         if (err.type && /^Stripe/.test(err.type)) {
           console.log('Stripe error: ', err.message);
           $scope.error = err;
-          $scope.loading = false;
         }
         else {
           console.log('Other error occurred, possibly with your API', err.message);
           $scope.error = err;
-          $scope.loading = false;
         }
       });
     };

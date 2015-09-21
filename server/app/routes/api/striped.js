@@ -16,21 +16,16 @@ var stripe = require("stripe")("sk_test_mvPr55DEzDAflKPOkGoP86CP");
 
 
 router.post('/', function(req, res, next) {
-	console.log(stripe)
 	console.log("REQ.BODY", req.body)
 	// Get the credit card details submitted by the form
 	var stripeToken = req.body.stripeToken;
-	console.log(stripeToken)
 	var userId = req.body.userId;
-
 	var order = new Order();
-	
 	// console.log(address);
-
 	var charge = stripe.charges.create({
-	  amount: total, // amount in cents, again
+	  amount: 1000, // amount in cents, again
 	  currency: "usd",
-	  source: stripeToken,
+	  source: stripeToken
 	}, function(err, charge) {
 		console.log(charge)
 		if(charge == null){
@@ -41,6 +36,7 @@ router.post('/', function(req, res, next) {
 	    res.send("card is declined");
 	  }
 	}).then(function(id){
+		console.log("id", id)
 	  			var purchasedProduct = new Order();
 	  			purchasedProduct = req.body
 	  			purchasedProduct.stripeID = id;
