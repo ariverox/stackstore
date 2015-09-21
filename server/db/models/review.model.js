@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 var Review = new mongoose.Schema({
   rating: {
@@ -19,7 +19,7 @@ var Review = new mongoose.Schema({
   timestamp: {
     type: Date
   }
-})
+});
 
 
 

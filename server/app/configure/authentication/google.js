@@ -23,6 +23,7 @@ module.exports = function (app) {
 
         UserModel.findOne({ 'google.id': profile.id }).exec()
             .then(function (user) {
+
                 if (user) return user;
                 return UserModel.create({ name: name, email: email, google: google });
             }).then(function (userToLogin) {

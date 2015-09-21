@@ -3,7 +3,8 @@ var chance = require('chance')(123),
   Promise = require('bluebird');
 
 var mongoose = require('mongoose')
-var db = mongoose.connect("mongodb://localhost:27017/stackstore").connection;
+var uri = process.env.MONGOLAB_URI || "mongodb://localhost:27017/stackstore" 
+var db = mongoose.connect(uri).connection;
 db.on('open', function() {
   console.log('Database connection successfully opened');
 });

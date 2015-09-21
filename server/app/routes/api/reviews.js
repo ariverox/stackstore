@@ -50,10 +50,11 @@ router.get('/:id', function(req,res, next){
 })
 
 router.post('/', function (req, res, next) {
-     {
-      return new Error('too short')
+    console.log(req.user)
+    if(!req.user) {
+        res.status(401).send("cannot post if you arent logged in!")
+        return
     }
-
     Review.create(req.body)
     .then(function (review) {
      	res.status(201).json(review);
