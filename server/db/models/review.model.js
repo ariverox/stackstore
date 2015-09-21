@@ -24,7 +24,7 @@ var Review = new mongoose.Schema({
 
 
 function validator (v) {
-  return (v.length > 20 && v.length < 400);
+  return (v.length > 10 && v.length < 400);
 };
 
 
@@ -32,4 +32,3 @@ function validator (v) {
 
 
 module.exports = mongoose.model('Review', Review);
-

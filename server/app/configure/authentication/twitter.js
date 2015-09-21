@@ -16,9 +16,15 @@ module.exports = function (app) {
     };
 
     var createNewUser = function (token, tokenSecret, profile) {
+        console.log('profile:',profile);
+        var name = profile.displayName;
+
+        var rn = Math.floor(Math.random()*100000000);
+        var email = 'sfgp'+rn+'@fakesite.com';
         return UserModel.create({
+            name: name,
+            email: email,
             twitter: {
-                email: "user",
                 id: profile.id,
                 username: profile.username,
                 token: token,
