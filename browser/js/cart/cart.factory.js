@@ -44,7 +44,10 @@ app.factory('CartFactory', function($http, localStorageService, $state){
     	toCheckout.timestamp = new Date();
     	toCheckout.subtotal = this.totalPrice;
 
+<<<<<<< HEAD
     	console.log(toCheckout);
+=======
+>>>>>>> master
     	$state.go('checkout', toCheckout);
     }
 
