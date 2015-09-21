@@ -15,6 +15,7 @@ function isAdmin() {
 
 
 router.param('id', function(req, res, next, id){
+
     Order.findById(id).populate('user items').exec().then(function(order){
         if(!order) throw new Error('no user found');
         else {

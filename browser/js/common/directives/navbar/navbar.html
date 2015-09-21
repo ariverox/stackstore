@@ -1,13 +1,14 @@
 
-<nav id ="navbar" class="navbar navbar-static-top">
+<nav id ="navbar" class="transparent navbar navbar-static-top">
 <i style="padding: 0px; margin: 20px;" class="fa fa-spin fa-pull-left fa-3x fa-cutlery"></i>
 <h3 style="display: inline; font-family: 'Permanent Marker', cursive;" class="pull-left">SnackStore</h3>
     <div class="container">
         <div class="navbar-header">
         </div>
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="item.admin ||!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                <a id="angitem" ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
