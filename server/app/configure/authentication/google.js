@@ -16,22 +16,15 @@ module.exports = function (app) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
+        console.log('profile:',profile);
+        var name = profile.displayName,
+            email = profile.emails[0].value,
+            google = {id: profile.id};
 
         UserModel.findOne({ 'google.id': profile.id }).exec()
             .then(function (user) {
-                console.log(profile.id);
-                if (user) {
-                    return user;
-                } else {
-
-                    return UserModel.create({
-                        email: "user",
-                        google: {
-                            id: profile.id
-                        }
-                    });
-                }
-
+                if (user) return user;
+                return UserModel.create({ name: name, email: email, google: google });
             }).then(function (userToLogin) {
                 done(null, userToLogin);
             }, function (err) {

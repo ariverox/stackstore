@@ -13,7 +13,7 @@
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <div ng-show="user" class="welcome">
-            <span><a href="/user/{{user._id}}">Welcome, {{ user.email }}!</a></span>
+            <span><a ui-sref="userProfile({id: user._id})">Welcome, {{ user.name }}!</a></span>
             <button ng-click="logout()" ng-show="user" ui-sref="home" class="btn login-button">Logout</button>
         </div>
     </div>
