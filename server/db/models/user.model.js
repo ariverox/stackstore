@@ -17,7 +17,7 @@ var schema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true
+    // required: true
   },
   password: {
     type: String
