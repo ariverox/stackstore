@@ -1,5 +1,5 @@
 'use strict';
-window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt','LocalStorageModule', 'angular-stripe']);
+window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt','LocalStorageModule']);
 
 app.config(function ($urlRouterProvider, $locationProvider,localStorageServiceProvider) {
 
