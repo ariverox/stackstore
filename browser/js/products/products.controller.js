@@ -1,13 +1,19 @@
-app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, localStorageService, product) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, UserFactory, localStorageService, product, user) {
 
-	var itemsInCart = localStorageService.get('items');
-
-	$scope.items = itemsInCart || [];
-
-
-	$scope.$watch('items', function() {
-		localStorageService.set('items', $scope.items);
-	}, true);
+	// If user is logged in, retrieve stored cart information from User model
+	if (user) {
+		$scope.user = user;
+		if (!$scope.user.cart) $scope.user.cart = [];
+		$scope.items = $scope.user.cart;
+	}
+	// If user is not logged in, store cart information in local storage
+	else {
+		var itemsInCart = localStorageService.get('items');
+		$scope.items = itemsInCart || [];
+		$scope.$watch('items', function() {
+			localStorageService.set('items', $scope.items);
+		}, true);
+	}
 
 	function findItemInCart(item) {
 		for (var i=0; i < $scope.items.length; i++) {
@@ -21,9 +27,15 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, loc
 
 		var existingItem = findItemInCart(thisProduct);
 
-		if (!existingItem)
-			$scope.items.push(thisProduct);
-			//CartFactory.items.push(thisProduct);
+		if (!existingItem) {
+			$scope.items.push({
+				_id: thisProduct._id,
+				quantity: thisProduct.quantity
+			});
+			if ($scope.user) {
+				UserFactory.update($scope.user._id, {cart: $scope.items});
+			}
+		}
 		else existingItem.quantity += thisProduct.quantity;
 
 		CartFactory.totalPrice += thisProduct.quantity * thisProduct.price;

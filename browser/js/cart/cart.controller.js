@@ -1,10 +1,12 @@
-app.controller('CartController', function($scope, $state, CartFactory, localStorageService){
-  var itemsInCart = localStorageService.get('items');
+app.controller('CartController', function($scope, $state, CartFactory, localStorageService, user, cart){
+  $scope.user = user;
+
+  var itemsInCart = cart;
 
   $scope.cart = CartFactory;
   $scope.cart.items = itemsInCart || [];
 
-  $scope.cart.updateCart();
+  $scope.cart.updateCart($scope.user, $scope.cart.items);
 
   $scope.editing = false;
 

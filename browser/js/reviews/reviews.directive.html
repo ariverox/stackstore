@@ -26,7 +26,10 @@
             <span class="fa fa-star"></span></span><!--
             --><span ng-repeat="empty in getEmptyStars(review.rating)">
             <span class="fa fa-star-o"></span></span>
-            <span>By <a ui-sref="userProfile({id: review.user._id})">{{ review.user.name }}</a></span>
+            <span>By 
+            	<a ng-show="review.user" ui-sref="userProfile({id: review.user._id})">{{ getUserName($index) }}</a>
+            	<span ng-show="!review.user">(deleted user)</span>
+            </span>
             <span class="pull-right">{{ getTimeElapsed(review.timestamp) }}</span>
             <p>{{ review.text }}</p>
         </div>

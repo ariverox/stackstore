@@ -4,15 +4,24 @@ var mongoose = require('mongoose');
 
 var Order = new mongoose.Schema({
   timestamp: {
-    type: Number,
+    type: Date,
     required: true
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
   shippingAddress: {
-    type: String
+    type: String,
+    required: true
   },
   items: [{
     product: {
@@ -20,16 +29,29 @@ var Order = new mongoose.Schema({
       ref: 'Product',
       required: true
     },
+    title: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
     quantity: {
-      type: Number
+      type: Number,
+      required: true
     }
   }],
   due: {
+    type: Number
+  },
+  subtotal: {
     type: Number,
     required: true
   },
-  subtotal: {
-    type: Number
+  orderNumber: {
+    type: Number,
+    required: true
   }
 });
 

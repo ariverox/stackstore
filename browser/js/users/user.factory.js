@@ -30,6 +30,7 @@ app.factory('UserFactory', function($http) {
         });
     }
 
+
     return {
         getOne: getOne,
         getAll: getAll,

@@ -1,0 +1,53 @@
+<section id="confirmation">
+	<div class="container">
+		<h3>Your order has been placed. Thank you for your order.</h3>
+		<h6>A confirmation email will be sent shortly to {{ order.email }}.</h6>
+		<hr>
+		<h4>Order Summary</h4>
+		<p><strong>Order Number:</strong> {{ order.orderNumber }}</p>
+		<!-- <pre>{{ order | json }}</pre> -->
+
+		<ul id="sidebyside">
+		  <li>
+		    <table class="table table-striped" style="width: 50%;">
+		      <thead>
+		        <div class="sticky-anchor"></div>
+		        <tr class="statcell fixed">
+		          <th>Description</th>
+		          <th style="text-align: right">Unit Price</th>
+		          <th style="text-align: right">Quantity</th>
+		          <th style="text-align: right">Total Price</th>
+		          <tr class="statcell" ng-repeat="item in order.items">
+		            <td><a ui-sref="detail({id: item.product})"><strong>{{ item.title }}</strong></a></td>
+		            <td><span class="pull-right">{{ item.price | currency }}</span></td>
+		            <td><span class="pull-right">{{ item.quantity }}</span></td>
+		            <td><span class="pull-right">{{ item.price * item.quantity | currency }}</span></td>
+		          </tr>
+		          <tr class="statcell">
+		          	<td></td><td></td>
+		          	<td><span class="pull-right"><strong>Subtotal:</strong></span></td>
+		          	<td><span class="pull-right">{{ order.subtotal | currency }}</span></td>
+		          </tr>
+		          <tr class="statcell">
+		          	<td></td><td></td>
+		          	<td><span class="pull-right"><strong>Shipping:</strong></span></td>
+		          	<td><span class="pull-right">{{ 0 | currency }}</span></td>
+		          </tr>
+		          <tr class="statcell">
+		          	<td></td><td></td>
+		          	<td><span class="pull-right"><strong>Tax:</strong></span></td>
+		          	<td><span class="pull-right">{{ 0 | currency }}</span></td>
+		          </tr>
+		          <tr class="statcell">
+		          	<td></td><td></td>
+		          	<td><span class="pull-right"><strong>Total:</strong></span></td>
+		          	<td><span class="pull-right">{{ order.subtotal | currency }}</span></td>
+		          </tr>
+		        </tr>
+		      </thead>
+		    </table>
+		  </li>
+		  <li>
+		</ul>
+	</div>
+</section>

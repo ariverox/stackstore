@@ -20,7 +20,7 @@ app.directive('reviews', function(){
  				var averageFull = Math.floor($scope.averageRating);
  				var averageHalf = $scope.averageRating - averageFull;
  				if (averageHalf >= 0.75) averageFull++;
- 				var filledStars = averageFull + (averageHalf >= 0.25 ? 1 : 0);
+ 				var filledStars = averageFull + ( (averageHalf >= 0.25 && averageHalf < 0.75) ? 1 : 0);
  				$scope.averageFull = $scope.getStars(averageFull);
  				$scope.averageHalf = $scope.getHalfStars(averageHalf);
  				$scope.averageEmpty = $scope.getEmptyStars(filledStars);
@@ -60,8 +60,8 @@ app.directive('reviews', function(){
  				if (msElapsed < 60000) return 'just now';
  				if (msElapsed < 60000*60) return dateString(Math.floor(msElapsed/60000), 'minute');
  				if (msElapsed < 60000*60*24) return dateString(Math.floor(msElapsed/(60000*60)), 'hour');
- 				if (msElapsed < 60000*60*24*7) return dateString(Math.floor(msElapsed/(60000*60*24)), 'week');
- 				if (msElapsed < 60000*60*24*31) return dateString(Math.floor(msElapsed/(60000*60*24*7)), 'day');
+ 				if (msElapsed < 60000*60*24*7) return dateString(Math.floor(msElapsed/(60000*60*24)), 'day');
+ 				if (msElapsed < 60000*60*24*31) return dateString(Math.floor(msElapsed/(60000*60*24*7)), 'week');
  				if (msElapsed < 60000*60*24*365) return dateString(Math.floor(msElapsed/(60000*60*24*31)), 'month');
  				return dateString(Math.floor(msElapsed/(60000*60*24*365)), 'year');
  			}
@@ -69,6 +69,9 @@ app.directive('reviews', function(){
  				return $scope.reviews.length + ' review' + ($scope.reviews.length===1 ? '' : 's');
  			}
 
+ 			$scope.getUserName = function(idx) {
+ 				if ($scope.reviews[idx].user) return $scope.reviews[idx].user.name;
+ 			}
 
 
         }

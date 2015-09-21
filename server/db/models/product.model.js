@@ -1,7 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 
-var Product = new mongoose.Schema({
+var ProductSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true,
@@ -33,4 +33,4 @@ var Product = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Product', Product);
+module.exports = mongoose.model('Product', ProductSchema);

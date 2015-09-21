@@ -1,29 +1,52 @@
-app.factory('CartFactory', function($http, localStorageService){
+app.factory('CartFactory', function($http, localStorageService, ProductFactory, UserFactory){
 
-	var items = localStorageService.get('items');
+
+    var items, user;
+
 	var totalPrice = 0;
+
+
 
   return {
     items: items,
     totalPrice: totalPrice,
 
     getItems: function() {
-    	return localStorageService.get('items');
+    	return this.items;
     },
 
     setItems: function(stuff) {
-    	this.items = localStorageService.set('items', stuff);
+        if (user) {
+            user.cart = stuff;
+            this.items = user.cart;
+        }
+        else {
+            localStorageService.set('items', stuff);
+            this.items = localStorageService.get('items');
+        }
     },
 
-    updateCart: function() {
-        localStorageService.set('items', this.items);
+    updateCart: function(userParam, itemsParam) {
+        user = userParam;
+        if (itemsParam) this.items = itemsParam;
+
+        var updatedItems = this.getItems().map(item => ({
+            _id: item.product._id,
+            quantity: item.quantity
+        }));
+
+        if (user) UserFactory.update(user._id, {cart: updatedItems});
+        else localStorageService.set('items', updatedItems);
+
     	this.totalPrice = this.getItems().reduce(function(a,b) {
-    		return a + (b.price * b.quantity);
+    		return a + (b.product.price * b.quantity);
     	}, 0);
     },
 
     emptyCart: function() {
+        console.log('who the user be?',user);
     	this.setItems([]);
+        this.updateCart();
     	this.totalPrice = 0;
     },
 
