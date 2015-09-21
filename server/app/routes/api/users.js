@@ -5,8 +5,7 @@ var path = require('path')
 
 
 function isAdmin(){
-
-
+	return req.user.isAdmin
 }
 
 //admin only - list of users
@@ -24,6 +23,8 @@ router.param('id', function(req, res, next, id){
 
 
 router.get('/', function(req,res, next){
+	if(!req.user.isAdmin) return
+
   User.find().exec().
 	then(function(users){
 		res.send(users);
@@ -48,6 +49,13 @@ router.post('/', function(req,res,next){
 })
 
 router.put('/:id', function(req,res,next){
+
+	// if(req.user !== req.thisUser ||	!req.user.isAdmin) return
+	// if(!req.user.isAdmin) {
+	// 	req.body = _.omit(req.body, 'isAdmin')
+	// }
+
+
     for (var k in req.body) {
         req.thisUser[k] = req.body[k];
     }
@@ -60,7 +68,7 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-		if(!req.session.user.isAdmin) return
+		if(!req.user.isAdmin) return
     req.users.remove()
         .then(function () {
             res.status(204).end();

@@ -4,10 +4,11 @@
 var router = require('express').Router();
 var mongoose = require('mongoose')
 var Product = mongoose.model('Product')
+var _ = require('lodash')
 
 router.param('id', function(req, res, next, id){
 	Product.findById(id).exec().then(function(product){
-		if(!product) throw new Error('no product found');
+		if(!product) throw new Error('no review found');
 		else {
 			req.product = product;
 			next();
@@ -44,6 +45,8 @@ router.get('/:id', function(req,res, next){
 
 //admin routes
 router.post('/', function (req, res, next) {
+	if(!req.user.isAdmin) return
+
 
 	Product.create(req.body)
 		.then(function (product) {
@@ -53,6 +56,13 @@ router.post('/', function (req, res, next) {
 });
 
 router.put("/:id", function (req, res, next) {
+	console.log(req.body)
+
+	if(!req.user.isAdmin) {
+		req.body = {stock: req.body.stock}
+	}
+
+
 	for (var key in req.body) {
 		req.product[key] = req.body[key];
 	}
@@ -65,6 +75,8 @@ router.put("/:id", function (req, res, next) {
 });
 
 router.delete("/:id", function(req,res,next){
+	if(!req.user.isAdmin) return
+
 	req.product.remove()
 		.then(function () {
 			res.status(204).end();

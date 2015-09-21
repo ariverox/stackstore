@@ -12,17 +12,29 @@
           <hr>
           <div collapse="!isCollapsed">
             <div class="well well-lg">
-              check different one
+              <h3> All Orders </h3>
+              <div ng-repeat="user in users">
+                <h4 ng-show="user.orders.length > 0"> {{user.name}}</h4>
+                <span ng-repeat="order in user.orders"> <a href="/order/{{order}}">{{ order}}</a> </span>
+
+              </div>
+
+
             </div>
           </div>
           <div collapse="!isCollapsed1">
             <div class="well well-lg">
-              check different one
+              <h3> All users </h3>
+
+              <span ng-repeat="user in users"> <a href="/user/{{user._id}}">{{user.name}} </a></span>
+
             </div>
           </div>
           <div collapse="!isCollapsed2">
+
             <div class="well well-lg">
-              check different one
+              <h3> All products</h3>
+              <span ng-repeat="product in products"> <a href="/products/{{product._id}}">{{product.title}} </a></span>
             </div>
           </div>
         </div>
