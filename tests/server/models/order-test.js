@@ -9,18 +9,33 @@ var mongoose = require('mongoose');
 require('../../../server/db/models');
 
 var Order = mongoose.model('Order');
-
+var Product = mongoose.model('Product')
 
 describe('order model', function () {
 
+var testProduct = new Product({
+            title: 'bob',
+            categories: ['bob'],
+            price: 808,
+            stock: 808,
+            photo: 'bob.png'
+        })
 var createOrder = function () {
-    return Order.create({ 
-       timestamp: 12,
-       shippingAddress: "somewhere",
-       items: [{thisisaproduct: "someProduct"}],
-       due: 12,
-       subtotal: 44.55
-
+    return Order.create({
+       timestamp: new Date(), 
+       name: "Tom's Order",
+       email: "tom@tom.tom",
+       shippingAddress: "Tom's awesome pad",
+       items:[{
+        product: testProduct,
+        title: "this title",
+        price: 23.43,
+        quantity: 1
+       }],
+       subtotal: 26.86,
+       orderNumber: 1,
+       shippingDate: new Date(),
+       deliveryDate: new Date()
     });
 };
 
@@ -53,12 +68,37 @@ var createOrder = function () {
     describe('Order Schema', function () {
 
             it('should require a timestamp', function (done) {
-               Order.create({
-                shippingAddress: "somewhere",
-                items: [{thisisaproduct: "someProduct"}],
-                due: 12,
-                subtotal: 44.55
+               createOrder().then(function(order) {
+                order.timestamp = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    console.log('something went right if u see this! yayy!');
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
                 })
+                });
+                });
+
+             it('should require name', function (done) {
+               createOrder().then(function(order) {
+                order.name = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    console.log('something went right if u see this! yayy!');
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
+                })
+                });
+                });
+
+               it('should require email', function (done) {
+               createOrder().then(function(order) {
+                order.email = null;
+                order.save()
                 .then(function (success) { 
                     console.log("something went wrong if u see this...");
                 }, function (err) {
@@ -67,26 +107,42 @@ var createOrder = function () {
                     done();
                 });
                 });
+                });
 
-            it('should require due date', function (done) {
-               Order.create({
-                timestamp: 12,
-                shippingAddress: "somewhere",
-                items: [{thisisaproduct: "someProduct"}],
-                subtotal: 44.55
-                })
-                .then(function (success) {
+                it('should require shippingAddress', function (done) {
+               createOrder().then(function(order) {
+                order.shippingAddress = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
                 }, function (err) {
+                    console.log('something went right if u see this! yayy!');
                     expect(err.message).to.equal('Order validation failed');
                     done();
+                })
                 });
                 });
 
-            it('timestamp, due date and subtotal should be of type number', function (done) {
+                it('should require subtotal', function (done) {
+               createOrder().then(function(order) {
+                order.subtotal = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    console.log('something went right if u see this! yayy!');
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
+                })
+                });
+                });
+
+            it('timestamp, shipping date, deliveryDate should be of type Date', function (done) {
                 createOrder().then(function (order) {
-                    expect(typeof order.timestamp).to.equal('number');
-                    expect(typeof order.due).to.equal('number');
-                    expect(typeof order.subtotal).to.equal('number');
+                    console.log(order)
+                    expect(order.timestamp instanceof 'Date').to.equal(true);
+                    expect(order.shippingDate instanceof 'Date').to.equal(true);
+                    expect(order.deliveryDate instanceof 'Date').to.equal(true);
                     done();
                 });
                 });
