@@ -40,7 +40,7 @@ router.get('/', function(req,res, next){
 router.get('/:id', function(req,res, next){
     // check to see if req session is the user
     console.log(req.user._id , "AAAA", req.order.user._id)
-    if(!(req.user._id.toString() !== req.order.user._id.toString() || req.user.isAdmin)) return;
+    if(!(req.user._id.toString() === req.order.user._id.toString() || req.user.isAdmin)) return;
     console.log("made it to this point")
 
 
