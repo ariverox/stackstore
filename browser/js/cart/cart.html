@@ -6,12 +6,21 @@
       <div class="col-lg-8" style="background-color: yellow; height:700px;">
           <!-- {{cart.getItems() | json}} -->
           <div ng-repeat="item in cart.items">
-          <a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
-            <img ng-src="{{ item.photo }}" alt="{{ item.title }}">
+          <a ui-sref='detail({id: item.product._id})' class="thumbnail product-image list-group-item">
+            <img ng-src="{{ item.product.photo }}" alt="{{ item.title }}">
           </a>
-          <p><a ui-sref='detail({id: item._id})'><strong>{{ item.title }}</strong></a></p>
-          <span>Quantity: {{ item.quantity || 1 }}, </span>
-          <span>Price: {{ (item.quantity || 1) * item.price | currency }}</span>
+          <p><a ui-sref='detail({id: item.product._id})'><strong>{{ item.product.title }}</strong></a></p>
+          <span>Quantity: 
+            <span ng-show="!editing">{{ item.quantity || 1 }}</span>
+            <span ng-show="editing" ng-model="item.quantity">
+              <input type="number" ng-value="item.quantity" ng-model="item.quantity" size="4"></input>
+            </span>
+          </span>
+          <span>(
+            <a href='#' ng-show="!editing" ng-click="toggleEditing()">edit</a>
+            <a href='#' ng-show="editing" ng-click="editQuantity($index, item.quantity)">OK</a>
+            ), </span>
+          <span>Price: {{ (item.quantity || 1) * item.product.price | currency }}</span>
           <a href="#" class="btn btn-danger" role="button" ng-click="cart.deleteItem($index)">
                           <span class="glyphicon glyphicon-trash"></span></a>
           </div>
@@ -22,7 +31,7 @@
               <p><a href="#" class="btn btn-danger" role="button" ng-click="cart.emptyCart()">
                 <span class="glyphicon glyphicon-trash"></span> Empty Cart
               </a></p>
-              <p><a href="#" class="btn btn-success" role="button" ng-click="cart.checkout()">
+              <p><a ui-sref="checkout" class="btn btn-success" role="button">
                 <span class="glyphicon glyphicon-ok"></span> Checkout!
               </a></p>
             </div>

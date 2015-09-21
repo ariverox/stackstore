@@ -5,7 +5,18 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
+
             let isAdmin;
+
+
+            scope.items = [
+                { label: 'Home', state: 'home' },
+                { label: 'Users', state: 'userList', admin: true },
+                { label: 'Members Only', state: 'membersOnly', auth: true },
+                { label: 'Products', state: 'products' },
+                { label: 'Cart', state: 'cart' }
+            ];
+
 
             scope.user = null;
 

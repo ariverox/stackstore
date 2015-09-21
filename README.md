@@ -1,3 +1,3 @@
 # stackstore
 
-# Exotic snacks and stuff.
+Snacks from countries all over the world.

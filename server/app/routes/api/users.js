@@ -6,7 +6,7 @@ var path = require('path')
 //admin only - list of users
 
 router.param('id', function(req, res, next, id){
-	User.findById(id).exec().then(function(user){
+	User.findById(id).populate('orders cart').exec().then(function(user){
 		if(!user) throw new Error('no user found');
 		else {
 			req.thisUser = user;
@@ -44,7 +44,7 @@ router.put('/:id', function(req,res,next){
     for (var k in req.body) {
         req.thisUser[k] = req.body[k];
     }
-    return req.users.save()
+    return req.thisUser.save()
         .then(function (savedUser) {
             res.json(savedUser);
         })

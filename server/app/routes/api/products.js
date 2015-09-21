@@ -7,7 +7,7 @@ var Product = mongoose.model('Product')
 
 router.param('id', function(req, res, next, id){
 	Product.findById(id).exec().then(function(product){
-		if(!product) throw new Error('no review found');
+		if(!product) throw new Error('no product found');
 		else {
 			req.product = product;
 			next();

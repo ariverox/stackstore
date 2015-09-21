@@ -12,6 +12,8 @@ router.use('/users', require('./api/users'))
 router.use('/products', require('./api/products'))
 router.use('/orders', require('./api/orders'))
 
+router.use('/reviews', require('./api/reviews'))
+
 
 
 // Make sure this is after all of
