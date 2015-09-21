@@ -3,6 +3,12 @@ var router =require('express').Router()
 var User = require('../../../db/models/user.model')
 var path = require('path')
 
+
+function isAdmin(){
+
+
+}
+
 //admin only - list of users
 
 router.param('id', function(req, res, next, id){
@@ -27,6 +33,7 @@ router.get('/', function(req,res, next){
 
 
 router.get('/:id', function(req,res, next){
+	console.log(req.user)
 
 	res.json(req.thisUser)
 })
