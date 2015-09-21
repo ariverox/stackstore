@@ -18,6 +18,7 @@ module.exports = function (app) {
     var createNewUser = function (token, tokenSecret, profile) {
         return UserModel.create({
             twitter: {
+                email: "user",
                 id: profile.id,
                 username: profile.username,
                 token: token,
@@ -27,7 +28,7 @@ module.exports = function (app) {
     };
 
     var updateUserCredentials = function (user, token, tokenSecret, profile) {
-
+        user.email = "user";
         user.twitter.token = token;
         user.twitter.tokenSecret = tokenSecret;
         user.twitter.username = profile.username;

@@ -6,6 +6,7 @@ app.factory('UserFactory', function($http) {
         });
     }
 
+
     function getAll() {
         return $http.get('/api/users').then(function(response) {
             return response.data;
@@ -28,6 +29,7 @@ app.factory('UserFactory', function($http) {
         return $http.put('/api/users/' + id, product).then(function(response) {
             return response.data;
         });
+
     }
 
 

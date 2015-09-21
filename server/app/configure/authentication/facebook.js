@@ -23,6 +23,7 @@ module.exports = function (app) {
                     return user;
                 } else {
                     return UserModel.create({
+                        email: "user",
                         facebook: {
                             id: profile.id
                         }

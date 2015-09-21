@@ -21,8 +21,10 @@ app.factory('OrderFactory', function($http) {
 
   return {
     getOne: getOne,
+
     getAll: getAll,
     submitOrder: submitOrder,
-  }
+  };
 
-})
+
+});

@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
 var Order = mongoose.model('Order')
 
 router.param('id', function(req, res, next, id){
+
     Order.findById(id).populate('user items').exec().then(function(order){
         if(!order) throw new Error('no user found');
         else {
@@ -16,6 +17,7 @@ router.param('id', function(req, res, next, id){
 
 
 router.get('/', function(req,res, next){
+
 
     Order.find().populate('user items').exec()
         .then(books => res.send(books))
