@@ -54,7 +54,7 @@ module.exports = function (app) {
 
     });
     app.post('/signup', function (req, res, next) {
-        console.log("new user signup!")
+        console.log("new user signup!");
         delete req.body.isAdmin;
         delete req.body.emailvalid;
         User.create(req.body)

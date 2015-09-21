@@ -10,6 +10,7 @@ var stripe = require("stripe")("pk_live_CcnxR0mhrAsvi99OixDe6ms6");
 
 
 router.param('id', function(req, res, next, id){
+
     Order.findById(id).populate('user items').exec().then(function(order){
         if(!order) throw new Error('no user found');
         else {
@@ -47,6 +48,7 @@ router.post('/checkout', function(req, res, next){
 
 
 router.get('/', function(req,res, next){
+
 
     Order.find().populate('user items').exec()
         .then(books => res.send(books))

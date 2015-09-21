@@ -2,14 +2,14 @@ module.exports = {
   "DATABASE_URI": "mongodb://localhost:27017/stackstore",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
-    "consumerKey": "l5VHP0VsIITCl8Ml5XRtKuMve",
-    "consumerSecret": "2Wj4NdujnZDwPZjbIL4at4mYZ3LnecH9wFjPU9THwjx4EyY5ym",
+    "consumerKey": "N7KDUdIzxnIR2gmQzAWUkTc4X",
+    "consumerSecret": "shYJ8qnPbVReqGSbmJ9UCVIbX5ialkoWNIHhWVenAzOxMSFFXE",
     "callbackUrl": "http://127.0.0.1:1337/auth/twitter/callback"
   },
   "FACEBOOK": {
-    "clientID": "INSERT_FACEBOOK_CLIENTID_HERE",
-    "clientSecret": "INSERT_FACEBOOK_CLIENT_SECRET_HERE",
-    "callbackURL": "INSERT_FACEBOOK_CALLBACK_HERE"
+    "clientID": "1646657585605570",
+    "clientSecret": "f7625e5a929c9a0dcc92d650daadbbfb",
+    "callbackURL": "http://127.0.0.1:1337/auth/facebook/callback"
   },
   "GOOGLE": {
     "clientID": "753707940502-8kbkb4kucjqo14l4ueijji1bfd2408mp.apps.googleusercontent.com",
