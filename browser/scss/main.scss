@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Merriweather', serif;
 }
 
 ul {
@@ -17,6 +18,8 @@ body {
     clear: both;
   }
 }
+
+
 
 
 #main {
@@ -39,6 +42,21 @@ body {
 @import 'flags/main';
 
 
+video#bgvid {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(/images/bacon.jpg) no-repeat;
+    background-size: cover;
+    background: transparent;
+}
 
 body {
   color: black;

@@ -15,21 +15,14 @@ module.exports = function (app) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
+        var name = profile.displayName,
+            facebook = {id: profile.id};
+        var rn = Math.floor(Math.random()*100000000);
+        var email = 'fshf'+rn+'@fakesite.com';
         UserModel.findOne({ 'facebook.id': profile.id }).exec()
             .then(function (user) {
-
-                if (user) {
-                    return user;
-                } else {
-                    return UserModel.create({
-                        email: "user",
-                        facebook: {
-                            id: profile.id
-                        }
-                    });
-                }
-
+                if (user) return user;
+                return UserModel.create({ name: name, email: email, facebook: facebook });
             }).then(function (userToLogin) {
                 done(null, userToLogin);
             }, function (err) {
