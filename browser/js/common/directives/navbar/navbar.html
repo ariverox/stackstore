@@ -6,13 +6,14 @@
         <div class="navbar-header">
         </div>
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+
+            <li ng-repeat="item in items" ng-show=" !item.admin || user.isAdmin">
                 <a id="angitem" ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.name }}!</span>
+            <span><a ui-sref="userProfile({id: user._id})">Welcome, {{ user.name }}!</a></span>
             <button ng-click="logout()" ng-show="user" ui-sref="home" class="btn login-button">Logout</button>
         </div>
     </div>

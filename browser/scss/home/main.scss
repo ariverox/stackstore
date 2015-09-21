@@ -5,9 +5,34 @@
     margin: 0 auto;
   }
   h1 {
+    color: purple;
     margin-top: 40px;
     text-align: center;
   }
+  h2 {
+    color: yellow;
+    margin-left: 100px;
+    margin-right: 100px;
+
+
+
+  }
+  #gobtn {
+    font-size: 32px;
+    height: 50px;
+    line-height: 25px;
+    width:80px;
+    border-radius: 5px; background:white;
+  }
+  .input-group {
+    margin-top: 30px;
+    height: 50px;
+        width: 90%;
+        margin-left: 50px;
+
+  }
+
+
 }
 
 .imagea{
@@ -17,8 +42,7 @@ max-height: 300px
 }
 
 
-
-video#bgvid { 
+video#bgvid {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -30,5 +54,5 @@ video#bgvid {
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     background: url(/images/bacon.jpg) no-repeat;
-    background-size: cover; 
+    background-size: cover;
 }

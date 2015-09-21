@@ -3,6 +3,17 @@ var mongoose = require('mongoose')
 
 var Order = mongoose.model('Order')
 
+function isUser() {
+
+}
+
+function isAdmin() {
+
+}
+
+
+
+
 router.param('id', function(req, res, next, id){
 
     Order.findById(id).populate('user items').exec().then(function(order){
@@ -14,19 +25,33 @@ router.param('id', function(req, res, next, id){
     }).then(null, next)
 })
 
-
+//admin route
 
 router.get('/', function(req,res, next){
+  if(!req.user.isAdmin) return
+
 
 
     Order.find().populate('user items').exec()
-        .then(books => res.send(books))
+        .then(orders => res.send(orders))
         .then(null,next)
 })
 
 router.get('/:id', function(req,res, next){
+    // check to see if req session is the user
+    console.log(req.user._id , "AAAA", req.order.user._id)
+    if(!(req.user._id.toString() !== req.order.user._id.toString() || req.user.isAdmin)) return;
+    console.log("made it to this point")
+
+
     res.send(req.order)
+
+
+
 })
+
+
+
 
 router.post('/', function(req,res, next){
     Order.create(req.body)
@@ -38,6 +63,9 @@ router.post('/', function(req,res, next){
 })
 
 router.put('/:id', function(req,res, next){
+    if(!req.user.isAdmin) return
+
+
 
     for (var k in req.body) {
         req.book[k] = req.body[k];
@@ -50,7 +78,12 @@ router.put('/:id', function(req,res, next){
 
 })
 
+
+
 router.delete('/:id', function(req,res, next){
+  if(!req.user.isAdmin) return
+
+
     req.order.remove()
         .then(function () {
             res.status(204).end();
