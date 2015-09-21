@@ -50,10 +50,13 @@ router.get('/:id', function(req,res, next){
 })
 
 router.post('/', function (req, res, next) {
+     {
+      return new Error('too short')
+    }
 
     Review.create(req.body)
     .then(function (review) {
-     	res.status(201).json(review)
+     	res.status(201).json(review);
     })
     .then(null, next);
 });

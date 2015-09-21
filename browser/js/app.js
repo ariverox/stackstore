@@ -1,6 +1,13 @@
 'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt','LocalStorageModule']);
 
+
+
+
+// app.controller('CollapseDemoCtrl', function ($scope) {
+//   $scope.isCollapsed = false;
+// });
+
 app.config(function ($urlRouterProvider, $locationProvider,localStorageServiceProvider) {
    localStorageServiceProvider.setPrefix('ls');
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
