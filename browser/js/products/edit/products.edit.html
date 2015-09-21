@@ -1,4 +1,6 @@
-<div class="container">
+<div> editor togggled! </div>
+
+<div contenteditable="true" class="container">
         <div class="row">
 
             <div class="col-md-9">
@@ -6,18 +8,31 @@
                 <div class="thumbnail">
                     <img class="img-responsive product-image" src="{{product.photo}}" alt="">
                     <span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
+                    <form class="form-inline">
+    				<label for="product_country"></label>
+    				<input type="text" class="form-control" id="product_country" placeholder="{{product.country}}">
                 </div>
                     <div class="caption-full product-stats">
                         <h4 class="pull-right">{{product.price | currency}}</h4>
                         <h4 class='product-title'>{{product.title}}</h4>
                         <span class="stock" ng-show="product.stock >= 20">There are currently {{ product.stock }} left in stock. </span>
-                        <span class="stock" ng-show="product.stock < 20 && product.stock > 0">Hurry, there are only {{ product.stock }} left in stock! </span>
+                        <div class="stock" ng-show="product.stock < 20 && product.stock > 0">Hurry, there are only</div><div class="form-inline">
+    					<label for="product_stock"></label>
+    					<input type="text" class="form-control" id="product_stock" placeholder="{{product.stock}}"> <span> left in stock! </div>
                         <span class="stock" ng-show="product.stock <= 0">Sorry, this product is sold out.</span>
+                        <form class="form-inline">
+    					<label for="product_stock"></label>
+    					<input type="text" class="form-control" id="product_stock" placeholder="{{product.stock}}">
                         <h3>Description:</h3>
-                        <p ng-show="product.description">{{ product.description }}</p>
                         <p ng-show="!product.description">No description provided.</p>
+                        <form class="form-inline">
+    					<label for="product_description"></label>
+    					<input type="text" class="form-control" id="product_description" placeholder="{{product.description}}">
+                    <div>Categories:</div>
+                    <form class="form-inline">
+    					<label for="product_stock"></label>
+    					<input type="text" class="form-control" id="product_stock" placeholder="{{product.categories}}">
                     </div>
-
 
 
                 <div class="well">
@@ -46,6 +61,10 @@
 
     </div>
 
-<span> <a class="btn btn-danger" role="button" ui-sref="editProduct({id: product._id})">
-<span class="glyphicon glyphicon-pencil"></span> Edit this product
+<span> <a class="btn btn-warning" role="button" ui-sref="detail({id: product._id})">
+<span class="glyphicon glyphicon-arrow-left"></span> back to Product Detail
+        </a></span>
+
+<span> <a class="btn btn-info" role="button" ui-sref="detail({id: product._id})">
+<span class="glyphicon glyphicon-save"></span> Save Changes
         </a></span>
