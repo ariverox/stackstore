@@ -5,19 +5,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
-
-            scope.items = [
-                { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
-                { label: 'Documentation', state: 'docs' },
-                { label: 'Users', state: 'userList', admin: true },
-                { label: 'Members Only', state: 'membersOnly', auth: true },
-                { label: 'Products', state: 'products' },
-                { label: 'Cart', state: 'cart' }
-                // { label: 'Members Only', state: 'users', auth: true }
-
-
-            ];
+            let isAdmin;
 
             scope.user = null;
 
@@ -43,9 +31,28 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
             setUser();
 
+            if (scope.user) {
+              isAdmin = scope.user.isAdmin;
+            }
+
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
+
+            scope.items = [
+                { label: 'Home', state: 'home' },
+                { label: 'About', state: 'about' },
+                { label: 'Documentation', state: 'docs' },
+                { label: 'Members Only', state: 'membersOnly', auth: true },
+                { label: 'Products', state: 'products' },
+                { label: 'Cart', state: 'cart' },
+                { label: 'Admin', state: 'admin', admin: isAdmin}
+                // { label: 'Members Only', state: 'users', auth: true }
+
+            ];
+
+
+
 
         }
 

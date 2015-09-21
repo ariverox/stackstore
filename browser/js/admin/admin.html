@@ -1,0 +1,41 @@
+<section ng-controller="adminController">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-8">
+        <h2 class="text-center"> Manage </h2>
+        <div class="text-center">
+          <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Orders</button>
+          <button type="button" class="btn btn-default" ng-click="isCollapsed1 = !isCollapsed1">Users</button>
+          <button type="button" class="btn btn-default" ng-click="isCollapsed2 = !isCollapsed2">Products</button>
+
+          <hr>
+          <div collapse="!isCollapsed">
+            <div class="well well-lg">
+              check different one
+            </div>
+          </div>
+          <div collapse="!isCollapsed1">
+            <div class="well well-lg">
+              check different one
+            </div>
+          </div>
+          <div collapse="!isCollapsed2">
+            <div class="well well-lg">
+              check different one
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+</section>

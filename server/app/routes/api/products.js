@@ -42,6 +42,7 @@ router.get('/:id', function(req,res, next){
 	res.json(req.review)
 })
 
+//admin routes
 router.post('/', function (req, res, next) {
 
 	Product.create(req.body)
@@ -50,7 +51,6 @@ router.post('/', function (req, res, next) {
 		})
 		.then(null, next);
 });
-
 
 router.put("/:id", function (req, res, next) {
 	for (var key in req.body) {

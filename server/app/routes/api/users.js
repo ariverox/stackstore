@@ -27,6 +27,7 @@ router.get('/', function(req,res, next){
 
 
 router.get('/:id', function(req,res, next){
+
 	res.json(req.thisUser)
 })
 
@@ -35,6 +36,7 @@ router.post('/', function(req,res,next){
     User.create(req.body).then(function (user) {
         res.status(201).json(user)
     }).then(null, next);
+
 
 })
 
@@ -51,6 +53,7 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
+		if(!req.session.user.isAdmin) return
     req.users.remove()
         .then(function () {
             res.status(204).end();
