@@ -12,9 +12,17 @@ app.factory('OrderFactory', function($http) {
     });
   }
 
+  function submitOrder(order) {
+    return $http.post('/api/orders', order).then(function(response) {
+      console.log('backend order posted');
+      return response.data;
+    });
+  }
+
   return {
     getOne: getOne,
-    getAll:getAll
+    getAll: getAll,
+    submitOrder: submitOrder,
   }
 
 })

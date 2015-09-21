@@ -1,53 +1,63 @@
-app.factory('CartFactory', function($http, localStorageService, $state){
+app.factory('CartFactory', function($http, localStorageService, ProductFactory, UserFactory){
 
-	var items = localStorageService.get('items');
+
+    var items, user;
+
 	var totalPrice = 0;
+
+
 
   return {
     items: items,
     totalPrice: totalPrice,
 
     getItems: function() {
-    	return localStorageService.get('items');
+    	return this.items;
     },
 
     setItems: function(stuff) {
-    	this.items = localStorageService.set('items', stuff);
+        if (user) {
+            user.cart = stuff;
+            this.items = user.cart;
+        }
+        else {
+            localStorageService.set('items', stuff);
+            this.items = localStorageService.get('items');
+        }
     },
 
-    updateCart: function() {
+    updateCart: function(userParam, itemsParam) {
+        user = userParam;
+        if (itemsParam) this.items = itemsParam;
+
+        var updatedItems = this.getItems().map(item => ({
+            _id: item.product._id,
+            quantity: item.quantity
+        }));
+
+        if (user) UserFactory.update(user._id, {cart: updatedItems});
+        else localStorageService.set('items', updatedItems);
+
     	this.totalPrice = this.getItems().reduce(function(a,b) {
-    		return a + (b.price * b.quantity);
+    		return a + (b.product.price * b.quantity);
     	}, 0);
     },
 
     emptyCart: function() {
     	this.setItems([]);
+        this.updateCart(user);
     	this.totalPrice = 0;
     },
 
     deleteItem: function(idx) {
     	this.items.splice(idx, 1);
-    	localStorageService.set('items', this.items);
-    	this.updateCart();
+    	this.updateCart(user);
     },
 
-    editItem: function(item) {
-
+    editQuantity: function(idx, quantity) {
+        this.items[idx].quantity = quantity;
+        this.updateCart(user);
     },
-
-    checkout: function() {
-    	var toCheckout = {};
-    	toCheckout.items = this.items.map(function(item) {
-    		return {product: item, quantity: item.quantity};
-    	})
-    	toCheckout.timestamp = new Date();
-    	toCheckout.subtotal = this.totalPrice;
-
-    	console.log(toCheckout);
-    	//$state.go('checkout', toCheckout);
-    }
-
 
   }
 
