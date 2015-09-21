@@ -1,13 +1,12 @@
 var mongoose = require('mongoose')
 
-var ReviewSchema = new mongoose.Schema({
+var Review = new mongoose.Schema({
   rating: {
     type: Number
   },
   text: {
     type: String,
-    min: 120,
-    max: 500
+    validate: [validator, 'invalid review length']
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +15,21 @@ var ReviewSchema = new mongoose.Schema({
   product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
+  },
+  timestamp: {
+    type: Date
   }
 })
 
-module.exports = mongoose.model('Review', ReviewSchema);
+
+
+function validator (v) {
+  return (v.length > 20 && v.length < 400);
+};
+
+
+
+
+
+module.exports = mongoose.model('Review', Review);
+

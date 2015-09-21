@@ -1,0 +1,23 @@
+#sidebyside {
+	padding: 0;
+}
+
+#sidebyside li {
+	display: inline-block;
+	margin: 0 20px;
+	padding: 0;
+}
+
+.stattable {
+	display: none;
+	margin: 0;
+	float: left;
+}
+
+
+.statcell th, td {
+	text-align: center;
+	width: auto;
+	padding: 3px 0;
+	margin: 0;
+}

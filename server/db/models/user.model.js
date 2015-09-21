@@ -14,7 +14,10 @@ var schema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-
+  },
+  address: {
+    type: String,
+    required: true
   },
   password: {
     type: String
@@ -39,9 +42,24 @@ var schema = new mongoose.Schema({
     default: false
   },
   phone: String,
+  cart: [{
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product'
+    },
+    quantity: {
+      type: Number
+    }
+  }],
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  }]
 
 
 });
+
+
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.

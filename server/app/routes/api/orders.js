@@ -3,13 +3,13 @@ var mongoose = require('mongoose')
 var Order = mongoose.model('Order')
 
 // See your keys here https://dashboard.stripe.com/account/apikeys
-var stripe = require("stripe")("pk_live_CcnxR0mhrAsvi99OixDe6ms6");
 
 // (Assuming you're using express - expressjs.com)
 // Get the credit card details submitted by the form
 
 
 router.param('id', function(req, res, next, id){
+
     Order.findById(id).populate('user items').exec().then(function(order){
         if(!order) throw new Error('no user found');
         else {
@@ -19,34 +19,9 @@ router.param('id', function(req, res, next, id){
     }).then(null, next)
 })
 
-router.post('/checkout', function(req, res, next){
-    var stripeToken = req.body.stripeToken;
-
-    stripe.customers.create({
-      source: stripeToken,
-      description: 'payinguser@example.com'
-    }).then(function(customer) {
-      return stripe.charges.create({
-        amount: 1000, // amount in cents, again
-        currency: "usd",
-        customer: customer.id
-      });
-    }).then(function(charge) {
-      saveStripeCustomerId(user, charge.customer);
-    });
-
-    // Later...
-    var customerId = getStripeCustomerId(user);
-
-    stripe.charges.create({
-      amount: 1500, // amount in cents, again
-      currency: "usd",
-      customer: customerId
-    });
-})
-
 
 router.get('/', function(req,res, next){
+
 
     Order.find().populate('user items').exec()
         .then(books => res.send(books))
