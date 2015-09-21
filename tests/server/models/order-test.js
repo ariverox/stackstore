@@ -77,7 +77,7 @@ var createOrder = function () {
                     console.log('something went right if u see this! yayy!');
                     expect(err.message).to.equal('Order validation failed');
                     done();
-                })
+                });
                 });
                 });
 
@@ -88,75 +88,120 @@ var createOrder = function () {
                 .then(function (success) { 
                     console.log("something went wrong if u see this...");
                 }, function (err) {
-                    console.log('something went right if u see this! yayy!');
                     expect(err.message).to.equal('Order validation failed');
                     done();
-                })
+                });
                 });
                 });
 
-               it('should require email', function (done) {
+            it('should require email', function (done) {
                createOrder().then(function(order) {
                 order.email = null;
                 order.save()
                 .then(function (success) { 
                     console.log("something went wrong if u see this...");
                 }, function (err) {
-                    console.log('something went right if u see this! yayy!');
                     expect(err.message).to.equal('Order validation failed');
                     done();
                 });
                 });
                 });
 
-                it('should require shippingAddress', function (done) {
+            it('should require shippingAddress', function (done) {
                createOrder().then(function(order) {
                 order.shippingAddress = null;
                 order.save()
                 .then(function (success) { 
                     console.log("something went wrong if u see this...");
                 }, function (err) {
-                    console.log('something went right if u see this! yayy!');
                     expect(err.message).to.equal('Order validation failed');
                     done();
-                })
+                });
                 });
                 });
 
-                it('should require subtotal', function (done) {
+            it('should require subtotal', function (done) {
                createOrder().then(function(order) {
                 order.subtotal = null;
                 order.save()
                 .then(function (success) { 
                     console.log("something went wrong if u see this...");
                 }, function (err) {
-                    console.log('something went right if u see this! yayy!');
                     expect(err.message).to.equal('Order validation failed');
                     done();
-                })
+                });
                 });
                 });
 
-            it('timestamp, shipping date, deliveryDate should be of type Date', function (done) {
+            it('should require orderNumber', function (done) {
+               createOrder().then(function(order) {
+                order.orderNumber = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
+                });
+                });
+                });
+
+            it('should require shippingDate', function (done) {
+               createOrder().then(function(order) {
+                order.shippingDate = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
+                });
+                });
+                });
+
+            it('should require shippingDate', function (done) {
+               createOrder().then(function(order) {
+                order.shippingDate = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
+                });
+                });
+                });
+
+               it('should require deliveryDate', function (done) {
+               createOrder().then(function(order) {
+                order.shippingDate = null;
+                order.save()
+                .then(function (success) { 
+                    console.log("something went wrong if u see this...");
+                }, function (err) {
+                    expect(err.message).to.equal('Order validation failed');
+                    done();
+                });
+                });
+                });
+
+            it('timestamp, shipping date, deliveryDate date instances', function (done) {
                 createOrder().then(function (order) {
-                    console.log(order)
-                    expect(order.timestamp instanceof 'Date').to.equal(true);
-                    expect(order.shippingDate instanceof 'Date').to.equal(true);
-                    expect(order.deliveryDate instanceof 'Date').to.equal(true);
+                    expect(order.timestamp instanceof Date).to.equal(true);
+                    expect(order.shippingDate instanceof Date).to.equal(true);
+                    expect(order.deliveryDate instanceof Date).to.equal(true);
+                    done();
+                });
+                });
+
+            it('name and email should be of type string', function (done) {
+                createOrder().then(function (order) {
+                  expect(typeof order.name).to.equal('string');
+                  expect(typeof order.email).to.equal('string');
                     done();
                 });
                 });
     });
-        // describe('quantity', function () { 
-        //     it('should require qty (stock)', function (done) {
-        //         var order = new order({
-        //             title: "Delicious whatsit"
-        //         });
-        //         order.save().then(null, function (err, savedorder) {
-        //             expect( err.message ).to.equal( 'Validation failed');
-        //         });
-        //             done();
-        //         });
-        //     })
-        // })
+
+
 });
