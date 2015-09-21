@@ -42,15 +42,20 @@ var Order = new mongoose.Schema({
       required: true
     }
   }],
-  due: {
-    type: Number
-  },
   subtotal: {
     type: Number,
     required: true
   },
   orderNumber: {
     type: Number,
+    required: true
+  },
+  shippingDate: {
+    type: Date,
+    required: true
+  },
+  deliveryDate: {
+    type: Date,
     required: true
   }
 });

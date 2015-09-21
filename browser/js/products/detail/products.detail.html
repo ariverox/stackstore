@@ -10,8 +10,9 @@
                     <div class="caption-full product-stats">
                         <h4 class="pull-right">{{product.price | currency}}</h4>
                         <h4 class='product-title'>{{product.title}}</h4>
-                        <span class="stock" ng-show="product.stock < 20">Hurry, there are only {{ product.stock }} left in stock! </span>
                         <span class="stock" ng-show="product.stock >= 20">There are currently {{ product.stock }} left in stock. </span>
+                        <span class="stock" ng-show="product.stock < 20 && product.stock > 0">Hurry, there are only {{ product.stock }} left in stock! </span>
+                        <span class="stock" ng-show="product.stock <= 0">Sorry, this product is sold out.</span>
                         <h3>Description:</h3>
                         <p ng-show="product.description">{{ product.description }}</p>
                         <p ng-show="!product.description">No description provided.</p>

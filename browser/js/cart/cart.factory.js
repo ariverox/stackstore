@@ -44,20 +44,19 @@ app.factory('CartFactory', function($http, localStorageService, ProductFactory, 
     },
 
     emptyCart: function() {
-        console.log('who the user be?',user);
     	this.setItems([]);
-        this.updateCart();
+        this.updateCart(user);
     	this.totalPrice = 0;
     },
 
     deleteItem: function(idx) {
     	this.items.splice(idx, 1);
-    	this.updateCart();
+    	this.updateCart(user);
     },
 
     editQuantity: function(idx, quantity) {
         this.items[idx].quantity = quantity;
-        this.updateCart();
+        this.updateCart(user);
     },
 
   }

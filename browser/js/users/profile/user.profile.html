@@ -1,16 +1,12 @@
-<div class="container" ng-controller="UserProfileController">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">  
+<div class="container">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">   -->
     <div class="row">
-        <div class="col-sm-12 col-lg-6 col-md-6">
-            <img style="width:250%" ng-src="{{ user.photo }}">
-        </div>
+        <img ng-src="{{ user.photo }}">
             <div class="col-sm-12 col-lg-6 col-md-6">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
-                        <h1>Hey {{user.name}}!</h1>
-                    </div>
+                <h1>Hey {{user.name}}!</h1>
+                <!-- <pre>{{ user | json }}</pre> -->
                     <div class="col-sm-12 col-md-12 col-lg-12 centerText">
                         <button="btn btn-primary btn-lg btn-standard" ng-click="showForm()"> Update Profile </button>
-                        <update-form ng-hide="updates"></update-form>
                     </div>
                 </div>
           </div>
@@ -26,7 +22,11 @@
     </div>
     <div class="col-sm-12 col-lg-6 col-md-6">
             <div class="centerText">
-                <h1>Orders</h1>
+                <h2>Order History</h2>
+                <p ng-repeat="order in user.orders">
+                    <!-- {{ order | json }} -->
+                    <a ui-sref="order({id: order._id})">Order #{{ order.orderNumber }}</a>
+                </p>
             </div>
 <!--             <fieldset ng-repeat="order in orders">
                 <user-order-line order="order">

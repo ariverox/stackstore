@@ -6,7 +6,7 @@ var path = require('path')
 //admin only - list of users
 
 router.param('id', function(req, res, next, id){
-	User.findById(id).populate('cart').exec().then(function(user){
+	User.findById(id).populate('orders cart').exec().then(function(user){
 		if(!user) throw new Error('no user found');
 		else {
 			req.thisUser = user;

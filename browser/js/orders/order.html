@@ -1,31 +1,3 @@
-<table class="table table-condensed">
-               <div class ="row">
-                <tbody>
-                    <tr>
-                        <div ng-repeat="item in items">
-                            <td>Items</td>
-                            <td>{{theOrder.item.products.title}}</td>
-                        </div>
-                    </tr>
-                    <tr>
-                        <td>Ordered On</td>
-                        <td>{{theOrder.date}}</td>
-                    </tr>
-                    <tr>
-                        <td>Shipping Address </td>
-                        <td>{{theOrder.shippingAddress}}</td>
-                    </tr>
-                    <tr>
-                        <td>The Due Date</td>
-                        <td>{{theOrder.date}}</td>
-                    </tr>
-                    <tr>
-                        <td>Shipping Address</td>
-                        <td>{{theOrder.details.shipping}}</td>
-                    </tr>
-                    <tr>
-                        <td>Subtotal </td>
-                        <td>{{theOrder.subtotal}}</td>
-                    </tr>
-                </tbody>
-</table>
+<!-- <pre>{{ theOrder | json }}</pre> -->
+
+<order the-order="{{theOrder}}"></order>
