@@ -16,7 +16,7 @@ var schema = new mongoose.Schema({
     unique: true
   },
   address: {
-    type: String
+  type: String
   },
   password: {
     type: String
