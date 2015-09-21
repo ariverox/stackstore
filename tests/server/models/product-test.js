@@ -80,27 +80,26 @@ var createProduct = function () {
                     done();
                 });
                 });
-             it('should have a reviews field', function (done) {
+             it('should have a default photo', function (done) {
                 Product.create({
                     title: "Joe Pudding",
                     stock: 33
                 }).then(function (product) {
-                
-                    console.log(product);
-                    expect(product.reviews).to.exist
+                    expect(product.photo).to.exist
                     done();
                 });
                 });
-              it('should have a default photo', function (done) {
-                Product.create({
-                    title: "Joe Pudding",
-                    stock: 33
-                }).then(function (product) {
-                    console.log(product);
-                    expect(!!product.photo).to.equal(true);
-                    done();
-                });
-                });
-
     });
+        // describe('quantity', function () { 
+        //     it('should require qty (stock)', function (done) {
+        //         var product = new Product({
+        //             title: "Delicious whatsit"
+        //         });
+        //         product.save().then(null, function (err, savedProduct) {
+        //             expect( err.message ).to.equal( 'Validation failed');
+        //         });
+        //             done();
+        //         });
+        //     })
+        // })
 });

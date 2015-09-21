@@ -6,8 +6,7 @@ var ReviewSchema = new mongoose.Schema({
   },
   text: {
     type: String,
-    min: 120,
-    max: 500
+    validate: [validator, 'invalid review length']
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -19,4 +18,12 @@ var ReviewSchema = new mongoose.Schema({
   }
 })
 
+
+function validator (v) {
+  return (v.length > 20 && v.length < 400);
+};
+
+
 module.exports = mongoose.model('Review', ReviewSchema);
+
+
