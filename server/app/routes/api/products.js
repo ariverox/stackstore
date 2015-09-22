@@ -4,7 +4,6 @@
 var router = require('express').Router();
 var mongoose = require('mongoose')
 var Product = mongoose.model('Product')
-var _ = require('lodash')
 
 router.param('id', function(req, res, next, id){
 	Product.findById(id).exec().then(function(product){

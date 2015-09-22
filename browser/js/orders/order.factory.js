@@ -26,10 +26,10 @@ app.factory('OrderFactory', function($http) {
             return $http.post('/api/striped', payment).then(function(response) {
                 return response.data;
             })
-        }
+        },
 
 
-            updateOrder: function(orderid, order) {
+        updateOrder: function(orderid, order) {
             return $http.put('/api/orders/' + orderid, order).then(function(response) {
                 return response.data;
             });

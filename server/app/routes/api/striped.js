@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var stripeSecret = require("../../../env/production.js").STRIPE.secret;
+//var stripeSecret = require("../../../env/production.js").STRIPE.secret;
 
 
 // Set your secret key: remember to change this to your live secret key in production
@@ -11,25 +11,25 @@ var stripe = require("stripe")("sk_test_mvPr55DEzDAflKPOkGoP86CP");
 
 
 
-router.post('/', function(request, response, next) {
-	console.log("REQ.BODY", request.body)
-	// Get the credit card details submitted by the form
-	var stripeToken = request.body.token;
+router.post('/', function(request, response) {
+    console.log("REQ.BODY", request.body)
+        // Get the credit card details submitted by the form
+    var stripeToken = request.body.token;
 
-		var charge = stripe.charges.create({
-		  amount: 1000, // amount in cents, again
-		  currency: "usd",
-		  source: stripeToken,
-		  description: "Example charge"
-		}, function(err, charge) {
-		  if (err && err.type === 'StripeCardError') {
-		    // The card has been declined
-		  }
-		}).then(function(charges){
-			console.log(charges)
-				response.json(charges.id);
-	});
+    stripe.charges.create({
+        amount: 1000, // amount in cents, again
+        currency: "usd",
+        source: stripeToken,
+        description: "Example charge"
+    }, function(err) {
+        if (err && err.type === 'StripeCardError') {
+            // The card has been declined
+        }
+    }).then(function(charges) {
+        console.log(charges)
+        response.json(charges.id);
+    });
 });
-	 
+
 
 module.exports = router;

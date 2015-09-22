@@ -5,14 +5,6 @@ var Order = mongoose.model('Order')
 var nodemailer = require('nodemailer');
 
 
-function isUser() {
-
-}
-
-function isAdmin() {
-
-}
-
 // See your keys here https://dashboard.stripe.com/account/apikeys
 
 // (Assuming you're using express - expressjs.com)
