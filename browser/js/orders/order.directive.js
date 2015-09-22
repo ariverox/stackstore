@@ -1,4 +1,4 @@
-app.directive('order', function() {
+app.directive('order', function(OrderFactory) {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/orders/order.directive.html',
@@ -16,7 +16,7 @@ app.directive('order', function() {
 				if (now >= Date.parse($scope.order.deliveryDate)) return 'Delivered';
 				if (now >= Date.parse($scope.order.shippingDate) && now < Date.parse($scope.order.deliveryDate)) return 'Shipped';
 				else return 'Not Yet Shipped';
-			}
+			};
 
 			$scope.displayDateType = function(date, message) {
 				if (!date) return message;
@@ -28,14 +28,20 @@ app.directive('order', function() {
 					if (Date.now() > Date.parse(date)) return 'Date Delivered:';
 					else return 'Estimated Delivery Date:';
 				}
-			}
+			};
 
+			$scope.saveChanges = function() {
+				OrderFactory.updateOrder($scope.order._id, $scope.order);
+				};
+
+				$scope.tax = 0;
+				$scope.ship = 0;
+				$scope.theTotal = $scope.order.subtotal + $scope.tax + $scope.ship;
 			$scope.displayDate = function(date) {
 				if (!date) return 'Unknown';
 
 				date = new Date(date);
 
-				
 
 				var year = date.getFullYear(),
 					month = String(date.getMonth() + 1),

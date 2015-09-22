@@ -4,8 +4,8 @@ app.controller('adminController', function($scope, ProductFactory, OrderFactory,
 
 
   $scope.isCollapsed = false
+  $scope.isCollapsed1 = false;
   $scope.isCollapsed2 = false;
-  $scope.isCollapsed3 = false
 
   $scope.orders;
   $scope.products;

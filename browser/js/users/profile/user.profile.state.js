@@ -6,6 +6,9 @@ app.config(function ($stateProvider) {
 		resolve: {
 			user: function(UserFactory, $stateParams) {
 				return UserFactory.getOne($stateParams.id);
+			},
+			loggedInUser: function(AuthService){
+			 return AuthService.getLoggedInUser()
 			}
 		}
 	})
