@@ -1,4 +1,4 @@
-app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, UserFactory, localStorageService, product, user, $state) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, UserFactory, localStorageService, product, user, $state,ReviewFactory) {
 
 	// If user is logged in, retrieve stored cart information from User model
 	if (user) {
@@ -21,6 +21,13 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 				return $scope.items[i];
 		}
 	}
+
+
+	// ReviewFactory.getAll().then(reviews => ReviewFactory.getAverageRating).then(
+	// 	function() { $scope.re}
+	// )
+
+
 
 	$scope.addToCart = function(thisProduct){
 		thisProduct.quantity = Number(thisProduct.quantity) || 1;

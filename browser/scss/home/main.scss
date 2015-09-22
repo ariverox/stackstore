@@ -10,7 +10,7 @@
     text-align: center;
   }
   h2 {
-    color: yellow;
+    color: black;
     margin-left: 100px;
     margin-right: 100px;
 
@@ -22,7 +22,9 @@
     height: 50px;
     line-height: 25px;
     width:80px;
-    border-radius: 5px; background:white;
+    border-radius: 5px;
+    background:transparent;
+
   }
   .input-group {
     margin-top: 30px;
@@ -30,11 +32,18 @@
         width: 90%;
         margin-left: 50px;
 
+
   }
 
 
 }
 
+
+
+.panel-default{
+  margin: 20% 20% auto 20%;
+  opacity: 0.7;
+}
 .imagea{
 max-width: 80%;
 max-width: 400px;
