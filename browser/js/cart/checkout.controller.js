@@ -1,7 +1,6 @@
 
 
 app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactory, UserFactory, ProductFactory, AuthService, $state, user, cart, stripe) {
-
     $scope.user;
     $scope.toCheckout = {};
     $scope.payment = {
@@ -65,6 +64,7 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
 
         $scope.toCheckout.name = $scope.user ? $scope.user.name : '';
         $scope.toCheckout.email = $scope.user ? $scope.user.email : '';
+        console.log("SHIPPING:" , $scope.toCheckout.shippingAddress, "USER: ", $scope.user)
         $scope.toCheckout.shippingAddress = $scope.user ? $scope.user.address : '';
 
     }
@@ -82,8 +82,7 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
       .then(function (stripe) {
         console.log("this is the stripe charge ID that is sent back:", stripe)
         $scope.toCheckout.chargeToken = stripe;
-        setupCart();
-        console.log("BEFORE CALLING: ", $scope.toCheckout);
+        console.log("BEFORE CALLING: ", $scope.toCheckout.shippingAddress);
         $scope.submitOrder();
       })
       .catch(function (err) {
@@ -95,8 +94,7 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
         }
       });
   };
-
-
+  setupCart()
 });
 
 
