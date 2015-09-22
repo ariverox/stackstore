@@ -1,4 +1,4 @@
-app.controller('adminController', function($scope, ProductFactory, OrderFactory, UserFactory, $rootScope) {
+app.controller('AdminController', function($scope, ProductFactory, OrderFactory, UserFactory, $rootScope, orders, users, products) {
   console.log($rootScope)
 
 
@@ -7,87 +7,59 @@ app.controller('adminController', function($scope, ProductFactory, OrderFactory,
   $scope.isCollapsed1 = false;
   $scope.isCollapsed2 = false;
 
-  $scope.orders;
-  $scope.products;
-  $scope.users;
+  $scope.orders = orders;
+  $scope.products = products;
+  $scope.users = users;
 
-  OrderFactory.getAll()
-    .then(orders => $scope.orders = orders)
+  $scope.addForm = {};
 
-  UserFactory.getAll()
-  .then(users => $scope.users = users)
-
-  ProductFactory.getAll()
-    .then(products => $scope.products = products)
+  $scope.countries = Object.keys(ProductFactory.countryData);
 
 
+  $scope.addProduct = function() {
+
+    if ($scope.addForm.categories) 
+        $scope.addForm.categories = $scope.addForm.categories.split(',');
+    else $scope.addForm.categories = [];
+    $scope.addForm.reviews = [];
+
+    console.log($scope.addForm);
+
+    ProductFactory.add($scope.addForm).then(function(form) {
+      console.log('submitted:',form);
+    }, function(err) {
+      console.log(err);
+    })
+  }
 
 })
 
-// app.factory('AdminFactory', function($http) {
-//
-//   function deleteUser(id) {
-//     $http.delete('/api/users/' + id).then(
-//
-//     )
-//
-//   }
-//
-//   function editUser(id) {
-//     $http.put('/api/users' + id).then()
-//
-//   }
-//
-//   function markUserPassword() {
-//
-//   }
-//
-//   function editOrder(id) {
-//     $http.put('/api/orders' + id).then()
-//
-//   }
-//
-//   function deleteOrder(id) {
-//
-//     $http.delete('/api/orders' + id).then()
-//
-//   }
-//
-//   function addProduct() {
-//     $http.post('/api/products').then()
-//
-//   }
-//
-//   function createCategories(id) {
-//     $http.post('').then()
-//
-//   }
-//
-//   function editProduct(id) {
-//     $http.put('/api/products' + id).then()
-//
-//   }
-//
-//
-//
-//   return {
-//
-//   }
-//
-//
-// })
+
+
 
 app.config(function($stateProvider) {
 
   $stateProvider.state('admin', {
     url: '/admin',
     templateUrl: 'js/admin/admin.html',
-    controller: 'adminController',
+    controller: 'AdminController',
     resolve: {
-      isAdmin: function(AuthService){
-        AuthService.getLoggedInUser().then(user => user.isAdmin )
-
-      }
+        user: function(AuthService) {
+            return AuthService.getLoggedInUser()
+        },
+        isAdmin: function(user){
+          if (!user.isAdmin) throw new Error("Unauthorized");
+          return;
+        },
+        orders: function(OrderFactory) {
+          return OrderFactory.getAll();
+        },
+        users: function(UserFactory) {
+          return UserFactory.getAll();
+        },
+        products: function(ProductFactory) {
+          return ProductFactory.getAll();
+        }
     }
 
   })

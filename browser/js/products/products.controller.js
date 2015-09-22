@@ -86,7 +86,6 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 		$scope.product.stock = num;
 	}
 
-	
 	$scope.filterBy = function (product) {
 		if($scope.country === 'All' && $scope.category === 'All' && product.stock > 0) return true
 		else if($scope.country === product.country && $scope.category === 'All') return true
