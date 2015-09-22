@@ -1,4 +1,4 @@
-app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, UserFactory, localStorageService, product, user) {
+app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, UserFactory, localStorageService, product, user, $state) {
 
 	// If user is logged in, retrieve stored cart information from User model
 	if (user) {
@@ -42,7 +42,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 	}
 
 
-
+	$scope.text = "dddd";
 
 
 	$scope.countryData = ProductFactory.countryData;
@@ -54,13 +54,17 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 		$scope.products = stuff;
 	})
 
-
-
 	// For product detail page
 	if (product) $scope.product = product;
 
+	$scope.saveChanges = function() {
+		if(typeof product.price !== 'number') product.price = Number(product.price.replace(/[^0-9\.]+/g,""));
+		ProductFactory.update(product._id, product)
+	};
 
-
+	$scope.isNum = function (input) {
+		return angular.isNumber(input);
+	};
 
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
 	// 	$scope.predicate = p;

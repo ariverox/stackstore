@@ -3,19 +3,28 @@
 
             <div class="col-md-9">
 
-                <div class="thumbnail">
+                <div ng-class="{'isEditable': toggleEdit}" class="thumbnail">
+                <div ng-show="toggleEdit">photo url:</div>
+                <div contenteditable ng-model="product.photo"ng-show="toggleEdit">{{product.photo}}</div>
                     <img class="img-responsive product-image" src="{{product.photo}}" alt="">
+                    <p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-model="product.country" ng-show="toggleEdit">{{product.country}}</p>
                     <span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
                 </div>
+                <pre ng-show="toggleEdit">{{ product | json }}</pre>
                     <div class="caption-full product-stats">
-                        <h4 class="pull-right">{{product.price | currency}}</h4>
-                        <h4 class='product-title'>{{product.title}}</h4>
-                        <span class="stock" ng-show="product.stock >= 20">There are currently {{ product.stock }} left in stock. </span>
-                        <span class="stock" ng-show="product.stock < 20 && product.stock > 0">Hurry, there are only {{ product.stock }} left in stock! </span>
-                        <span class="stock" ng-show="product.stock <= 0">Sorry, this product is sold out.</span>
+                        <h4 ng-if="isNum(product.price)" ng-model="product.price" contenteditable="{{ !!toggleEdit }}"  ng-class="{'isEditable': toggleEdit}" class="pull-right">{{product.price | currency}}</h4>
+                        <h4 ng-if="!isNum(product.price)" ng-model="product.price" contenteditable="{{ !!toggleEdit }}"  ng-class="{'isEditable': toggleEdit}" class="pull-right">{{product.price}}</h4>
+                        <h4 ng-model="product.title" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" class='product-title'>{{product.title}}</h4>
+                        <span ng-model="product.stock" contenteditable="{{ !!toggleEdit }}"  class="stock" ng-show="product.stock >= 20">There are currently {{ product.stock }} left in stock. </span>
+                        <span ng-model="product.stock" contenteditable="{{ !!toggleEdit }}" class="stock" ng-show="product.stock < 20 && product.stock > 0">Hurry, there are only {{ product.stock }} left in stock! </span>
+                        <div ng-show="toggleEdit">Stock:</div>
+                        <div ng-model="product.stock" contenteditable="{{ !!toggleEdit }}" ng-show="toggleEdit" ng-class="{'isEditable': toggleEdit}">{{ product.stock }}</div>
+                        <span ng-class="{'isEditable': toggleEdit}" class="stock" ng-show="product.stock <= 0">Sorry, this product is sold out.</span>
                         <h3>Description:</h3>
-                        <p ng-show="product.description">{{ product.description }}</p>
-                        <p ng-show="!product.description">No description provided.</p>
+                        <p ng-model="product.description" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-show="product.description">{{ product.description }}</p>
+                        <p ng-model=product.description contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-show="!product.description">No description provided.</p>
+                        <p ng-show="toggleEdit">Categories</p>
+                        <p ng-model=product.categories contenteditable="{{ !!toggleEdit }}" ng-show="toggleEdit" ng-class="{'isEditable': toggleEdit}">{{ product.categories }}</p>
                     </div>
 
 
@@ -46,6 +55,14 @@
 
     </div>
 
-<span> <a class="btn btn-danger" role="button" ui-sref="editProduct({id: product._id})">
-<span class="glyphicon glyphicon-pencil"></span> Edit this product
+<span> <a ng-show="!toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
+<span class="glyphicon glyphicon-pencil"></span> Toggle Editing
+        </a></span>
+
+<span> <a ng-show="toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit ; redigest()">
+<span></span> Cancel
+        </a></span>
+
+<span> <a ng-show='toggleEdit' class="btn btn-info" role="button" ng-click="saveChanges() ; toggleEdit = !toggleEdit">
+<span class="glyphicon glyphicon-save"></span> Save Changes
         </a></span>
