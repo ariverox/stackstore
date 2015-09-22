@@ -91,8 +91,8 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 		else if($scope.country === product.country && $scope.category === 'All') return true
 		else if($scope.country === 'All' && $scope.category === product.categories[product.categories.indexOf($scope.category)]) return true
 		else if($scope.country === product.country && $scope.category === product.categories[product.categories.indexOf($scope.category)]) return true
-		//  || country === product.country || category === 
-	return false
+
+		return false
 	}
 
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
