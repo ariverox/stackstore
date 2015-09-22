@@ -1,11 +1,5 @@
 var router = require('express').Router();
 var stripeSecret = require("../../../env/production.js").STRIPE.secret;
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
-var Order = mongoose.model('Order');
-var Product = mongoose.model('Product');
-var Promise = require('bluebird');
-var _ = require('lodash');
 
 
 // Set your secret key: remember to change this to your live secret key in production

@@ -44,7 +44,8 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
 
     function setupCart() {
 
-        $scope.user = user;
+        $scope.user;
+        $scope.toCheckout = {};
 
 
         $scope.payment = {
