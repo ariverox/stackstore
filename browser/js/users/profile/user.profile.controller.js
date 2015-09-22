@@ -7,6 +7,17 @@ app.controller('UserProfileController', function($state, $scope, loggedInUser, u
       $state.go("admin")
     })
   }
+  $scope.makeAdmin = function(){
+    UserFactory.update(user._id, {isAdmin:true}).then(function(user){
+      $scope.user=user
+    })
+  }
+
+  $scope.demote = function(){
+    UserFactory.update(user._id, {isAdmin:false}).then(function(user){
+      $scope.user=user
+    })
+  }
 
 
 
