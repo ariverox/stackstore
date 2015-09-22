@@ -10,7 +10,11 @@ app.factory('UserFactory', function($http) {
         return user;
       });
     }
-  
+
+   function update (id, product) {
+      return $http.put('/api/users').then(function (response) {
+        return response.data;
+      });
 
 
     function getAll() {

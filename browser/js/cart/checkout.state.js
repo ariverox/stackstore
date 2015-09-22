@@ -27,6 +27,12 @@ app.config(function($stateProvider) {
 
 
 
+// app.controller('CheckoutCtrl', function($scope, $stateParams, OrderFactory){
+// 		$scope.items = $stateParams.items
+// 		$scope.submitOrder = function(){	
+// 				OrderFactory.submitStripe()
+// 		}
+// });
 
 
 // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
