@@ -43,10 +43,7 @@ router.get('/:id', function(req,res, next){
     if(!(req.user._id.toString() === req.order.user._id.toString() || req.user.isAdmin)) return;
     console.log("made it to this point")
 
-
     res.send(req.order)
-
-
 
 })
 
