@@ -3,7 +3,8 @@
 
 		<h2>All Products</h2>
 		<p>Filter by Category:
-			<input name="categoryFilter" type="text" ng-model="categories" />
+			<select name="countryFilter" ng-options="item as item for item in allCategories | orderBy: item" ng-model="category">
+			</select>
 		</p>
 
 		<p>Filter by Country:
@@ -17,7 +18,7 @@
 			</select>
 		</p>
 		<div class="container">
-				<div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="product in products | orderBy: field " ng-show="(country === 'All' || country === product.country) && product.stock > 0">
+				<div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="product in products | orderBy: field " ng-show='filterBy(product)'>
 				<!-- <pre>{{ product | json }}</pre> -->
 
 

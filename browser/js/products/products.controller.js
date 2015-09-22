@@ -56,11 +56,18 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 
 	$scope.field = "title";
 	$scope.country = 'All';
+	$scope.category = 'All'
+	$scope.allCategories = [];
 
 	ProductFactory.getAll().then(function(stuff) {
 		$scope.products = stuff;
-		stuff.forEach(function () {})
-	})
+		for(var i=0; i< $scope.products.length; i++) {
+				$scope.products[i].categories.forEach(function (category) {
+				if($scope.allCategories.indexOf(category) === -1) $scope.allCategories.push(category);
+			});
+		}
+		$scope.allCategories.push('All')
+	});
 
 	// For product detail page
 	if (product) $scope.product = product;
@@ -77,10 +84,17 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 	$scope.setStock = function (num) {
 		$scope.product.stock = num;
 	}
-	$scope.allproducts = [];
-	$scope.products.forEach(function (singleProduct) {
-		$scope.allproducts.push()
-	});
+	
+	$scope.filterBy = function (product) {
+		if($scope.country === 'All' && $scope.category === 'All' && product.stock > 0) return true
+		else if($scope.country === product.country && $scope.category === 'All') return true
+		else if($scope.country === product.country && $scope.category === 'All') return true
+		else if($scope.country === 'All' && $scope.category === product.categories[product.categories.indexOf($scope.category)]) return true
+		else if($scope.country === product.country && $scope.category === product.categories[product.categories.indexOf($scope.category)]) return true
+		//  || country === product.country || category === 
+	return false
+	}
+
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
 	// 	$scope.predicate = p;
 	// }
