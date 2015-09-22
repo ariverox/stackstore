@@ -1,30 +1,34 @@
 app.factory('OrderFactory', function($http) {
 
-  function getOne(id) {
+return {
+   getOne: function (id) {
     return $http.get('/api/orders/' + id).then(function(response) {
       return response.data;
     });
-  }
+  },
 
-  function getAll() {
+   getAll: function() {
     return $http.get('/api/orders').then(function(response) {
       return response.data;
     });
-  }
+  },
 
-  function submitOrder(order) {
+
+ submitOrder: function(order) {
     return $http.post('/api/orders', order).then(function(response) {
       console.log('backend order posted');
       return response.data;
     });
+    
+  },
+
+  submitStripe: function(payment) {
+    return $http.post('/api/striped', payment).then(function(response) {
+      return response.data;
+    })
   }
-
-  return {
-    getOne: getOne,
-
-    getAll: getAll,
-    submitOrder: submitOrder,
-  };
+}
 
 
 });
+

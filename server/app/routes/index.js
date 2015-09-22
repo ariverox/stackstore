@@ -11,7 +11,7 @@ router.use('/members', require('./members'));
 router.use('/users', require('./api/users'))
 router.use('/products', require('./api/products'))
 router.use('/orders', require('./api/orders'))
-
+router.use('/striped', require('./api/striped'))
 router.use('/reviews', require('./api/reviews'))
 
 
