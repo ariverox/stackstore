@@ -22,7 +22,7 @@ router.param('id', function(req, res, next, id){
 
 // get all products, or all products filtered by one or more optional queries
 router.get('/', function(req, res) {
-	Product.find().then(function(products) {
+	Product.find().populate('reviews').exec().then(function(products) {
 		res.send(products);
 	})
 })
