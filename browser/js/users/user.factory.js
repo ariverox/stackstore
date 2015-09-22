@@ -5,17 +5,6 @@ app.factory('UserFactory', function($http) {
             return response.data;
         });
     }
-  function add (product) {
-      return $http.post('/api/users').then(function (user) {
-        return user;
-      });
-    }
-
-   function update (id, product) {
-      return $http.put('/api/users').then(function (response) {
-        return response.data;
-      });
-    }
 
 
     function getAll() {
@@ -36,8 +25,8 @@ app.factory('UserFactory', function($http) {
         });
     }
 
-    function update(id, product) {
-        return $http.put('/api/users/' + id, product).then(function(response) {
+    function update(id, changes) {
+        return $http.put('/api/users/' + id, changes ).then(function(response) {
             return response.data;
         });
 
@@ -52,4 +41,4 @@ app.factory('UserFactory', function($http) {
         update: update
     }
 
-});
+})
