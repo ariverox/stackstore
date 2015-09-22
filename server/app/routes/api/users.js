@@ -69,7 +69,8 @@ router.put('/:id', function(req,res,next){
 
 router.delete('/:id', function(req,res,next){
 		if(!req.user.isAdmin) return
-    req.users.remove()
+
+    req.thisUser.remove()
         .then(function () {
             res.status(204).end();
         })

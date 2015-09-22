@@ -3,6 +3,9 @@ var mongoose = require('mongoose')
 
 var Order = mongoose.model('Order')
 
+var nodemailer = require('nodemailer');
+
+
 function isUser() {
 
 }
@@ -39,10 +42,7 @@ router.get('/', function(req,res, next){
 
 router.get('/:id', function(req,res, next){
     // check to see if req session is the user
-    console.log(req.user._id , "AAAA", req.order.user._id)
     if(!(req.user._id.toString() === req.order.user._id.toString() || req.user.isAdmin)) return;
-    console.log("made it to this point")
-
     res.send(req.order)
 
 })
@@ -53,6 +53,20 @@ router.get('/:id', function(req,res, next){
 router.post('/', function(req,res, next){
     Order.create(req.body)
         .then(function (order) {
+            console.log('req.body.email:',req.body.email);
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'thisistherealsnackstore@gmail.com',
+                    pass: 'stackstore'
+                }
+            });
+            transporter.sendMail({
+                from: 'do-not-reply@thisistherealsnackstore.com',
+                to: req.body.email,
+                subject: 'Your order (#'+req.body.orderNumber+') has been shipped.',
+                html: '<p>'+req.body.name+',</p><p>Thank you for shopping at Snackstore!</p><p><a href="http://bit.ly/1c9vo1S">Link to online receipt</a></p>'
+            });
             res.status(201).json(order);
         })
         .then(null, next);

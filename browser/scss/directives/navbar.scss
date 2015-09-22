@@ -4,7 +4,7 @@
 
 navbar {
   background-color: rgba(123,211,211,0.99);
-  color: white; 
+  color: white;
   display: block;
   box-shadow: 1px 1px 14px -3px black;
 
@@ -14,6 +14,19 @@ navbar {
     padding-top: 20px;
   }
 
+  .btn-lg {
+    background:transparent;
+    border: 0;
+    font-size: 28px;
+
+  }
+
+  .user {
+    color:green;
+  }
+  .btn-lg:active {
+    border:0;
+  }
   fullstack-logo {
     margin-top: 5px;
     margin-right: 20px;
@@ -42,34 +55,37 @@ navbar {
 
   .login-button {
     float: right;
-    border: 1px solid black;
     margin-top: 10px;
     background: none;
     outline: none !important;
   }
+  .login-button:hover {
+    border: 1px solid black
+  }
 
   .logout-button {
     float: right;
-    border: 1px solid black;
     margin-top: 10px;
     background: none;
     outline: none !important;
     color: blue;
-  } 
+  }
 
   .welcome {
     float: right;
-    margin-top: 12px;
     span {
       color: white;
     }
     a {
-      color: #f30046;
+      color: green;
       cursor: pointer;
     }
   }
 
 }
+
+
+
 
 #angitem {
   color: white;
