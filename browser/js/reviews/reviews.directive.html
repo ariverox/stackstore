@@ -1,0 +1,39 @@
+
+
+	<span ng-show="reviews.length">
+		<p> {{ getNumReviews() }}</p>
+		<span>Average Rating: </span>
+		<span ng-repeat="star in averageFull">
+		<span class="fa fa-star"></span></span><!--
+		--><span ng-repeat="star in averageHalf">
+		<span class="fa fa-star-half-full"></span></span><!--
+		--><span ng-repeat="star in averageEmpty">
+		<span class="fa fa-star-o"></span></span>
+		<span>({{ averageRating.toFixed(2) }} / 5)</span>
+	</span>
+	<span ng-show="!reviews.length">
+		There are currently no reviews for this product.
+	</span>
+	<span class="pull-right text-right">
+	    <a class="btn btn-success" role="button" ui-sref="review({id: productId})">Leave a Review</a>
+	</span>
+
+<div ng-repeat="review in reviews">
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <span ng-repeat="star in getStars(review.rating)">
+            <span class="fa fa-star"></span></span><!--
+            --><span ng-repeat="empty in getEmptyStars(review.rating)">
+            <span class="fa fa-star-o"></span></span>
+            <span>By 
+            	<a ng-show="review.user" ui-sref="userProfile({id: review.user._id})">{{ getUserName($index) }}</a>
+            	<span ng-show="!review.user">(deleted user)</span>
+            </span>
+            <span class="pull-right">{{ getTimeElapsed(review.timestamp) }}</span>
+            <p>{{ review.text }}</p>
+        </div>
+    </div>
+
+    <hr>
+</div>
