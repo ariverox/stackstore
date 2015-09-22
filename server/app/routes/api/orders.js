@@ -79,7 +79,7 @@ router.put('/:id', function(req,res, next){
 
 
     for (var k in req.body) {
-        req.book[k] = req.body[k];
+        req.order[k] = req.body[k];
     }
     return req.order.save()
         .then(function (savedOrder) {
