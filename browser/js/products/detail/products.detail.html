@@ -55,8 +55,8 @@
 
     </div>
 
-<span> <a ng-show="!toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
-<span class="glyphicon glyphicon-pencil"></span> Toggle Editing
+<span> <a ng-show="!toggleEdit && user.isAdmin " class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
+<span class="glyphicon glyphicon-pencil"></span> Toggle Editing 
         </a></span>
 
 <span> <a ng-show="toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit ; redigest()">
