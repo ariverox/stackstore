@@ -2,6 +2,7 @@
 
 app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactory, UserFactory, ProductFactory, AuthService, $state, user, cart, stripe) {
 
+
     $scope.submitOrder = function() {
        
         $scope.toCheckout.orderNumber = Math.floor(Math.random()*100000000000000);
@@ -70,6 +71,7 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
 
         $scope.toCheckout.name = $scope.user ? $scope.user.name : '';
         $scope.toCheckout.email = $scope.user ? $scope.user.email : '';
+        console.log("SHIPPING:" , $scope.toCheckout.shippingAddress, "USER: ", $scope.user)
         $scope.toCheckout.shippingAddress = $scope.user ? $scope.user.address : '';
 
     }
@@ -101,9 +103,6 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
     };
 
     setupCart();
-
-
-
 });
 
 
