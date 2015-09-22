@@ -15,6 +15,7 @@ app.factory('UserFactory', function($http) {
       return $http.put('/api/users').then(function (response) {
         return response.data;
       });
+    }
 
 
     function getAll() {
@@ -51,4 +52,4 @@ app.factory('UserFactory', function($http) {
         update: update
     }
 
-})
+});

@@ -6,10 +6,10 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
     $scope.toCheckout = {};
     $scope.payment = {
         card : {
-            number : "4242424242424242",
-            cvc : "1234",
-            exp_month : "11",
-            exp_year : "2016"
+            number : "",
+            cvc : "",
+            exp_month : "",
+            exp_year : ""
         }
     };
 
@@ -44,27 +44,7 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
         console.log('frontend submitted:', $scope.toCheckout);
     }
 
-  $scope.charge = function () {
-    return stripe.card.createToken($scope.payment.card)
-      .then(function (token) {
-        console.log('token created for card ending in ', token.card.last4);
-        var payment = angular.copy($scope.payment);
-        payment.card = void 0;
-        payment.token = token.id;
-        return $http.post('/api/striped', payment);
-      })
-      .then(function (payment) {
-        console.log('successfully submitted payment for $', payment.amount);
-      })
-      .catch(function (err) {
-        if (err.type && /^Stripe/.test(err.type)) {
-          console.log('Stripe error: ', err.message);
-        }
-        else {
-          console.log('Other error occurred, possibly with your API', err.message);
-        }
-      });
-  };
+
 
     function setupCart() {
 
@@ -83,15 +63,39 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
         $scope.toCheckout.deliveryDate = new Date(Date.parse($scope.toCheckout.timestamp) + (24*60*60000)*4);     // 4 days after order is submitted
         $scope.toCheckout.subtotal = itemsInCart.reduce(((a, b) => a + (b.product.price * b.quantity)), 0);
 
-        $scope.toCheckout.name = $scope.user.name;
-        $scope.toCheckout.email = $scope.user.email;
-        $scope.toCheckout.shippingAddress = $scope.user.address;
+        $scope.toCheckout.name = $scope.user ? $scope.user.name : '';
+        $scope.toCheckout.email = $scope.user ? $scope.user.email : '';
+        $scope.toCheckout.shippingAddress = $scope.user ? $scope.user.address : '';
 
     }
 
-    
+      $scope.charge = function () {
+    return stripe.card.createToken($scope.payment.card)
+      .then(function (token) {
+        console.log('token created for card ending in ', token.card.last4);
+        var payment = angular.copy($scope.payment);
+        console.log(token.id)
+        payment.card = void 0;
+        payment.token = token.id;
+        return OrderFactory.submitStripe(payment);
+      })
+      .then(function (stripe) {
+        console.log("this is the stripe charge ID that is sent back:", stripe)
+        $scope.toCheckout.chargeToken = stripe;
+        setupCart();
+        console.log("BEFORE CALLING: ", $scope.toCheckout);
+        $scope.submitOrder();
+      })
+      .catch(function (err) {
+        if (err.type && /^Stripe/.test(err.type)) {
+          console.log('Stripe error: ', err.message);
+        }
+        else {
+          console.log('Other error occurred, possibly with your API', err.message);
+        }
+      });
+  };
 
-    setupCart();
 
 });
 

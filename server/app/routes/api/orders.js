@@ -33,8 +33,10 @@ router.get('/:id', function(req,res, next){
 })
 
 router.post('/', function(req,res, next){
+    console.log('were here', req.body)
     Order.create(req.body)
         .then(function (order) {
+            console.log("THE FINAL ORDER:", order)
             res.status(201).json(order);
         })
         .then(null, next);

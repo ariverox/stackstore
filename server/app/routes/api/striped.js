@@ -20,7 +20,7 @@ var stripe = require("stripe")("sk_test_mvPr55DEzDAflKPOkGoP86CP");
 router.post('/', function(request, response, next) {
 	console.log("REQ.BODY", request.body)
 	// Get the credit card details submitted by the form
-	var stripeToken = request.body.stripeToken;
+	var stripeToken = request.body.token;
 
 		var charge = stripe.charges.create({
 		  amount: 1000, // amount in cents, again
@@ -31,8 +31,11 @@ router.post('/', function(request, response, next) {
 		  if (err && err.type === 'StripeCardError') {
 		    // The card has been declined
 		  }
-		}).then(null,next);
+		}).then(function(charges){
+			console.log(charges)
+				response.json(charges.id);
 	});
+});
 	 
 
 module.exports = router;

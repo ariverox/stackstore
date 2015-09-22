@@ -25,9 +25,8 @@ return {
   submitStripe: function(payment) {
     return $http.post('/api/striped', payment).then(function(response) {
       return response.data;
+    })
   }
-  
-  };
 }
 
 
