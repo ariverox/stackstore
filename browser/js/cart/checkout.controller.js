@@ -1,8 +1,4 @@
 
-app.config(function(stripeProvider) {
-    stripeProvider.setPublishableKey('pk_test_GSuQgxxFoIHYmzstY6krhX9a');
-});
-
 
 app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactory, UserFactory, ProductFactory, AuthService, $state, user, cart, stripe) {
 
@@ -48,35 +44,27 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
         console.log('frontend submitted:', $scope.toCheckout);
     }
 
-    $scope.charge = function () {
-        var stripeID; 
+  $scope.charge = function () {
     return stripe.card.createToken($scope.payment.card)
       .then(function (token) {
-        stripeID = token
+        console.log('token created for card ending in ', token.card.last4);
         var payment = angular.copy($scope.payment);
         payment.card = void 0;
-        payment.stripeToken = token.id;
-        payment.total = $scope.total;
-        OrderFactory.submitStripe(payment);
+        payment.token = token.id;
+        return $http.post('/api/striped', payment);
       })
       .then(function (payment) {
-        console.log('successfully submitted payment');
-        console.log(payment)
-        $scope.toCheckout.stripeID = stripeID;
-        $scope.submitOrder();
-        $state.go('user')
+        console.log('successfully submitted payment for $', payment.amount);
       })
       .catch(function (err) {
         if (err.type && /^Stripe/.test(err.type)) {
           console.log('Stripe error: ', err.message);
-          $scope.error = err;
         }
         else {
           console.log('Other error occurred, possibly with your API', err.message);
-          $scope.error = err;
         }
       });
-    };
+  };
 
     function setupCart() {
 
@@ -106,3 +94,19 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
     setupCart();
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
