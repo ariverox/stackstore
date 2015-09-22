@@ -19,23 +19,16 @@ return {
       console.log('backend order posted');
       return response.data;
     });
-    }
+    
   },
 
   submitStripe: function(payment) {
     return $http.post('/api/striped', payment).then(function(response) {
       return response.data;
   }
-  return {
-    getOne: getOne,
-    getAll:getAll,
-    submitStripe: submitStripe
-  }
-
-
-    getAll: getAll,
-    submitOrder: submitOrder,
+  
   };
+}
 
 
 });
