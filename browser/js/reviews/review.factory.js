@@ -14,13 +14,10 @@ app.factory('ReviewFactory', function($http) {
 			});
 		},
 
-		getAverageRating: function(ratings){
-			total = 0;
-			ratings.forEach(x => total += x);
-			return total/ratings.length;
-		}
-
-
-
+		// getAverageRating: function(ratings){
+		// 	total = 0;
+		// 	ratings.forEach(x => total += x);
+		// 	return total/ratings.length;
+		// }
 	};
 });

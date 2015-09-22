@@ -1,3 +1,5 @@
+
+ 
 app.controller('CartController', function($scope, $state, CartFactory, localStorageService, user, cart){
   $scope.user = user;
 
