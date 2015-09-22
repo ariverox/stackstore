@@ -1,11 +1,12 @@
 <div class="container">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">   -->
-    <button ng-click="deleteUser()"> Delete this User </button>
+  <button ng-show="loggedInUser.isAdmin" ng-click="deleteUser()" class="btn btn-danger"> Delete this User </button>
+  <button ng-show="loggedInUser.isAdmin && !user.isAdmin" ng-click="makeAdmin()" class="btn btn-danger"> Make this user an Admin </button>
+  <button ng-show="loggedInUser.isAdmin && user.isAdmin" ng-click="demote()" class="btn btn-danger"> Remove Admin </button>
+
     <div class="row">
         <img ng-src="{{ user.photo }}">
             <div class="col-sm-12 col-lg-6 col-md-6">
                 <h1>Hey {{user.name}}!</h1>
-                <!-- <pre>{{ user | json }}</pre> -->
                     <div class="col-sm-12 col-md-12 col-lg-12 centerText">
                         <button="btn btn-primary btn-lg btn-standard" ng-click="showForm()"> Update Profile </button>
                     </div>
@@ -14,24 +15,15 @@
 </div>
 <div class="row marginAuto">
     <div class="col-sm-12 col-lg-6 col-md-6">
-    <!--     <div class="thumbnail mdl-card mdl-shadow--3dp" style="padding:10%;">
-            <div class="centerText">
-                <h1><i class="fa fa-weixin fa-2x"></i> Reviews</h1>
-            </div>
-            <product-review ng-repeat="review in reviews" thereview="review" userpage="true"></product-review>
-        </div> -->
+
     </div>
     <div class="col-sm-12 col-lg-6 col-md-6">
             <div class="centerText">
                 <h2>Order History</h2>
                 <p ng-repeat="order in user.orders">
-                    <!-- {{ order | json }} -->
                     <a ui-sref="order({id: order._id})">Order #{{ order.orderNumber }}</a>
                 </p>
             </div>
-<!--             <fieldset ng-repeat="order in orders">
-                <user-order-line order="order">
-                </user-order-line>
-            </fieldset>
- -->    </div>
+
+    </div>
 </div>
