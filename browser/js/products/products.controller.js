@@ -61,6 +61,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 
 	ProductFactory.getAll().then(function(stuff) {
 		$scope.products = stuff;
+
 		for(var i=0; i< $scope.products.length; i++) {
 				$scope.products[i].categories.forEach(function (category) {
 				if($scope.allCategories.indexOf(category) === -1) $scope.allCategories.push(category);
@@ -84,6 +85,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 	$scope.setStock = function (num) {
 		$scope.product.stock = num;
 	}
+
 	
 	$scope.filterBy = function (product) {
 		if($scope.country === 'All' && $scope.category === 'All' && product.stock > 0) return true

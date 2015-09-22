@@ -20,6 +20,13 @@ navbar {
     font-size: 28px;
 
   }
+  .cart-btn:focus{
+    outline:none;
+    border: none;
+  }
+  #cart-btn:focus{
+    outline:none;
+  }
 
   .user {
     color:green;
