@@ -1,5 +1,5 @@
 
-<!-- 
+<!--
 =======
 =======
 >>>>>>> master
@@ -7,7 +7,7 @@
 <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
 >>>>>>> master
 
-<div class="container" ng-controller="CheckoutCtrl"> 
+<div class="container" ng-controller="CheckoutCtrl">
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -43,7 +43,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>  
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
 <form action="api/striped" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -87,8 +87,8 @@
       <md-content class= "col-lg-6 col-md-6 col-sm-12">
         <h1>Checkout Form</h1>
         <form action="" method="POST">
-        
-</form> 
+
+</form>
         <form name="checkOut">
           <md-input-container>
             <label>Name</label>
@@ -113,8 +113,8 @@
       <div class="row">
         <md-content class= "col-lg-6 col-md-6 col-sm-12">
           <h3>Your Current Order</h3>
-        <md-input-containter> 
-          <label> Your Product </label> 
+        <md-input-containter>
+          <label> Your Product </label>
           <div ng-repeat="item in items">
               <md-content class= "col-lg-6 col-md-6 col-sm-12">
               <a ui-sref='detail({id: item._id})' class="thumbnail product-image list-group-item">
@@ -129,11 +129,11 @@
 <div class="row">
 <md-content class="col-lg-6 col-md-6 col-sm-12">
             <h3>Credit Card</h3>
-                
+
                 </div>
               <button ng-submit="submitOrder()"></button>
-             </md-content>   
-            </div>     
+             </md-content>
+            </div>
 ======= -->
 <!-- If you're using Stripe for payments -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
@@ -141,14 +141,17 @@
   <!-- jQuery is used only for this example; it isn't required to use Stripe -->
 <form ng-submit="charge()">
 <!-- Credit card form -->
-<div class="container">
+<div class="container" style="width:90%;">
 	<div class="row">
-	    <md-content class="col-lg-6 col-md-6 col-sm-12">
-	        <h3>Your Current Order</h3>
-	        <md-input-container>
+	    <div class="col-lg-6 col-md-6 col-sm-12">
+	        <span><h3>Your Current Order</h3> <span><a ui-sref="cart">Back to Cart</a></span></span>
+
+	        <div>
 	            <label> Your Products </label>
+
+
 	            <div ng-repeat="item in toCheckout.items">
-	                <md-content class="col-lg-6 col-md-6 col-sm-12">
+	                <div class="col-lg-6 col-md-6 col-sm-12">
 	                    <a ui-sref='detail({id: item.product._id})' class="thumbnail product-image list-group-item">
 	                        <img ng-src="{{ item.product.photo }}" alt="{{ item.product.title }}">
 	                    </a>
@@ -156,20 +159,18 @@
 	                    <span>Quantity: {{ item.quantity || 1 }}, </span>
 	                    <span>Price: {{ (item.quantity || 1) * item.product.price | currency }}</span>
 	            </div>
-	            <p><strong>Total Price: {{ toCheckout.subtotal | currency }}</strong></p>
-	            <p><a ui-sref="cart">Back to Cart</a></p>
-	        </md-input-container>
-	    </md-content>
-	</div>
-	 <!-- <pre>{{ user | json }}</pre> -->
+	        </div>
+					<span class="pull-right"><strong>Total Price: {{ toCheckout.subtotal | currency }}</strong></span>
 
-    <div class="row">
-        <div class="col-xs-12 col-md-4">
+	    </div>
+	</div><!--
+
+ --><div class="col-xs-12 col-md-6 col-lg-4;">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png">Payment Details</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" >
                     <form role="form" id="payment-form">
                       <div class ="row">
                         <div class="col-xs-12">
@@ -178,7 +179,7 @@
                                     <div class="input-group">
                                         <input input type="text" class="form-control" name="Name" placeholder="Your Name" required autofocus class="form-control" name="name" placeholder="Name" ng-model="toCheckout.name" ng-value="user.name"required />
                                     </div>
-                            
+
                                 </div>
                             </div>
                           </div>
@@ -187,7 +188,7 @@
                                   <div class="form-group">
                                     <label for="email" style= "color: black">EMAIL</label>
                                         <input input type="text" class="form-control" name="Name" placeholder="Your Email" required autofocus class="form-control" name="address" placeholder="Email" ng-model="toCheckout.email" required />
-                            
+
                                 </div>
                             </div>
                         <div class="row">
@@ -207,7 +208,7 @@
                                         <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" required autofocus ng-model="payment.card.number"/>
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                     </div>
-                                </div>                            
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -215,15 +216,15 @@
                                 <div class="form-group">
                                     <label for="expMonth" style= "color: black" >EXPIRATION DATE</label>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control" name="expMonth" placeholder="MM" ng-model="payment.card.exp_month" required data-stripe="exp_month" />
+                                        <input type="text" class="form-control" name="expMonth" style= "width: 50px" placeholder="MM" ng-model="payment.card.exp_month" required data-stripe="exp_month" />
                                     </div>
                                     <div class="col-xs-6 col-lg-6 pl-ziro">
                                         <input type="text" class="form-control" name="expYear" placeholder="YY" ng-model="payment.card.exp_year" required data-stripe="exp_year" />
                                     </div>
                                 </div>
                             </div>
-                    
-                      
+
+
                             <div class="col-xs-5 col-md-5 pull-right">
                                 <div class="form-group">
                                     <label for="cvCode">CV CODE</label>
@@ -248,7 +249,7 @@
                 <p>Payment JSON</p>
                 <pre>{{payment | json}}</pre>
             </div>
-        </div>
+
     </div>
 
    </form>
@@ -257,7 +258,7 @@
 Purchase items from cart
 Specify shipping address and email address
 Receive confirmation email
-Receive notification emails upon order shipping, then order delivery --><!-- 
+Receive notification emails upon order shipping, then order delivery --><!--
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-route.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
@@ -352,5 +353,3 @@ Receive notification emails upon order shipping, then order delivery --><!--
     </p>
   </form>
 </div> -->
- 
-

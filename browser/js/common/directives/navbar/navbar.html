@@ -12,7 +12,7 @@
     </ul>
     <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
     <div ng-show="user" class="welcome">
-      <a sref="cart"><button type="button" class="btn btn-lg">
+      <a ui-sref="cart" class ="cart-btn"><button type="button" class="btn btn-lg " id="cart-btn">
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
       </button></a>
       <span class="user"><a ui-sref="userProfile({id: user._id})">Welcome, {{ user.name }}!</a></span>
