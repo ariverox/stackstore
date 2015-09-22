@@ -59,6 +59,19 @@ app.factory('CartFactory', function($http, localStorageService, ProductFactory, 
         this.updateCart(user);
     },
 
+    checkout: function() {
+    	var toCheckout = {};
+    	toCheckout.items = this.items.map(function(item) {
+    		return {product: item, quantity: item.quantity};
+    	})
+    	toCheckout.timestamp = new Date();
+    	toCheckout.subtotal = this.totalPrice;
+
+
+    	$state.go('checkout', toCheckout);
+    }
+
+
   }
 
 })

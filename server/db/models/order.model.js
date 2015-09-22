@@ -58,6 +58,9 @@ var Order = new mongoose.Schema({
   deliveryDate: {
     type: Date,
     required: true
+  },
+  chargeToken: {
+    type: String
   }
 });
 

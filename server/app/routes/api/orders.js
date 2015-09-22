@@ -1,21 +1,14 @@
 var router =require('express').Router()
 var mongoose = require('mongoose')
-
 var Order = mongoose.model('Order')
 
 var nodemailer = require('nodemailer');
 
 
-function isUser() {
+// See your keys here https://dashboard.stripe.com/account/apikeys
 
-}
-
-function isAdmin() {
-
-}
-
-
-
+// (Assuming you're using express - expressjs.com)
+// Get the credit card details submitted by the form
 
 router.param('id', function(req, res, next, id){
 
@@ -28,12 +21,9 @@ router.param('id', function(req, res, next, id){
     }).then(null, next)
 })
 
-//admin route
 
 router.get('/', function(req,res, next){
-  if(!req.user.isAdmin) return
-
-
+    if(!req.user.isAdmin) return;
 
     Order.find().populate('user items').exec()
         .then(orders => res.send(orders))
@@ -51,26 +41,26 @@ router.get('/:id', function(req,res, next){
 
 
 router.post('/', function(req,res, next){
+    console.log('were here', req.body)
     Order.create(req.body)
-        .then(function (order) {
-            console.log('req.body.email:',req.body.email);
-            var transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: 'thisistherealsnackstore@gmail.com',
-                    pass: 'stackstore'
-                }
-            });
-            transporter.sendMail({
-                from: 'do-not-reply@thisistherealsnackstore.com',
-                to: req.body.email,
-                subject: 'Your order (#'+req.body.orderNumber+') has been shipped.',
-                html: '<p>'+req.body.name+',</p><p>Thank you for shopping at Snackstore!</p><p><a href="http://bit.ly/1c9vo1S">Link to online receipt</a></p>'
-            });
-            res.status(201).json(order);
-        })
-        .then(null, next);
-
+    .then(function (order) {
+        console.log('req.body.email:',req.body.email);
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'thisistherealsnackstore@gmail.com',
+                pass: 'stackstore'
+            }
+        });
+        transporter.sendMail({
+            from: 'do-not-reply@thisistherealsnackstore.com',
+            to: req.body.email,
+            subject: 'Your order (#'+req.body.orderNumber+') has been shipped.',
+            html: '<p>'+req.body.name+',</p><p>Thank you for shopping at Snackstore!</p><p><a href="http://bit.ly/1c9vo1S">Link to online receipt</a></p>'
+        });
+        res.status(201).json(order);
+    })
+    .then(null, next);
 })
 
 router.put('/:id', function(req,res, next){
