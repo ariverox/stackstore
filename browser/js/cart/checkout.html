@@ -142,7 +142,26 @@
 <form ng-submit="charge()">
 <!-- Credit card form -->
 <div class="container">
-                          <pre>{{ user | json }}</pre>
+	<div class="row">
+	    <md-content class="col-lg-6 col-md-6 col-sm-12">
+	        <h3>Your Current Order</h3>
+	        <md-input-container>
+	            <label> Your Products </label>
+	            <div ng-repeat="item in toCheckout.items">
+	                <md-content class="col-lg-6 col-md-6 col-sm-12">
+	                    <a ui-sref='detail({id: item.product._id})' class="thumbnail product-image list-group-item">
+	                        <img ng-src="{{ item.product.photo }}" alt="{{ item.product.title }}">
+	                    </a>
+	                    <p><a ui-sref='detail({id: item.product._id})'><strong>{{ item.product.title }}</strong></a></p>
+	                    <span>Quantity: {{ item.quantity || 1 }}, </span>
+	                    <span>Price: {{ (item.quantity || 1) * item.product.price | currency }}</span>
+	            </div>
+	            <p><strong>Total Price: {{ toCheckout.subtotal | currency }}</strong></p>
+	            <p><a ui-sref="cart">Back to Cart</a></p>
+	        </md-input-container>
+	    </md-content>
+	</div>
+	 <!-- <pre>{{ user | json }}</pre> -->
 
     <div class="row">
         <div class="col-xs-12 col-md-4">
@@ -226,6 +245,8 @@
                     </form>
                 </div>
                 <pre>{{toCheckout | json}} </pre>
+                <p>Payment JSON</p>
+                <pre>{{payment | json}}</pre>
             </div>
         </div>
     </div>

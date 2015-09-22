@@ -2,6 +2,10 @@
 
 app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactory, UserFactory, ProductFactory, AuthService, $state, user, cart, stripe) {
 
+    $scope.user;
+    $scope.toCheckout = {};
+
+
 
     $scope.submitOrder = function() {
        
@@ -44,10 +48,8 @@ app.controller('CheckoutCtrl', function($scope, localStorageService, OrderFactor
 
     function setupCart() {
 
-        $scope.user;
-        $scope.toCheckout = {};
-
-
+      $scope.user = user;
+      
         $scope.payment = {
             card : {
                 number : "",
