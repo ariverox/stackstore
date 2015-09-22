@@ -17,7 +17,7 @@
 			</select>
 		</p>
 		<div class="container">
-				<div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="product in products | orderBy: field " ng-show="(country === 'All' || country === product.country)">
+				<div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="product in products | orderBy: field " ng-show="(country === 'All' || country === product.country) && product.stock > 0">
 				<!-- <pre>{{ product | json }}</pre> -->
 
 

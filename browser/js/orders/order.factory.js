@@ -13,15 +13,20 @@ app.factory('OrderFactory', function($http) {
   }
 
   function submitOrder(order) {
-    return $http.post('/api/orders', order).then(function(response) {
+    return $http.post('/api/orders', order).then(function (response) {
       console.log('backend order posted');
       return response.data;
     });
   }
 
+  function updateOrder(orderid, order) {
+    return $http.put('/api/orders/' + orderid, order).then(function (response) {
+      return response.data;
+    });
+  }
   return {
     getOne: getOne,
-
+    updateOrder: updateOrder,
     getAll: getAll,
     submitOrder: submitOrder,
   };

@@ -59,6 +59,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 
 	ProductFactory.getAll().then(function(stuff) {
 		$scope.products = stuff;
+		stuff.forEach(function () {})
 	})
 
 	// For product detail page
@@ -73,6 +74,13 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 		return angular.isNumber(input);
 	};
 
+	$scope.setStock = function (num) {
+		$scope.product.stock = num;
+	}
+	$scope.allproducts = [];
+	$scope.products.forEach(function (singleProduct) {
+		$scope.allproducts.push()
+	});
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
 	// 	$scope.predicate = p;
 	// }

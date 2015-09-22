@@ -2,26 +2,54 @@
 <!-- <pre>{{ order | json }}</pre> -->
 
 <h5>Customer Information</h5>
-<ul>
-  <strong>Name: </strong><li style="display: inline" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-model="order.name">{{ order.name }}</li>
+<ul class="pull-left">
+  <strong>Name: </strong><li style="display: inline">{{ order.name }}</li>
   <div></div>
-  <strong>Email: </strong><li style="display: inline" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-model="order.email">{{ order.email }}</li>
+  <strong>Email: </strong><li style="display: inline">{{ order.email }}</li>
   <div></div>
-  <strong>Shipping Address: </strong><li style="display: inline" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-model="order.shippingAddress" >{{ order.shippingAddress }}</li>
+  <strong >Shipping Address: </strong><li style="display: inline-block" ng-model="order.shippingAddress" >{{ order.shippingAddress }}</li>
+  <i ng-click="shippingform = !shippingform" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="shippingform">
+    <div></div>
+     <input ng-model="order.shippingAddress" type="shipaddress" class="form-control" id="shipaddress">
+    </form>
+    <div class="clearfix"></div>
 </ul>
-
-<strong>Order Number:</strong><p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-model="order.orderNumber"style="display: inline"> {{ order.orderNumber }}</p>
+<div class="clearfix"></div>
+<div class="pull-left">
+<strong>Order Number:</strong><p style="display: inline"> {{ order.orderNumber }}</p>
 <div></div>
-<strong>Order Status:</strong><p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" style="display: inline"> {{ displayStatus() }}</p>
+<strong>Order Status:</strong><p ng-show="{{ !toggleEdit }}" style="display: inline"> {{ displayStatus() }}</p>
+<i ng-click="statusform = !statusform"ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="statusform">
+    <div></div>
+     <input ng-model="order.status" type="status" class="form-control" id="status">
+    </form>
+    <div class="clearfix"></div>
 <div></div>
-<strong>Order Date:</strong><p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" style="display: inline"> {{ displayDate(order.timestamp, 'order') }}</p>
+<strong>Order Date:</strong><p style="display: inline"> {{ displayDate(order.timestamp, 'order') }}</p>
 
-<p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}"><strong>{{ displayDateType(order.shippingDate, 'Estimated Shipping Date:') }}</strong> {{ displayDate(order.shippingDate, 'shipping') }}</p>
+<p><strong>{{ displayDateType(order.shippingDate, 'Estimated Shipping Date:') }}</strong> {{ displayDate(order.shippingDate, 'shipping') }}</p>
+<i ng-click="shipdate = !shipdate"ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="shipdate">
+    <div></div>
+     <input ng-model="order.shippingDate" type="shipdate" class="form-control" id="shipdate">
+    </form>
+    <div class="clearfix"></div>
+<p><strong>{{ displayDateType(order.deliveryDate, 'Estimated Delivery Date:') }}</strong> {{ displayDate(order.deliveryDate, 'delivery') }}</p>
+<i ng-click="deliverydate = !deliverydate" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="deliverydate">
+    <div></div>
+     <input ng-model="order.deliveryDate" type="deliverydate" class="form-control" id="deliverydate">
+    </form>
+    <div class="clearfix"></div>
+</div>
 
-<p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}"><strong>{{ displayDateType(order.deliveryDate, 'Estimated Delivery Date:') }}</strong> {{ displayDate(order.deliveryDate, 'delivery') }}</p>
-
-
-
+<div class="clearfix"></div>
 
 <div>
 <ul id="sidebyside">
@@ -48,17 +76,42 @@
           <tr class="statcell">
             <td></td><td></td>
             <td><span class="pull-right"><strong>Shipping:</strong></span></td>
-            <td><span class="pull-right">{{ 0 | currency }}</span></td>
+            <td><span class="pull-right">{{ ship | currency }}</span></td>
+            <td>
+              <i ng-click="shipping = !shipping" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+              <div class="clearfix"></div>
+              <form class="form col-md-10" role="form" ng-show="shipping">
+              <div></div>
+              <input ng-model="ship" type="shipping" class="form-control" id="shipping">
+              </form>
+            </td>
+    <div class="clearfix"></div>
           </tr>
           <tr class="statcell">
             <td></td><td></td>
             <td><span class="pull-right"><strong>Tax:</strong></span></td>
-            <td><span class="pull-right">{{ 0 | currency }}</span></td>
+            <td><span class="pull-right">{{ tax | currency }}</span></td>
+              <td>
+              <i ng-click="taxes = !taxes" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+              <div class="clearfix"></div>
+              <form class="form col-md-10" role="form" ng-show="taxes">
+              <div></div>
+              <input ng-model="tax" type="taxes" class="form-control" id="taxes">
+              </form>
+            </td>
           </tr>
           <tr class="statcell">
             <td></td><td></td>
             <td><span class="pull-right"><strong>Total:</strong></span></td>
-            <td><span class="pull-right">{{ order.subtotal | currency }}</span></td>
+            <td><span class="pull-right">{{ theTotal | currency }}</span></td>
+              <td>
+              <i ng-click="total = !total" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+              <div class="clearfix"></div>
+              <form class="form col-md-10" role="form" ng-show="total">
+              <div></div>
+              <input ng-model="theTotal" type="total" class="form-control" id="total">
+              </form>
+            </td>
           </tr>
         </tr>
       </thead>
@@ -67,7 +120,6 @@
   <li>
 </ul>
 </div>
-<pre ng-show="toggleEdit">{{ order | json }}</pre>
 <span> <a ng-show="!toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
 <span class="glyphicon glyphicon-pencil"></span> Toggle Editing
         </a></span>
@@ -79,3 +131,4 @@
 <span> <a ng-show='toggleEdit' class="btn btn-info" role="button" ng-click="saveChanges() ; toggleEdit = !toggleEdit">
 <span class="glyphicon glyphicon-save"></span> Save Changes
         </a></span>
+<pre ng-show="toggleEdit">{{ order | json }}</pre>

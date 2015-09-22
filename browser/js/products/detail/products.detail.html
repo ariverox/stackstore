@@ -55,8 +55,8 @@
 
     </div>
 
-<span> <a ng-show="!toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
-<span class="glyphicon glyphicon-pencil"></span> Toggle Editing
+<span> <a ng-show="!toggleEdit && user.isAdmin " class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
+<span class="glyphicon glyphicon-pencil"></span> Toggle Editing 
         </a></span>
 
 <span> <a ng-show="toggleEdit" class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit ; redigest()">
@@ -65,4 +65,12 @@
 
 <span> <a ng-show='toggleEdit' class="btn btn-info" role="button" ng-click="saveChanges() ; toggleEdit = !toggleEdit">
 <span class="glyphicon glyphicon-save"></span> Save Changes
+        </a></span>
+
+<span> <a ng-show='toggleEdit && !available' class="btn btn-success" role="button" ng-click="available = !available ; setStock(0) ">
+<span class="glyphicon glyphicon-save"></span> Available!
+        </a></span>
+
+<span> <a ng-click="available = !available ; setStock(1)" ng-show='toggleEdit && available'  class="btn btn-danger" role="button">
+<span class="glyphicon glyphicon-save"></span> Currently Unavailable.
         </a></span>
