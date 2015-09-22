@@ -54,7 +54,6 @@
         </div>
 
     </div>
-
 <span> <a ng-show="!toggleEdit && user.isAdmin " class="btn btn-danger" role="button" ng-click="toggleEdit = !toggleEdit">
 <span class="glyphicon glyphicon-pencil"></span> Toggle Editing 
         </a></span>
@@ -74,3 +73,27 @@
 <span> <a ng-click="available = !available ; setStock(1)" ng-show='toggleEdit && available'  class="btn btn-danger" role="button">
 <span class="glyphicon glyphicon-save"></span> Currently Unavailable.
         </a></span>
+
+<div>
+<section id="products">
+    <div class="container" style="margin-top:-50px;">
+        <div class="container"> 
+            <div>More snacks from this country:</div>
+                <div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="producto in products | orderBy: field " ng-show='producto.country === product.country && producto._id !== product._id'>
+                <!-- <pre>{{ product | json }}</pre> -->
+                    <a ui-sref="detail({id: producto._id})" class="thumbnail product-image list-group-item">
+                        <img ng-src="{{ producto.photo }}" alt="{{ producto.title }}">
+                    </a>
+                    <div class="caption product-image">
+                        <h4 ui-sref='detail({id: producto._id})'> {{ producto.title }} </h4>
+                        <span ng-show="!!producto.country" class="flag-icon flag-icon-{{ countryData[producto.country].abbr }}"></span>
+                        <p>
+        </div>
+
+
+        </div>
+    </div>
+
+
+</section>
+</div>
