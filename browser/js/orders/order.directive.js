@@ -30,6 +30,15 @@ app.directive('order', function() {
 				}
 			}
 
+			$scope.saveChanges = function() {
+				product.price = Number(product.price.replace(/[^0-9\.]+/g,""));
+				ProductFactory.update(product._id, product)
+				};
+
+			$scope.isNum = function (input) {
+			return angular.isNumber(input);
+			};
+
 			$scope.displayDate = function(date) {
 				if (!date) return 'Unknown';
 

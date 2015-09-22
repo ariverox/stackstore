@@ -66,6 +66,10 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 		return angular.isNumber(input);
 	};
 
+	$scope.setStock = function (num) {
+		$scope.product.stock = num;
+	}
+
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
 	// 	$scope.predicate = p;
 	// }
