@@ -7,6 +7,10 @@ app.factory('ProductFactory', function($http) {
             name: 'China',
             abbr: 'cn'
         },
+        'Cuba': {
+            name: 'Cuba',
+            abbr: 'cu'
+        },
         'France': {
             name: 'France',
             abbr: 'fr'
@@ -38,6 +42,10 @@ app.factory('ProductFactory', function($http) {
         'South Korea': {
             name: 'South Korea',
             abbr: 'kr'
+        },
+        'Spain': {
+            name: 'Spain',
+            abbr: 'es'
         },
         'Turkey': {
             name: 'Turkey',
