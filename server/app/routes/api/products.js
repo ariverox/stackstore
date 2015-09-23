@@ -55,9 +55,9 @@ router.post('/', function (req, res, next) {
 });
 
 router.put("/:id", function (req, res, next) {
-	console.log(req.body)
+	
 
-	if(!req.user.isAdmin) {
+	if(!req.user || !req.user.isAdmin) {
 		req.body = {stock: req.body.stock}
 	}
 

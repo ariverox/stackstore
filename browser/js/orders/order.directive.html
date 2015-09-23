@@ -10,7 +10,7 @@
   <strong >Shipping Address: </strong><li style="display: inline-block" ng-model="order.shippingAddress" >{{ order.shippingAddress }}</li>
   <i ng-click="shippingform = !shippingform" ng-show="toggleEdit" class ="fa fa-pencil"></i>
     <div class="clearfix"></div>
-    <form class="form col-md-10" role="form" ng-show="shippingform">
+    <form class="form col-md-10" role="form" ng-show="shippingform && toggleEdit">
     <div></div>
      <input ng-model="order.shippingAddress" type="shipaddress" class="form-control" id="shipaddress">
     </form>
@@ -20,12 +20,12 @@
 <div class="pull-left">
 <strong>Order Number:</strong><p style="display: inline"> {{ order.orderNumber }}</p>
 <div></div>
-<strong>Order Status:</strong><p ng-show="{{ !toggleEdit }}" style="display: inline"> {{ displayStatus() }}</p>
+<strong>Order Status:</strong><p ng-show="{{ !toggleEdit }}" style="display: inline"> {{ status }}</p>
 <i ng-click="statusform = !statusform"ng-show="toggleEdit" class ="fa fa-pencil"></i>
     <div class="clearfix"></div>
-    <form class="form col-md-10" role="form" ng-show="statusform">
+    <form class="form col-md-10" role="form" ng-show="statusform && toggleEdit">
     <div></div>
-     <input ng-model="order.status" type="status" class="form-control" id="status">
+     <input ng-model="status" type="status" class="form-control" id="status">
     </form>
     <div class="clearfix"></div>
 <div></div>
@@ -34,7 +34,7 @@
 <p><strong>{{ displayDateType(order.shippingDate, 'Estimated Shipping Date:') }}</strong> {{ displayDate(order.shippingDate, 'shipping') }}</p>
 <i ng-click="shipdate = !shipdate"ng-show="toggleEdit" class ="fa fa-pencil"></i>
     <div class="clearfix"></div>
-    <form class="form col-md-10" role="form" ng-show="shipdate">
+    <form class="form col-md-10" role="form" ng-show="shipdate && toggleEdit">
     <div></div>
      <input ng-model="order.shippingDate" type="shipdate" class="form-control" id="shipdate">
     </form>
@@ -42,7 +42,7 @@
 <p><strong>{{ displayDateType(order.deliveryDate, 'Estimated Delivery Date:') }}</strong> {{ displayDate(order.deliveryDate, 'delivery') }}</p>
 <i ng-click="deliverydate = !deliverydate" ng-show="toggleEdit" class ="fa fa-pencil"></i>
     <div class="clearfix"></div>
-    <form class="form col-md-10" role="form" ng-show="deliverydate">
+    <form class="form col-md-10" role="form" ng-show="deliverydate && toggleEdit">
     <div></div>
      <input ng-model="order.deliveryDate" type="deliverydate" class="form-control" id="deliverydate">
     </form>
@@ -80,7 +80,7 @@
             <td>
               <i ng-click="shipping = !shipping" ng-show="toggleEdit" class ="fa fa-pencil"></i>
               <div class="clearfix"></div>
-              <form class="form col-md-10" role="form" ng-show="shipping">
+              <form class="form col-md-10" role="form" ng-show="shipping && toggleEdit">
               <div></div>
               <input ng-model="ship" type="shipping" class="form-control" id="shipping">
               </form>
@@ -94,7 +94,7 @@
               <td>
               <i ng-click="taxes = !taxes" ng-show="toggleEdit" class ="fa fa-pencil"></i>
               <div class="clearfix"></div>
-              <form class="form col-md-10" role="form" ng-show="taxes">
+              <form class="form col-md-10" role="form" ng-show="taxes && toggleEdit">
               <div></div>
               <input ng-model="tax" type="taxes" class="form-control" id="taxes">
               </form>
@@ -107,7 +107,7 @@
               <td>
               <i ng-click="total = !total" ng-show="toggleEdit" class ="fa fa-pencil"></i>
               <div class="clearfix"></div>
-              <form class="form col-md-10" role="form" ng-show="total">
+              <form class="form col-md-10" role="form" ng-show="total && toggleEdit">
               <div></div>
               <input ng-model="theTotal" type="total" class="form-control" id="total">
               </form>

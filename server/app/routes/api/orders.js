@@ -32,6 +32,11 @@ router.get('/', function(req,res, next){
 
 router.get('/:id', function(req,res, next){
     // check to see if req session is the user
+    if(!req.user) {
+        res.send(req.order)
+        req.user = "GUEST";
+        return;
+    }
     if(!(req.user._id.toString() === req.order.user._id.toString() || req.user.isAdmin)) return;
     res.send(req.order)
 
