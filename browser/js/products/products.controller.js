@@ -75,6 +75,7 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 
 	$scope.saveChanges = function() {
 		if(typeof product.price !== 'number') product.price = Number(product.price.replace(/[^0-9\.]+/g,""));
+		if(typeof product.categories === 'string') product.categories = product.categories.split(",");
 		ProductFactory.update(product._id, product)
 	};
 

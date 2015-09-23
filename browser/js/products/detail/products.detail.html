@@ -56,7 +56,15 @@
                         <p ng-show="product.description">{{ product.description }}</p>
                         <p ng-model=product.description contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-show="!product.description">No description provided.</p>
                         <p ng-show="toggleEdit">Categories</p>
-                        <p ng-model=product.categories contenteditable="{{ !!toggleEdit }}" ng-show="toggleEdit" ng-class="{'isEditable': toggleEdit}">{{ product.categories }}</p>
+                         <!-- title edit -->
+    <i style="color: red" ng-click="catform = !catform" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="catform && toggleEdit">
+    <div></div>
+     <input ng-model="product.categories" type="shipaddress" class="form-control" id="shipaddress">
+    </form>
+    <div class="clearfix"></div>
+                        <p>{{ product.categories }}</p>
                     </div>
 
 
