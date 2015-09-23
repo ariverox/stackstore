@@ -23,7 +23,7 @@ router.param('id', function(req, res, next, id){
 
 
 router.get('/', function(req,res, next){
-	if(!req.user.isAdmin) return
+	if(!req.user || !req.user.isAdmin) return
 
   User.find().exec().
 	then(function(users){
@@ -34,6 +34,8 @@ router.get('/', function(req,res, next){
 
 
 router.get('/:id', function(req,res, next){
+	if (!req.user) return;
+	if (!(req.user._id.toString() === req.params.id.toString() || req.user.isAdmin)) return;
 	console.log(req.user)
 
 	res.json(req.thisUser)
@@ -68,7 +70,7 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-		if(!req.user.isAdmin) return
+		if(!req.user || !req.user.isAdmin) return
 
     req.thisUser.remove()
         .then(function () {

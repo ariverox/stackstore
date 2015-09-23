@@ -1,4 +1,5 @@
 <div class="container">
+
   <button ng-show="loggedInUser.isAdmin" ng-click="deleteUser()" class="btn btn-danger"> Delete this User </button>
   <button ng-show="loggedInUser.isAdmin && !user.isAdmin" ng-click="makeAdmin()" class="btn btn-danger"> Make this user an Admin </button>
   <button ng-show="loggedInUser.isAdmin && user.isAdmin" ng-click="demote()" class="btn btn-danger"> Remove Admin </button>
@@ -7,6 +8,7 @@
         <img ng-src="{{ user.photo }}">
             <div class="col-sm-12 col-lg-6 col-md-6">
                 <h1>Hey {{user.name}}!</h1>
+
                     <div class="col-sm-12 col-md-12 col-lg-12 centerText">
                         <button="btn btn-primary btn-lg btn-standard" ng-click="showForm()"> Update Profile </button>
                     </div>
@@ -24,6 +26,7 @@
                     <a ui-sref="order({id: order._id})">Order #{{ order.orderNumber }}</a>
                 </p>
             </div>
+
 
     </div>
 </div>

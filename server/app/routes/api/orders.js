@@ -23,7 +23,7 @@ router.param('id', function(req, res, next, id){
 
 
 router.get('/', function(req,res, next){
-    if(!req.user.isAdmin) return;
+    if(!req.user || !req.user.isAdmin) return;
 
     Order.find().populate('user items').exec()
         .then(orders => res.send(orders))
@@ -32,12 +32,11 @@ router.get('/', function(req,res, next){
 
 router.get('/:id', function(req,res, next){
     // check to see if req session is the user
-    if(!req.user) {
-        res.send(req.order)
-        req.user = "GUEST";
-        return;
+    // don't block requests for orders without associated users (mainly to allow non-loggedin users to access their own order details)
+
+    if (req.order.user) {
+        if(!(req.user._id.toString() === req.order.user._id.toString() || req.user.isAdmin)) return;      
     }
-    if(!(req.user._id.toString() === req.order.user._id.toString() || req.user.isAdmin)) return;
     res.send(req.order)
 
 })
@@ -46,7 +45,6 @@ router.get('/:id', function(req,res, next){
 
 
 router.post('/', function(req,res, next){
-    console.log('were here', req.body)
     Order.create(req.body)
     .then(function (order) {
         console.log('req.body.email:',req.body.email);
@@ -69,9 +67,7 @@ router.post('/', function(req,res, next){
 })
 
 router.put('/:id', function(req,res, next){
-    if(!req.user.isAdmin) return
-
-
+    if(!req.user || !req.user.isAdmin) return
 
     for (var k in req.body) {
         req.order[k] = req.body[k];
@@ -87,8 +83,7 @@ router.put('/:id', function(req,res, next){
 
 
 router.delete('/:id', function(req,res, next){
-  if(!req.user.isAdmin) return
-
+  if(!req.user || !req.user.isAdmin) return
 
     req.order.remove()
         .then(function () {

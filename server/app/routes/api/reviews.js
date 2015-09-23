@@ -64,6 +64,8 @@ router.post('/', function (req, res, next) {
 
 
 router.put("/:id", function (req, res, next) {
+    if (!req.user) return;
+
     for (var key in req.body) {
         req.review[key] = req.body[key];
     }

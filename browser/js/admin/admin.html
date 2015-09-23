@@ -18,7 +18,11 @@
                 <span ng-repeat="order in user.orders"> <a href="/order/{{order}}">{{ order}}</a> </span>
 
               </div>
+              <div>
+                <h4 ng-show="guestOrders.length > 0"> Guest</h4>
+                <span ng-repeat="order in guestOrders"> <a href="/order/{{order._id}}">{{ order._id }}</a> </span>
 
+              </div>
 
             </div>
           </div>
@@ -35,6 +39,8 @@
             <div class="well well-lg">
               <h3> All products</h3>
               <span ng-repeat="product in products"> <a href="/products/{{product._id}}">{{product.title}} </a></span>
+              <hr>
+              <p><a ui-sref="add">Add new product</a></p>
             </div>
           </div>
         </div>
