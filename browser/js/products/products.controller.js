@@ -97,6 +97,10 @@ app.controller('ProductsCtrl', function($scope, ProductFactory, CartFactory, Use
 		return false
 	}
 
+	// $scope.showCategories = function(cats) {
+	// 	return cats.join(', ');
+	// }
+
 	// $scope.setFiltersAndOrder = function(categories, country, order) {
 	// 	$scope.predicate = p;
 	// }
