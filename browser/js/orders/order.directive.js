@@ -10,15 +10,18 @@ app.directive('order', function(OrderFactory) {
 
 			var months = {'1':'January', '2':'February', '3':'March', '4':'April', '5':'May', '6':'June',
 						'7':'July', '8':'August', '9':'September', '10':'October', '11':'November', '12':'December'};
-
 			$scope.displayStatus = function() {
 				var now = Date.now();
 				if (now >= Date.parse($scope.order.deliveryDate)) return 'Delivered';
 				if (now >= Date.parse($scope.order.shippingDate) && now < Date.parse($scope.order.deliveryDate)) return 'Shipped';
 				else return 'Not Yet Shipped';
 			};
+			$scope.status = $scope.displayStatus();
 
 			$scope.displayDateType = function(date, message) {
+				// $scope.displayStatus().then(function(thestatus) {
+				// 	$scope.status = thestatus;
+				// })
 				if (!date) return message;
 				if (date === $scope.order.shippingDate) {
 					if (Date.now() > Date.parse(date)) return 'Date Shipped:';
@@ -34,6 +37,7 @@ app.directive('order', function(OrderFactory) {
 				OrderFactory.updateOrder($scope.order._id, $scope.order);
 				};
 
+				
 				$scope.tax = 0;
 				$scope.ship = 0;
 				$scope.theTotal = $scope.order.subtotal + $scope.tax + $scope.ship;

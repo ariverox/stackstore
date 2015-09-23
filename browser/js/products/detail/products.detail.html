@@ -1,27 +1,59 @@
 <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
-
+            <div class="col-md-9 productDiv">
+                        <h4 ng-class="{'isEditable': toggleEdit}" class='product-title'>{{product.title}}</h4>
+                <!-- title edit -->
+    <i style="color: red" ng-click="titleform = !titleform" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="titleform && toggleEdit">
+    <div></div>
+     <input ng-model="product.title" type="shipaddress" class="form-control" id="shipaddress">
+    </form>
+    <div class="clearfix"></div>
                 <div ng-class="{'isEditable': toggleEdit}" class="thumbnail">
+                <!-- photo edit -->
+    <i ng-click="shippingform = !shippingform" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="shippingform && toggleEdit">
+    <div></div>
+     <input ng-model="product.photo" type="shipaddress" class="form-control" id="shipaddress">
+    </form>
+    <div class="clearfix"></div>
                 <div ng-show="toggleEdit">photo url:</div>
-                <div contenteditable ng-model="product.photo"ng-show="toggleEdit">{{product.photo}}</div>
-                    <img class="img-responsive product-image" src="{{product.photo}}" alt="">
-                    <p contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-model="product.country" ng-show="toggleEdit">{{product.country}}</p>
+                <div ng-model="product.photo"ng-show="toggleEdit">{{product.photo}}</div>
+                    <img class="img-responsive single-product-image" src="{{product.photo}}" alt="">
+
+                <!-- country edit -->
+    <i ng-click="flagedit = !flagedit" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-md-10" role="form" ng-show="flagedit && toggleEdit">
+    <div></div>
+    <input ng-model="product.country" type="shipaddress" class="form-control" id="shipaddress">
+    </form>
+    <div class="clearfix"></div>
+                    <p ng-show="toggleEdit">{{product.country}}</p>
                     <span ng-show="!!product.country" class="flag-icon flag-icon-{{ countryData[product.country].abbr }}"></span>
                 </div>
                 <pre ng-show="toggleEdit">{{ product | json }}</pre>
                     <div class="caption-full product-stats">
                         <h4 ng-if="isNum(product.price)" ng-model="product.price" contenteditable="{{ !!toggleEdit }}"  ng-class="{'isEditable': toggleEdit}" class="pull-right">{{product.price | currency}}</h4>
                         <h4 ng-if="!isNum(product.price)" ng-model="product.price" contenteditable="{{ !!toggleEdit }}"  ng-class="{'isEditable': toggleEdit}" class="pull-right">{{product.price}}</h4>
-                        <h4 ng-model="product.title" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" class='product-title'>{{product.title}}</h4>
                         <span ng-model="product.stock" contenteditable="{{ !!toggleEdit }}"  class="stock" ng-show="product.stock >= 20">There are currently {{ product.stock }} left in stock. </span>
                         <span ng-model="product.stock" contenteditable="{{ !!toggleEdit }}" class="stock" ng-show="product.stock < 20 && product.stock > 0">Hurry, there are only {{ product.stock }} left in stock! </span>
                         <div ng-show="toggleEdit">Stock:</div>
                         <div ng-model="product.stock" contenteditable="{{ !!toggleEdit }}" ng-show="toggleEdit" ng-class="{'isEditable': toggleEdit}">{{ product.stock }}</div>
                         <span ng-class="{'isEditable': toggleEdit}" class="stock" ng-show="product.stock <= 0">Sorry, this product is sold out.</span>
                         <h3>Description:</h3>
-                        <p ng-model="product.description" contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-show="product.description">{{ product.description }}</p>
+                <!-- description edit -->
+    <i ng-click="descedit = !descedit" ng-show="toggleEdit" class ="fa fa-pencil"></i>
+    <div class="clearfix"></div>
+    <form class="form col-lg-12" role="form" ng-show="descedit && toggleEdit">
+    <div></div>
+    <input ng-model="product.description" type="shipaddress" class="form-control" id="shipaddress">
+    </form>
+    <div class="clearfix"></div>
+                        <p ng-show="product.description">{{ product.description }}</p>
                         <p ng-model=product.description contenteditable="{{ !!toggleEdit }}" ng-class="{'isEditable': toggleEdit}" ng-show="!product.description">No description provided.</p>
                         <p ng-show="toggleEdit">Categories</p>
                         <p ng-model=product.categories contenteditable="{{ !!toggleEdit }}" ng-show="toggleEdit" ng-class="{'isEditable': toggleEdit}">{{ product.categories }}</p>
@@ -76,10 +108,10 @@
 
 <div>
 <section id="products">
-    <div class="container" style="margin-top:-50px;">
+    <div class="container col-md-9">
         <div class="container"> 
-            <div>More snacks from this country:</div>
-                <div style=""class="col-lg-3 col-md-4 col-sm-6 "   ng-repeat="producto in products | orderBy: field " ng-show='producto.country === product.country && producto._id !== product._id'>
+            <h3>More snacks from this country:</h3>
+                <div style="margin-top: 50px"class="col-lg-3 col-md-4 col-sm-6 otherprod"   ng-repeat="producto in products | orderBy: field " ng-show='producto.country === product.country && producto._id !== product._id'>
                 <!-- <pre>{{ product | json }}</pre> -->
                     <a ui-sref="detail({id: producto._id})" class="thumbnail product-image list-group-item">
                         <img ng-src="{{ producto.photo }}" alt="{{ producto.title }}">
