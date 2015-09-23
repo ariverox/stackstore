@@ -23,7 +23,7 @@ router.param('id', function(req, res, next, id){
 
 
 router.get('/', function(req,res, next){
-	if(!req.user.isAdmin) return
+	if(!req.user || !req.user.isAdmin) return
 
   User.find().exec().
 	then(function(users){
@@ -68,7 +68,7 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-		if(!req.user.isAdmin) return
+		if(!req.user || !req.user.isAdmin) return
 
     req.thisUser.remove()
         .then(function () {

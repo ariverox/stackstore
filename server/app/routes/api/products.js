@@ -44,7 +44,7 @@ router.get('/:id', function(req,res, next){
 
 //admin routes
 router.post('/', function (req, res, next) {
-	if(!req.user.isAdmin) return
+	if(!req.user || !req.user.isAdmin) return
 
 
 	Product.create(req.body)
@@ -57,12 +57,14 @@ router.post('/', function (req, res, next) {
 router.put("/:id", function (req, res, next) {
 	console.log(req.body)
 
-	if(!req.user.isAdmin) {
-		req.body = {stock: req.body.stock}
-	}
+	// if(!req.user || !req.user.isAdmin) {
+	// 	req.body = {stock: req.body.stock}
+	// }
 
 
 	for (var key in req.body) {
+		if ((!req.user || !req.user.isAdmin) && !(key != 'stock' || key != 'reviews'))
+			throw new Error ('Unauthorized editing of products');
 		req.product[key] = req.body[key];
 	}
 
