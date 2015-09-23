@@ -18,7 +18,11 @@
                 <span ng-repeat="order in user.orders"> <a href="/order/{{order}}">{{ order}}</a> </span>
 
               </div>
+              <div>
+                <h4 ng-show="guestOrders.length > 0"> Guest</h4>
+                <span ng-repeat="order in guestOrders"> <a href="/order/{{order._id}}">{{ order._id }}</a> </span>
 
+              </div>
 
             </div>
           </div>

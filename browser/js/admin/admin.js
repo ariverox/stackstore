@@ -32,6 +32,18 @@ app.controller('AdminController', function($scope, ProductFactory, OrderFactory,
     })
   }
 
+  $scope.displayUsername = function(username) {
+    return username ? username : 'Guest';
+  }
+
+  $scope.displayGuestOrders = function() {
+    if (!orders) return;
+    return orders.filter(function(order) {
+      return !order.user;
+    })
+  }
+  $scope.guestOrders = $scope.displayGuestOrders();
+
 })
 
 

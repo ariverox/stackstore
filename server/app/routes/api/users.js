@@ -34,6 +34,8 @@ router.get('/', function(req,res, next){
 
 
 router.get('/:id', function(req,res, next){
+	if (!req.user) return;
+	if (!(req.user._id.toString() === req.params.id.toString() || req.user.isAdmin)) return;
 	console.log(req.user)
 
 	res.json(req.thisUser)
